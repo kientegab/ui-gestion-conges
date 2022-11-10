@@ -1,0 +1,96 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 30px;
+  }
+
+
+  .sub-title {
+    color: #7F7F7F;
+    font-size: 15px;
+  }
+
+
+
+  img {
+    min-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    display: block;
+  }  
+
+  .flex-item-right {
+    flex: 25%;
+    text-align: center;
+    background-color: black;
+  }
+
+  .flex-item-center {
+    flex: 10%;
+    text-align: left;
+  }
+
+  h1.ontop {
+    position: relative;
+
+  }
+
+
+  .info {
+    position: relative;
+    display: flex;
+    width: 50%;
+    background: rgb(22, 21, 21, 0.6);
+
+
+  }
+
+  .info::before {
+    font-size: 20px;
+    padding: 4px;
+    position: absolute;
+    background: black;
+
+
+  }
+
+  h5 {
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+    opacity: 1;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 15px;
+    border-bottom: 2px solid yellow;
+  }
+
+  p {
+    font-size: 19px;
+    color: #ffffff;
+    padding: 15px;
+  } 
+  /* Responsive layout - makes a one column-layout instead of a two-column layout */
+  @media (max-width: 800px) {
+
+    .flex-item-right,
+    .flex-item-left {
+      flex: 100%;
+    }
+  }
+</style>
+
+<div class="flex-container mb-2">
+  <div class="flex-item">
+    <div class="info mt-5 ml-3 flex-container">
+      <h5 class="ontop">Bienvenue sur SICAA </h5>
+      <p> Faites vos demandes de congés et autorisations d'absence en ligne et en toute simplicité.
+       </p>
+    </div>
+  </div>
+</div>

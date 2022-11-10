@@ -1,0 +1,19 @@
+  /*
+   * Footer
+   */
+   body {
+    height: 100%;
+  }
+  .blog-footer {
+    padding: 1rem 0;
+    color: #ffffff;
+    text-align: center;
+    background-color: #006699;
+    border-top: .05rem solid #e5e5e5;
+    bottom: 0;
+    font-size: large; 
+  }
+
+  .blog-footer p:last-child {
+    margin-bottom: 0;
+  }
