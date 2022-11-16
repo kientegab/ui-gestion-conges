@@ -36,6 +36,8 @@
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeflex/primeflex.css",
+              "node_modules/nebular-icons/scss/nebular-icons.scss",
+              "node_modules/flag-icon-css/sass/flag-icons.scss",
               "src/styles.scss"
             ],
             "scripts": [
