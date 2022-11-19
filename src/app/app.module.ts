@@ -31,6 +31,8 @@ import { ToastModule } from 'primeng/toast';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdministrationModule } from './administration/administration.module';
+import { AdministrationRoutingModule } from './administration/administration-routing.module';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -58,12 +60,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenubarModule,
     ButtonModule,
     PublicRoutingModule,
+    AdministrationRoutingModule,
     AppRoutingModule,
     RouterModule,
-    ThemeModule,
+    
     ToastModule,
     NbLayoutModule,
-    ThemeRoutingModule,
+   
+   
     ImageModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({
@@ -80,7 +84,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NbDialogModule.forRoot(),
     NbThemeModule.forRoot({ name: 'corporate' })
   ],
-  providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
+  // providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
+  providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,17 @@
 export interface IExemple {
     id?:number;
-    nom?:string;
-    prenom?:string;
+    libelle?:string;
+    description?:string;
 }
 
 export class Exemple implements IExemple {
     constructor(
       public id?: number,
-      public nom?: string,
-      public prenom?: string,
+      public libelle?: string,
+      public description?: string,
     ) {}
  }
+ export interface GetAllExempleResponse {
+  // totalCount: number;
+   exemples: IExemple[];
+}

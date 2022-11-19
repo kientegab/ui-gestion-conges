@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { GalerieComponent } from './galerie/galerie.component';
+import { AdministrationRoutingModule } from '../administration/administration-routing.module';
+
 
 
 @NgModule({
@@ -15,8 +17,13 @@ import { GalerieComponent } from './galerie/galerie.component';
   
   ],
   imports: [
-    CommonModule,
-    PublicRoutingModule
+  
+
+
+  CommonModule,
+    PublicRoutingModule,
+    
+   
   ]
 })
 export class PublicModule { }
