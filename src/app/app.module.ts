@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './public/dashboard/dashboard.component';
 import { FooterComponent } from './public/footer/footer.component';
@@ -15,8 +15,27 @@ import { MenuComponent } from './public/menu/menu.component';
 import { PublicDashboardComponent } from './public/public-dashboard/public-dashboard.component';
 import { PublicRoutingModule } from './public/public-routing.module';
 import { ToolbarModule } from 'primeng/toolbar';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GalleriaModule } from 'primeng/galleria';
+import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
+
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbDialogModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { ThemeRoutingModule } from './theme/theme-routing.module';
+import { ThemeModule } from './theme/theme.module';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ImageModule } from 'primeng/image';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdministrationModule } from './administration/administration.module';
+import { AdministrationRoutingModule } from './administration/administration-routing.module';
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 
 @NgModule({
@@ -41,9 +60,32 @@ import { GalleriaModule } from 'primeng/galleria';
     MenubarModule,
     ButtonModule,
     PublicRoutingModule,
-    AppRoutingModule
+    AdministrationRoutingModule,
+    AppRoutingModule,
+    RouterModule,
+    
+    ToastModule,
+    NbLayoutModule,
+   
+   
+    ImageModule,
+    NbEvaIconsModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'fr',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    NbIconModule,               // <---------
+    NbSidebarModule.forRoot(),  // <---------
+    NbMenuModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'corporate' })
   ],
-  providers: [],
+  // providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
+  providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

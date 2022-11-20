@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { IExemple } from '../models/exemple.model';
+import { map, Observable } from 'rxjs';
+import { GetAllExempleResponse, IExemple, } from '../models/exemple.model';
 import { environment } from 'src/environments/environment';
+import { LazyLoadEvent } from 'primeng/api';
 
 
 type EntityResponseType = HttpResponse<IExemple>;
@@ -33,5 +34,16 @@ export class ClasseService {
 
   findListe(): Observable<EntityArrayResponseType> {
     return this.http.get<IExemple[]>(this.resourceUrl.concat('/liste'), { observe: 'response' });
+  }
+
+  getAll(event?: LazyLoadEvent): Observable<GetAllExempleResponse> {
+    return this.http.get("assets/data/exemple.json", { observe: 'response' })
+    .pipe(map(response => {
+        let exemplesResponse: GetAllExempleResponse = {
+          //totalCount: parseInt(response.headers.get(totalCountHeader)),
+          exemples: response.body as IExemple[]
+        };
+        return exemplesResponse;
+      }));
   }
 }
