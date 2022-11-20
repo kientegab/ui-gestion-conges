@@ -6,7 +6,7 @@ import { ExampleComponent } from './example/example.component';
 
 
 const routes: Routes = [
-  
+  { path:'login', component: LoginComponent },
   { path: 'workspace', component: ThemeLandingComponent,
 
 
