@@ -27,7 +27,7 @@ import { ImageModule } from 'primeng/image';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -59,15 +59,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenuModule,
     MenubarModule,
     ButtonModule,
+    BrowserAnimationsModule,
     PublicRoutingModule,
     AdministrationRoutingModule,
     AppRoutingModule,
     RouterModule,
-    
     ToastModule,
     NbLayoutModule,
-   
-   
     ImageModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({
