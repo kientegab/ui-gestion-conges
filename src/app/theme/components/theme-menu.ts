@@ -15,42 +15,42 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Tableau de bord SEPAP',
     icon: 'pie-chart-outline',
     home: false,
-    hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+   // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
     children: [
       {
         title: 'Suivi des activités',
         icon: 'briefcase-outline',
-        hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+        //hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
         children: [
           {
             title: 'Suivi structurel',
             icon: 'checkmark-square-outline',
             link: '/workspace/dashboard/dhsstructure',
-            hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+        //    hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
           },
           {
             title: 'Suivi sectoriel',
             icon: 'checkmark-circle-outline',
             link: '/workspace/dashboard/dhssectoriel',
-            hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+          //  hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
           },
           {
             title: 'Finances',
             icon: 'done-all-outline',
             link: '/workspace/dashboard/dhsfinance',
-            hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+         //   hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
           },
           {
             title: 'Evolutions',
             icon: 'clipboard-outline',
             link: '/workspace/dashboard/dhsevolution',
-            hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+         //   hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
           },
           {
             title: 'Rapports',
             icon: 'camera-outline',
             link: '/workspace/dashboard/dhsrapport',
-            hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+         //   hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
           },
         ]
       },
@@ -116,26 +116,26 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Performance structures',
     icon: 'grid-outline',
-    hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII']),
+    //hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII']),
     children: [
 
       {
         title: 'Etats performances',
         link: '/workspace/performances/performers',
         icon: 'list-outline',
-        hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII'])
+    //    hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII'])
       },
       {
         title: 'Indic Gouvenance',
         link: '/workspace/performances/evaluation-gouvernance',
         icon: 'list-outline',
-        hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII'])
+     //   hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS','ROLE_RESP_DDII'])
       },
       {
         title: 'Mes Indic Gouv',
         link: '/workspace/performances/mes-criteres-gouvernance',
         icon: 'list-outline',
-        hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
+      //  hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_FOCAL_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
       },
       {
         title: 'Impact',

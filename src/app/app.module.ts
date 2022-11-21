@@ -17,7 +17,7 @@ import { PublicRoutingModule } from './public/public-routing.module';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GalleriaModule } from 'primeng/galleria';
 import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbDialogModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
@@ -63,11 +63,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdministrationRoutingModule,
     AppRoutingModule,
     RouterModule,
-    
     ToastModule,
     NbLayoutModule,
-   
-   
+    BrowserAnimationsModule,
     ImageModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({
