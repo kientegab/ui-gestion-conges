@@ -18,6 +18,8 @@ import { DividerModule } from 'primeng/divider';
 import { AppCommonModule } from '../shared/common/app-common.module';
 import { ActionsToolbalIudComponent } from '../shared/common/actions-toolbal-iud/actions-toolbal-iud.component';
 import { ExampleComponent } from './example/example.component';
+import { ButtonModule } from 'primeng/button';
+import { ContextMenuModule } from 'primeng/contextmenu';
 
 
 @NgModule({
@@ -28,11 +30,15 @@ import { ExampleComponent } from './example/example.component';
     ExampleComponent
   ],
   imports: [
-    AdministrationRoutingModule,
+AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
-    
+    ButtonModule,
+    DialogModule,
+    TableModule,
+    HttpClientModule,
+    ContextMenuModule
    
     
   ],

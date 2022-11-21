@@ -28,11 +28,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdministrationModule } from './administration/administration.module';
 import { AdministrationRoutingModule } from './administration/administration-routing.module';
+import { ContextMenuModule } from 'primeng/contextmenu';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -63,10 +64,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdministrationRoutingModule,
     AppRoutingModule,
     RouterModule,
-    
+    BrowserAnimationsModule,
     ToastModule,
     NbLayoutModule,
-   
+    ContextMenuModule,
    
     ImageModule,
     NbEvaIconsModule,
