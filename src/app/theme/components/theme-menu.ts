@@ -12,7 +12,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-<<<<<<< HEAD
     title: 'Tableau de bord SEPAP',
     icon: 'pie-chart-outline',
     home: false,
@@ -291,8 +290,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-=======
->>>>>>> 0021c5a9dfaf793912da41e55d2d616ce02ea3f5
     title: 'Utilisateurs',
     icon: 'lock-outline',
     // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
