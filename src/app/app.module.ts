@@ -58,6 +58,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenuModule,
     MenubarModule,
     ButtonModule,
+    BrowserAnimationsModule,
     PublicRoutingModule,
     AdministrationRoutingModule,
     AppRoutingModule,
@@ -69,7 +70,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ToastModule,
     NbLayoutModule,
     ContextMenuModule,
-   
     ImageModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({

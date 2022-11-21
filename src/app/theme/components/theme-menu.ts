@@ -59,7 +59,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Performances',
         icon: 'briefcase-outline',
        // link: '/',
-       hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
+      // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_DIRCAB_MIN','ROLE_SG_MIN','ROLE_DIR_DGESS','ROLE_RESP_MIN','ROLE_RESP_DGESS']),
         children: [
           {
             title: 'Par structure',
