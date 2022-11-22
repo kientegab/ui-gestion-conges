@@ -20,6 +20,8 @@ import { ActionsToolbalIudComponent } from '../shared/common/actions-toolbal-iud
 import { ExampleComponent } from './example/example.component';
 import { ButtonModule } from 'primeng/button';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ContextMenuModule } from 'primeng/contextmenu';
    
   //  ExempleComponent
   
-    ExampleComponent
+    ExampleComponent,
+       PrivilegeComponent,
+       ProfilComponent
   ],
   imports: [
 AdministrationRoutingModule,

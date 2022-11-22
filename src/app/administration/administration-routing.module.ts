@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../theme/components/login/login.component';
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ExampleComponent } from './example/example.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 const routes: Routes = [
@@ -11,14 +13,16 @@ const routes: Routes = [
 
 
   children: [
-    
+
     {path: 'exemple', component: ExampleComponent },
+    {path: 'privilege', component: PrivilegeComponent },
+    {path: 'profil', component: ProfilComponent },
   ]}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
- 
+
 exports: [RouterModule]
 })
 export class AdministrationRoutingModule { }
