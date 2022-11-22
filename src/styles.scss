@@ -1,12 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* You can add global styles to this file, and also import other style files */
-@import '~@nebular/theme/styles/globals';
-@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
 
+@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+
+@import '~@nebular/theme/styles/globals';
 
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
-@import "../node_modules/primeng/resources/primeng.min.css";
+
 @import "../node_modules/@fullcalendar/common/main.css";
 @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/ionicons/scss/ionicons.scss";
@@ -43,8 +45,8 @@ body {
     color: #ffffff;
     width: 100%;
     border:0px;
-    border-bottom: 05px solid yellow; 
-    border-radius: 0px; 
+    border-bottom: 05px solid yellow;
+    border-radius: 0px;
   }
 
 .btn-outline-secondary {
@@ -90,7 +92,7 @@ body {
 }
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover {
   background: #006699;
-  border: 0px solid #dee2e6; 
+  border: 0px solid #dee2e6;
 
 
 }
@@ -99,10 +101,10 @@ body {
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl  {
   max-width: 100%;
   width: 96%;
-  padding-right: 0px; 
-  padding-left: 0px; 
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
 }
 
 .space{
@@ -146,7 +148,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
- 
+
 
 // css partie admin
 
@@ -157,7 +159,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ;
 .nb-theme-corporate nb-layout-header {
-  background-color:#236CCD;
+  background-color:#006699;
   font-family: Open Sans, sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
@@ -226,7 +228,7 @@ vh
 }
 
 .nb-theme-corporate nb-layout .layout .layout-container .content nb-layout-footer nav {
-  background-color: #236CCD;
+  background-color: #006699;
   border-top: 1px solid #edf1f7;
   color: white;
   font-family: Open Sans, sans-serif;

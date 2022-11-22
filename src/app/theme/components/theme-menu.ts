@@ -12,6 +12,40 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Paramétrage',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+
+      {
+        title: 'TypeDemande',
+        link: '/workspace/typeDemande',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
+      },
+      {
+        title: 'TypeStructure',
+        link: '/workspace/typeStructure',
+        icon: 'list-outline'
+
+      },
+      {
+        title: 'Structure',
+        link: '/workspace/structure',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+      {
+        title: 'Ministere',
+        link: '/workspace/ministere',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+    ],
+  }
+
+  ,
+  {
     title: 'Utilisateurs',
     icon: 'lock-outline',
     // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
