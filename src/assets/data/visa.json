@@ -1,0 +1,6 @@
+[
+  {"id":1, "libelle": "Arreté portant gestion des congé 1", "code": "01"},
+  {"id":2, "libelle": "Arreté portant gestion des congé 2", "code": "02"},
+  {"id":3, "libelle": "Arreté portant gestion des congé 3", "code": "03"},
+  {"id":4, "libelle": "Arreté portant gestion des congé 4", "code": "12"}
+]
