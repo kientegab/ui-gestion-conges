@@ -11,7 +11,15 @@ export const environment = {
   structureRessource:commonAppURI + 'structure',
   ministereRessource:commonAppURI + 'ministere',
   typeDemandeRessource:commonAppURI + 'typeDemande',
-  typeStructureRessource:commonAppURI + 'typeStructure',
+  typeStructureRessource: commonAppURI + 'typeStructure',
+  avisRessource: commonAppURI + 'avis',
+  visaRessource: commonAppURI + 'visa',
+  motifAbsenceRessource: commonAppURI + 'motifAbsence',
+  modalPaiementRessource: commonAppURI + 'modalpaiement',
+  
+  
+
+  
 };
 
 /*
