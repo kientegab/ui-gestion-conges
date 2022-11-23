@@ -24,13 +24,14 @@ import { TypeDemandeComponent } from './type-demande/type-demande.component';
 import { TypeStructureComponent } from './type-structure/type-structure.component';
 import { StructureComponent } from './structure/structure.component';
 import { MinistereComponent } from './ministere/ministere.component';
-
+import {DropdownModule} from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
-   
+
   //  ExempleComponent
-  
+
     ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
@@ -43,12 +44,14 @@ AdministrationRoutingModule,
     CommonModule,
     FormsModule,
     ButtonModule,
+    DropdownModule,
+    CheckboxModule,
     DialogModule,
     TableModule,
     HttpClientModule,
     ContextMenuModule
-   
-    
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
