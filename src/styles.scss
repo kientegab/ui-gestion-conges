@@ -2,17 +2,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
-@import "../node_modules/primeng/resources/primeng.min.css";
 
-@import '~@nebular/theme/styles/globals';
-
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-
-@import "../node_modules/@fullcalendar/common/main.css";
-@import "../node_modules/primeicons/primeicons.css";
-@import "../node_modules/ionicons/scss/ionicons.scss";
-@import 'themes';
 
 
 body {
@@ -35,10 +25,11 @@ background: #006699;
   transition: box-shadow 0.2s;
   user-select: none;
 }
-  .p-datatable {
-    position: relative;
-    font-size: 12px;
-  }
+.p-datatable table {
+    border-collapse: collapse;
+    min-width: 100%;
+    table-layout: fixed;
+}
   .p-menubar {
     padding: 0.5rem;
     background: #006699;
@@ -269,11 +260,11 @@ background-color: #d9d9d9;
 background: white;
 color: #212529;
 box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-border-radius: 4
-px
-;
+border-radius: 4px;
 }
-
+.actionStyle{
+  width:20%;
+}
 
 // .p-datepicker {
 //   min-width: 20%;

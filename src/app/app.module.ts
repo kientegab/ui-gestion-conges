@@ -32,6 +32,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdministrationModule } from './administration/administration.module';
 import { AdministrationRoutingModule } from './administration/administration-routing.module';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { CongeAnnuelComponent } from './public/decision-conges/conge-annuel/conge-annuel.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -45,7 +46,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HeaderComponent,
     MenuComponent,
     FooterComponent,
-    GalerieComponent
+    GalerieComponent,
+    CongeAnnuelComponent
   ],
   imports: [
     CommonModule,

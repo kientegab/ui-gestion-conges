@@ -46,7 +46,8 @@ AdministrationRoutingModule,
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule
+    ContextMenuModule,
+   
    
     
   ],
