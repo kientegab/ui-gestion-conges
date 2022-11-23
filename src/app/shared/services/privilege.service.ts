@@ -16,8 +16,8 @@ export class PrivilegeService {
 
   constructor(private http: HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllPrivilegeResponse> {
-   // return this.http.get(privilegeUrl, { observe: 'response' })
-   return this.http.get("assets/data/privilege.json", { observe: 'response' })
+    return this.http.get(privilegeUrl, { observe: 'response' })
+   //return this.http.get("assets/data/privilege.json", { observe: 'response' })
     .pipe(map(response => {
         let privilegesResponse: GetAllPrivilegeResponse = {
           //totalCount: parseInt(response.headers.get(totalCountHeader)),

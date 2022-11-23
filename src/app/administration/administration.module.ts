@@ -22,14 +22,14 @@ import { ButtonModule } from 'primeng/button';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { PrivilegeComponent } from './privilege/privilege.component';
 import { ProfilComponent } from './profil/profil.component';
+import { LoginComponent } from '../theme/components/login/login.component';
 
 
 @NgModule({
   declarations: [
-   
+
   //  ExempleComponent
-  
-    ExampleComponent,
+       ExampleComponent,
        PrivilegeComponent,
        ProfilComponent
   ],
@@ -43,8 +43,8 @@ AdministrationRoutingModule,
     TableModule,
     HttpClientModule,
     ContextMenuModule
-   
-    
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -50,7 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
     CommonModule,
     BrowserModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     ToolbarModule,
     GalleriaModule,

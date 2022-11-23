@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthenticationService,
     private router: Router,
     private guardService: GuardService) {
-    // if (this.guardService.isLoggedIn()) {
-    //   this.router.navigate(['/workspace'])
-    //   .then(() => {
-    //     window.location.reload();
-    //   });
-    // }
-    this.router.navigate(['/workspace'])
+     if (this.guardService.isLoggedIn()) {
+       this.router.navigate(['/workspace'])
+       .then(() => {
+         window.location.reload();
+      });
+    }
+    this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {
@@ -57,19 +57,19 @@ export class LoginComponent implements OnInit {
     this.authenticate.username = this.username;
     this.authenticate.password = this.password;
     this.authenticate.rememberMe = this.rememberMe;
-    this.router.navigate(['/workspace'])
-    // this.authService.login(this.authenticate).subscribe(
+    //this.router.navigate(['/workspace'])
+     this.authService.login(this.authenticate).subscribe(
 
-    //   (response) => {
-    //     this.spinner = true;
-    //     this.authService.saveToken(response)
-    //     this.router.navigate(['/workspace'])
-    //     .then(() => {
-    //       window.location.reload();
-    //     });
-    //   },
-    //   (error) => this.handleError(error)
-    // );
+      (response) => {
+        this.spinner = true;
+         this.authService.saveToken(response)
+         this.router.navigate(['/workspace'])
+        .then(() => {
+          window.location.reload();
+        });
+       },
+       (error) => this.handleError(error)
+     );
   }
- 
+
 }

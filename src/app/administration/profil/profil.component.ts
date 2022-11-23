@@ -45,6 +45,10 @@ export class ProfilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+   this.load();
+    //this.loadPrivilege();
+
   }
 
   load(event?: LazyLoadEvent) {
