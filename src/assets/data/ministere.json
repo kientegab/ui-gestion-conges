@@ -1,0 +1,5 @@
+[
+  {"id":1, "code": "17", "libelle": "Ministere fonction publique", "sigle": "MFPTPS", "description": "Ministere fonction publique"},
+  {"id":2, "code": "18", "libelle": "Ministere de l'economie et des finances", "sigle": "MEFP", "description": "Ministere de l'economie et des finances"}
+
+]

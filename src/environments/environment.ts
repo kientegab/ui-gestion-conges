@@ -3,10 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 const commonAppURI: string = 'http://localhost:8080/api/';
-  
+
 export const environment = {
   production: false,
+  recordsPerPage: 10,
   exempleResource: commonAppURI + 'exemples',
+  structureRessource:commonAppURI + 'structure',
+  ministereRessource:commonAppURI + 'ministere',
+  typeDemandeRessource:commonAppURI + 'typeDemande',
+  typeStructureRessource:commonAppURI + 'typeStructure',
 };
 
 /*
