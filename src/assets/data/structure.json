@@ -1,0 +1,5 @@
+[
+  {"id":1,"sigle": "SPMABG", "libelle": "SPMABG", "description": "SPMABG", "responsable": "responsable1", "active": "true", "tel": "25458784", "email": "SPMABG@fp.gov", "adresse": "", "typeStructure": {"id":1, "libelle": "type structure 1", "description": "description1"}, "ministere": {"id":1, "code": "17", "libelle": "Ministere fonction publique", "sigle": "MFPTPS", "description": "Ministere fonction publique"}},
+  {"id":2,"sigle": "STGVAP", "libelle": "STGVAP", "description": "STGVAP", "responsable": "responsable1", "active": "true", "tel": "25458784", "email": "STGVAP@fp.gov", "adresse": "", "typeStructure": {"id":1, "libelle": "type structure 1", "description": "description1"}, "ministere": {"id":1, "code": "17", "libelle": "Ministere fonction publique", "sigle": "MFPTPS", "description": "Ministere fonction publique"}}
+
+]

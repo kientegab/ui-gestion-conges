@@ -20,6 +20,14 @@ import { ActionsToolbalIudComponent } from '../shared/common/actions-toolbal-iud
 import { ExampleComponent } from './example/example.component';
 import { ButtonModule } from 'primeng/button';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { TypeDemandeComponent } from './type-demande/type-demande.component';
+import { TypeStructureComponent } from './type-structure/type-structure.component';
+import { StructureComponent } from './structure/structure.component';
+import { MinistereComponent } from './ministere/ministere.component';
+import { AvisComponent } from './avis/avis.component';
+import { VisaComponent } from './visa/visa.component';
+import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
+import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
 
 
 @NgModule({
@@ -27,7 +35,15 @@ import { ContextMenuModule } from 'primeng/contextmenu';
    
   //  ExempleComponent
   
-    ExampleComponent
+    ExampleComponent,
+       TypeDemandeComponent,
+       TypeStructureComponent,
+       StructureComponent,
+       MinistereComponent,
+       AvisComponent,
+       VisaComponent,
+       MotifAbsenceComponent,
+       ModalPaiementComponent
   ],
   imports: [
 AdministrationRoutingModule,
@@ -38,7 +54,8 @@ AdministrationRoutingModule,
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule
+    ContextMenuModule,
+   
    
     
   ],
