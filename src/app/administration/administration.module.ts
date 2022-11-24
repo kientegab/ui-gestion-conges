@@ -1,10 +1,9 @@
+import { CheckboxModule } from 'primeng/checkbox';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
-
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
@@ -24,22 +23,28 @@ import { TypeDemandeComponent } from './type-demande/type-demande.component';
 import { TypeStructureComponent } from './type-structure/type-structure.component';
 import { StructureComponent } from './structure/structure.component';
 import { MinistereComponent } from './ministere/ministere.component';
-import {DropdownModule} from 'primeng/dropdown';
-import {CheckboxModule} from 'primeng/checkbox';
+import { AvisComponent } from './avis/avis.component';
+import { VisaComponent } from './visa/visa.component';
+import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
+import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
-
   //  ExempleComponent
-
-    ExampleComponent,
+      ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
-       MinistereComponent
+       MinistereComponent,
+       AvisComponent,
+       VisaComponent,
+       MotifAbsenceComponent,
+       ModalPaiementComponent
   ],
   imports: [
-AdministrationRoutingModule,
+    AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,

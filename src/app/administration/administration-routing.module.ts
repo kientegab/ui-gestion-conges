@@ -7,6 +7,10 @@ import { TypeStructureComponent } from './type-structure/type-structure.componen
 import { TypeDemandeComponent } from './type-demande/type-demande.component';
 import { StructureComponent } from './structure/structure.component';
 import { MinistereComponent } from './ministere/ministere.component';
+import { VisaComponent } from './visa/visa.component';
+import { AvisComponent } from './avis/avis.component';
+import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
+import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
 
 
 const routes: Routes = [
@@ -19,7 +23,13 @@ const routes: Routes = [
     {path: 'typeStructure', component: TypeStructureComponent },
     {path: 'typeDemande', component: TypeDemandeComponent },
     {path: 'structure', component: StructureComponent },
-    {path: 'ministere', component: MinistereComponent },
+    { path: 'ministere', component: MinistereComponent },
+    
+    { path: 'visa', component: VisaComponent },
+    { path: 'avis', component: AvisComponent },
+    { path: 'motifAbsence', component: MotifAbsenceComponent },
+    { path: 'modalPaiement', component: ModalPaiementComponent },
+
   ]}
 ];
 

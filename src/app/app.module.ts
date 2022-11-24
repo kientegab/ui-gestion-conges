@@ -17,7 +17,7 @@ import { PublicRoutingModule } from './public/public-routing.module';
 import { ToolbarModule } from 'primeng/toolbar';
 import { GalleriaModule } from 'primeng/galleria';
 import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbDialogModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
@@ -27,13 +27,12 @@ import { ImageModule } from 'primeng/image';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AdministrationModule } from './administration/administration.module';
 import { AdministrationRoutingModule } from './administration/administration-routing.module';
 import { ContextMenuModule } from 'primeng/contextmenu';
+import { CongeAnnuelComponent } from './public/decision-conges/conge-annuel/conge-annuel.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -47,7 +46,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HeaderComponent,
     MenuComponent,
     FooterComponent,
-    GalerieComponent
+    GalerieComponent,
+    CongeAnnuelComponent
   ],
   imports: [
     CommonModule,
@@ -60,15 +60,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenuModule,
     MenubarModule,
     ButtonModule,
+    BrowserAnimationsModule,
     PublicRoutingModule,
     AdministrationRoutingModule,
     AppRoutingModule,
     RouterModule,
+    ToastModule,
+    NbLayoutModule,
+    BrowserAnimationsModule,
     BrowserAnimationsModule,
     ToastModule,
     NbLayoutModule,
     ContextMenuModule,
-   
     ImageModule,
     NbEvaIconsModule,
     TranslateModule.forRoot({

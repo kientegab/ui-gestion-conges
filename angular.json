@@ -45,7 +45,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/quill/dist/quill.js"
-
             ]
           },
           "configurations": {
@@ -112,7 +111,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
             "scripts": []

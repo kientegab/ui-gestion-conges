@@ -2,43 +2,34 @@
 
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
-@import "../node_modules/primeng/resources/primeng.min.css";
 
-@import '~@nebular/theme/styles/globals';
-
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-
-@import "../node_modules/@fullcalendar/common/main.css";
-@import "../node_modules/primeicons/primeicons.css";
-@import "../node_modules/ionicons/scss/ionicons.scss";
-@import 'themes';
 
 
 body {
-    /* padding-top: 2em; */
-    font-family:"Droid Sans",Arial,sans-serif;
-    color: #000;
-    overflow-x: hidden;
-    min-height: 100%;
-    /* margin-bottom: 100px; */
-   /* background-color: #B0BEC5;*/
-    background-repeat: no-repeat
-  }
+  /* padding-top: 2em; */
+  font-family:"Droid Sans",Arial,sans-serif;
+  color: #000;
+  overflow-x: hidden;
+  min-height: 100%;
+  /* margin-bottom: 100px; */
+ /* background-color: #B0BEC5;*/
+  background-repeat: no-repeat
+}
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
-  padding: 0.75rem 1rem;
-  color: #006699;
-  background: #006699;
+padding: 0.75rem 1rem;
+color: #006699;
+background: #006699;
 
   border-radius: 0;
   transition: box-shadow 0.2s;
   user-select: none;
 }
-  .p-datatable {
-    position: relative;
-    font-size: 12px;
-  }
+.p-datatable table {
+    border-collapse: collapse;
+    min-width: 100%;
+    table-layout: fixed;
+}
   .p-menubar {
     padding: 0.5rem;
     background: #006699;
@@ -50,45 +41,45 @@ body {
   }
 
 .btn-outline-secondary {
-  color: white;
-  border-color: #6c757d;
+color: white;
+border-color: #6c757d;
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
-  color: white;
+color: white;
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-submenu-icon {
-  color: white;
-  margin-left: 0.5rem;
+color: white;
+margin-left: 0.5rem;
 }
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover {
-  background: #006699;
-  border: 2px solid #dee2e6;
+background: #006699;
+border: 2px solid #dee2e6;
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
-  color: white;
+color: white;
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-  color: white;
-  background-color: #006699;
+color: white;
+background-color: #006699;
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover {
-  background: #006699;
-  text-decoration: none;}
+background: #006699;
+text-decoration: none;}
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:focus {
-  outline: 0 none;
-  outline-offset: 0;
-  box-shadow: inset 0 0 0 0.15rem #006699;
+outline: 0 none;
+outline-offset: 0;
+box-shadow: inset 0 0 0 0.15rem #006699;
 }
 
 
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-  color: white;
+color: white;
 }
 .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover {
   background: #006699;
@@ -108,7 +99,7 @@ body {
 }
 
 .space{
-  margin-bottom: 15%;
+margin-bottom: 15%;
 }
 
 /*
@@ -116,31 +107,35 @@ datatable responsible
 */
 
 :host ::ng-deep .p-datatable-sm .p-datatable-tbody > tr > td .p-column-title {
-  display: none;
+display: none;
 }
 @media screen and (max-width: 40rem) {
-  :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th, :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tfoot > tr > td {
-      display: none !important;
- }
-  :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
-      text-align: left;
-      display: block;
-      width: 100%;
-      float: left;
-      clear: left;
-      border: 0 none;
- }
-  :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td .p-column-title {
-      padding: 0.4rem;
-      min-width: 30%;
-      display: inline-block;
-      margin: -0.4em 1em -0.4em -0.4rem;
-      font-weight: bold;
- }
-  :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td:last-child {
-      border-bottom: 1px solid var(--surface-d);
- }
+:host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th, :host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tfoot > tr > td {
+    display: none !important;
 }
+:host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+    text-align: left;
+    display: block;
+    width: 100%;
+    float: left;
+    clear: left;
+    border: 0 none;
+}
+:host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td .p-column-title {
+    padding: 0.4rem;
+    min-width: 30%;
+    display: inline-block;
+    margin: -0.4em 1em -0.4em -0.4rem;
+    font-weight: bold;
+}
+:host ::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td:last-child {
+    border-bottom: 1px solid var(--surface-d);
+}
+}
+
+
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -150,11 +145,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 
 
-// css partie admin
 
 
+@import '~@nebular/theme/styles/globals';
+@import "../node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css";
+
+
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/@fullcalendar/common/main.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/ionicons/scss/ionicons.scss";
+@import 'themes';
 @include nb-install() {
-    @include nb-theme-global();
+  @include nb-theme-global();
 }
 
 ;
@@ -167,7 +172,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color:white;
 }
 
-
+a {
+  color: var(--bs-link-color);
+ 
+}
 /* You can add global styles to this file, and also import other style files */
 
 
@@ -175,27 +183,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .logo span{
 
-  color: white;
-  font-size: 13px;
+color: white;
+font-size: 13px;
 }
 
 .nb-theme-corporate nb-user .user-name {
-  color: white;
-  font-family: Open Sans, sans-serif;
-  font-weight: bold;
+color: white;
+font-family: Open Sans, sans-serif;
+font-weight: bold;
 }
 
 .menu-sidebar{
 
-  background-color: red;
+background-color: red;
 }
 
 [dir=ltr] .nb-theme-corporate nb-action {
-  border-left: 0px solid #edf1f7;
+border-left: 0px solid #edf1f7;
 }
 
 .nb-theme-corporate nb-action nb-icon {
-  color: white;
+color: white;
 }
 
 .user-action{
@@ -210,19 +218,19 @@ padding: 0;
 // }
 
 .nb-theme-corporate nb-context-menu nb-menu {
-  border-radius: 0.17rem ;
-  overflow: hidden;
-  text-align: left;
+border-radius: 0.17rem ;
+overflow: hidden;
+text-align: left;
 }
 
 .nb-theme-corporate nb-layout .layout {
-  background-color: white;
-  color: white;
-  font-family: Open Sans, sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.25rem;
-  min-height: 100
+background-color: white;
+color: white;
+font-family: Open Sans, sans-serif;
+font-size: 0.9375rem;
+font-weight: 400;
+line-height: 1.25rem;
+min-height: 100
 vh
 ;
 }
@@ -240,23 +248,23 @@ vh
 }
 
 .nb-theme-corporate nb-sidebar .scrollable {
- background-color: #d9d9d9;
+background-color: #d9d9d9;
 }
 
 
 * {
-  -webkit-box-sizing: border-box;
+-webkit-box-sizing: border-box;
 }
 
 .p-card {
-  background: white;
-  color: #212529;
-  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-  border-radius: 4
-px
-;
+background: white;
+color: #212529;
+box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
+border-radius: 4px;
 }
-
+.actionStyle{
+  width:20%;
+}
 
 // .p-datepicker {
 //   min-width: 20%;
@@ -276,12 +284,8 @@ px
 //   left: 0;
 // }
 .p-card .p-card-footer {
-  background-color: #f4f7fc;
-  padding: 1
+background-color: #f4f7fc;
+padding: 1
 rem
 0 0 0;
-}
-
-.actionStyle{
-  width:20%;
 }

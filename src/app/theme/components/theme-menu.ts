@@ -41,6 +41,38 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
+
+
+      {
+        title: 'Visa',
+        link: '/workspace/visa',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+
+
+      {
+        title: 'Avis',
+        link: '/workspace/avis',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+
+
+      {
+        title: 'Motif absence',
+        link: '/workspace/motifAbsence',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+
+
+      {
+        title: 'Modalité de paie',
+        link: '/workspace/modalPaiement',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
     ],
   }
 
