@@ -5,6 +5,7 @@ import { DashboardComponent } from './public/dashboard/dashboard.component';
 import { PublicDashboardComponent } from './public/public-dashboard/public-dashboard.component';
 
 const routes: Routes = [
+  
   { path:'', component: PublicDashboardComponent,
   children: [
     {
@@ -12,6 +13,7 @@ const routes: Routes = [
     }
   ]
   },
+
   ];
 
 @NgModule({

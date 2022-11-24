@@ -23,6 +23,7 @@ export class StructureComponent implements OnInit {
   totalRecords!: number;
   recordsPerPage = environment.recordsPerPage;
   structures!: Structure[];
+  ministereStructures!: Structure[];
   structure: Structure= {};
   ministeres!: Ministere[];
   typeStructures!: TypeStructure[];
@@ -78,6 +79,31 @@ export class StructureComponent implements OnInit {
         this.typeStructures = response.typeStructures;
 
         console.log("type structure", this.typeStructures);
+      },
+      (error) => {
+        this.message = { severity: 'error', summary: error.error };
+      }
+    );
+  }
+
+  onSelectMinistere(){
+  //  console.log("on select"+this.structure.ministere);
+    if(this.structure.ministere)
+    {
+      this.getMinistereStructures();
+    }
+  }
+
+  //Liste des structutes d'un ministere
+  getMinistereStructures(event?: any) {
+    let ministereId = this.structure.ministere?.id;
+    // console.log("get ministere struct"+this.structure.ministere);
+    // console.log("id",ministereId);
+    this.isLoading = true;
+    this.structureService.getStructureByMinistereId(ministereId?ministereId:null).subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.ministereStructures = response.structures;
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };

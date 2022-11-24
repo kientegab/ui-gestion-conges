@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { GetAllStructureResponse, Structure } from '../models/structure.model';
 
 const Url = environment.structureRessource;
+const structureUrl = environment.structureRessource;
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,17 @@ export class StructureService {
         return structuresResponse;
       }));
   }
+
+  getStructureByMinistereId(id: number|null): Observable<GetAllStructureResponse> {
+    return this.http.get(`${structureUrl}/section/${id}`, { observe: 'response' })
+    .pipe(map(response => {
+        let structuresResponse: GetAllStructureResponse = {
+          structures: response.body as Structure[]
+        };
+        return structuresResponse;
+      }));
+  }
+
 
   create(structure: Structure): Observable<Structure> {
     return this.http.post(Url, structure);

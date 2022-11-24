@@ -26,14 +26,14 @@ export class MenuComponent implements OnInit {
       {
         label: 'Accueil',
         icon: 'pi pi-home',
-        routerLink: ['/'] 
+        routerLink: ['/public'] 
       },
       { 
         label: 'Décision de Congés',
         items: [
           {
             label: 'Annuel',
-            routerLink: ['/attestation-soumission'],
+            routerLink: ['/public/conges'],
             routerLinkActiveOptions: {
               exact: true
             }
@@ -76,7 +76,7 @@ export class MenuComponent implements OnInit {
         items: [  
           {
             label: 'Jouissance Annuelle',
-            routerLink: ['/attestation-travail'],
+            routerLink: ['/public/jouissAnnuelle'],
             routerLinkActiveOptions: {
               exact: true
             },

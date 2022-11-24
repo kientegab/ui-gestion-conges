@@ -1,10 +1,9 @@
+import { CheckboxModule } from 'primeng/checkbox';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
-
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
@@ -28,14 +27,19 @@ import { AvisComponent } from './avis/avis.component';
 import { VisaComponent } from './visa/visa.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
+import { ArticleComponent } from './article/article.component';
+import { CorpsComponent } from './corps/corps.component';
+import { AgentComponent } from './agent/agent.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { LoginComponent } from '../theme/components/login/login.component';
 
 
 @NgModule({
   declarations: [
-   
   //  ExempleComponent
-  
-    ExampleComponent,
+      ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -43,21 +47,30 @@ import { ModalPaiementComponent } from './modal-paiement/modal-paiement.componen
        AvisComponent,
        VisaComponent,
        MotifAbsenceComponent,
-       ModalPaiementComponent
+       ModalPaiementComponent,
+
+  //  ExempleComponent
+       ExampleComponent,
+       PrivilegeComponent,
+       ProfilComponent,
+       ArticleComponent,
+       CorpsComponent,
+       AgentComponent
   ],
   imports: [
-AdministrationRoutingModule,
+    AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
     ButtonModule,
+    DropdownModule,
+    CheckboxModule,
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule,
-   
-   
-    
+    ContextMenuModule
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

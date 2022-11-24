@@ -1,0 +1,153 @@
+<div style="margin-top:-30px ;">
+    <p-card>
+    <!-- ToolBar -->
+     
+      <div class="p-d-flex mt-2 mb-3">
+        <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
+        </app-crud-toolbar>
+        <div class="p-ml-auto">
+          <p-message *ngIf="message" [severity]="message.severity" [text]="message.summary"></p-message>
+          <p-progressSpinner *ngIf="isOpInProgress" strokeWidth="4" [style]="{width: '50px', height: '50px'}">
+          </p-progressSpinner>
+        </div>
+      </div>
+        <p-divider></p-divider>
+  
+        <p-table #dt [value]="articles" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+            (onLazyLoad)="load($event)" [totalRecords]="totalRecords"
+            [globalFilterFields]="['libelle','description']"
+            currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
+            [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
+  
+            <ng-template pTemplate="caption">
+                <div class="row">
+                    <!-- titre -->
+                    <div class="col" style="padding: 8px; margin-left: 8px">
+                        <span>Liste des articles</span>
+                    </div>
+  
+                    <!-- volet recherche -->
+                    <div class="col text-right">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"
+                                (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
+                                placeholder="Recherche..." />
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+  
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="libelle">Libelle
+                        <p-sortIcon field="libelle"></p-sortIcon>
+                    </th>
+  
+                    <th pSortableColumn="code">Code
+                        <p-sortIcon field="code"></p-sortIcon>
+                    </th>
+  
+                    <th class="actionStyle">
+                        Actions
+                    </th>
+                </tr>
+            </ng-template>
+  
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-article>
+                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="article">
+                    <td>{{article.libelle}} </td>
+                    <td>{{article.code}} </td>
+                    <td class="actionStyle">
+  
+                        <app-actions-toolbal-iud
+                            (info)="onInfo(article)" [enableBtnInfo]="enableBtnInfo"
+                            (edit)="onEdit(article)" [enableBtnEdit]="enableBtnEdit"
+                            (delete)="onDelete(article)" [enableBtnDelete]="enableBtnDelete">
+                        </app-actions-toolbal-iud>
+  
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+  
+  <!-- formulaire d'ajout et de modification -->
+  
+  <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body"
+    [style]="{width: '50vw'}" [contentStyle]="{height: '400px'}"
+    [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+    <ng-template pTemplate="header">
+      <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
+      <span class="mr-auto">
+        {{article.id ? 'Modifier' : 'Ajouter'}} un article
+      </span>
+    </ng-template>
+    <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
+    <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
+    <p-divider></p-divider>
+    <!-- Form -->
+    <form (ngSubmit)="save()" #dtf="ngForm">
+  
+  <!--  -->
+  
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-12">
+        <label for="libelle">Libelle</label>
+        <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="article.libelle" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+  
+    <div class="field col-12 md:col-12">
+        <label for="code">Code</label>
+        <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="article.code" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+  </div>
+  
+      <p-divider></p-divider>
+      <div class="p-ml-auto text-right">
+        <button description="reset" label="Annuler" (click)="showDialog=false"
+          class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+        <button description="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
+          icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
+          class="p-button-raised p-button-text {{isEditing() ? 'p-button-primary' : 'p-button-success'}}"
+          pButton></button>
+      </div>
+    </form>
+  </p-dialog>
+  
+  <!-- formulaire d'affichage du détail -->
+  
+  
+    <p-dialog [(visible)]="articleDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+      <ng-template pTemplate="header">
+  
+        <span class="p-mr-auto"> DETAILS ARTICLE</span>
+      </ng-template>
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Id:</span>  {{article.id}}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Libelle:</span>  {{article.libelle}}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+             <span class="va-m"><span class="font-weight-bold">Code:</span>  {{article.code}}</span>
+           </li>
+  
+          </ul>
+       </div>
+  
+   </div>
+   <p-divider></p-divider>
+   <div class="p-ml-auto text-right">
+       <button description="reset" label="Fermer" (click)="articleDetail=false" class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+   </div>
+  </p-dialog>
+  
+  <!-- Confirmation -->
+  <app-confirmation></app-confirmation>
+  </div>
+  
+  

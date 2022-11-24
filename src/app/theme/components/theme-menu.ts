@@ -73,6 +73,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
+      {
+        title: 'Article',
+        link: '/workspace/article',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+      {
+        title: 'Agent',
+        link: '/workspace/agent',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+      {
+        title: 'Corps',
+        link: '/workspace/corps',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
     ],
   }
 
@@ -90,7 +108,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
       },
       {
-        title: 'Agents',
+        title: 'Utilisateurs',
         link: '/workspace/agent',
         icon: 'people-outline'
 

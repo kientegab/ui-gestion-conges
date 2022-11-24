@@ -1,0 +1,17 @@
+[
+    {"id":1, "cdCorps": "TSI", "lbCorps": "Technicien Supérieur", "cdCadre": "cadre1"},
+    {"id":2, "cdCorps": "ITI", "lbCorps": "Ingénieur de Travaux", "cdCadre": "cadre2"},
+    {"id":3, "cdCorps": "ICI", "lbCorps": "Ingénieur de Conception", "cdCadre": "cadre3"},
+    {"id":5, "cdCorps": "AC", "lbCorps": "Administrateur civil", "cdCadre": "cadre1"},
+    {"id":6, "cdCorps": "SA", "lbCorps": "Secrétaire Administratif", "cdCadre": "cadre1"},
+    {"id":7, "cdCorps": "CGRH", "lbCorps": "Conseiller en GRH", "cdCadre": "cadre1"},
+    {"id":8, "cdCorps": "CAET", "lbCorps": "Sectionler des Affaires Etrangères", "cdCadre": "cadre3"},
+    {"id":9, "cdCorps": "IT", "lbCorps": "Inspecteur du Travail", "cdCadre": "cadre3"},
+    {"id":10, "cdCorps": "MG", "lbCorps": "Magistrat", "cdCadre": "cadre2"},
+    {"id":11, "cdCorps": "CAEC", "lbCorps": "Sectionler des Affaires Economiques", "cdCadre": "cadre2"},
+    {"id":12, "cdCorps": "MC", "lbCorps": "Ministre Sectionler", "cdCadre": "cadre1"},
+    {"id":13, "cdCorps": "PC", "lbCorps": "Premier Sectionler", "cdCadre": "cadre4"},
+    {"id":14, "cdCorps": "DP", "lbCorps": "Directeur provincial ", "cdCadre": "cadre2"},
+    {"id":15, "cdCorps": "ITS", "lbCorps": "Inspecteur Technique des Services", "cdCadre": "cadre1"}
+   
+]
