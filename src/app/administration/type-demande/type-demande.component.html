@@ -43,7 +43,9 @@
                   <th pSortableColumn="libelle">Libelle
                       <p-sortIcon field="libelle"></p-sortIcon>
                   </th>
-
+                  <th pSortableColumn="modePaie">Mode paiement
+                    <p-sortIcon field="modePaie"></p-sortIcon>
+                  </th>
                   <th pSortableColumn="description">Description
                       <p-sortIcon field="description"></p-sortIcon>
                   </th>
@@ -57,6 +59,9 @@
           <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-typeDemande>
               <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="typeDemande">
                   <td>{{typeDemande.libelle}} </td>
+                  <td>
+                    <p-checkbox name="modePaie" [disabled]="true" [(ngModel)]="typeDemande.modePaie" [binary]="true" inputId="binary"></p-checkbox>
+                  </td>
                   <td>{{typeDemande.description}} </td>
                   <td class="actionStyle">
 
@@ -96,6 +101,12 @@
       <label for="libelle">Libelle</label>
       <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="typeDemande.libelle" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
   </div>
+  <div class="field col-12 md:col-12">
+    <label for="libelle">Mode paiement</label>
+    <div>
+      <p-checkbox name="modePaie" [(ngModel)]="typeDemande.modePaie" [binary]="true" inputId="binary"></p-checkbox>
+      </div>
+</div>
 
   <div class="field col-12 md:col-12">
       <label for="description">Description</label>
@@ -131,6 +142,11 @@
           </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">Libelle:</span>  {{typeDemande.libelle}}</span>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <span class="va-m"><span class="font-weight-bold">Mode paiement:</span>
+            <p-checkbox name="modePaie" [disabled]="true" [(ngModel)]="typeDemande.modePaie" [binary]="true" inputId="binary"></p-checkbox>
+            </span>
           </li>
           <li class="list-group-item list-group-item-action">
            <span class="va-m"><span class="font-weight-bold">Description:</span>  {{typeDemande.description}}</span>

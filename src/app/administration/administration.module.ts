@@ -1,10 +1,9 @@
+import { CheckboxModule } from 'primeng/checkbox';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
-
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
@@ -33,14 +32,13 @@ import { ProfilComponent } from './profil/profil.component';
 import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [
-   
   //  ExempleComponent
-  
-    ExampleComponent,
+      ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -56,18 +54,19 @@ import { AgentComponent } from './agent/agent.component';
        AgentComponent
   ],
   imports: [
-AdministrationRoutingModule,
+    AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
     ButtonModule,
+    DropdownModule,
+    CheckboxModule,
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule,
-   
-   
-    
+    ContextMenuModule
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
