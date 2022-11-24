@@ -28,6 +28,12 @@ import { VisaComponent } from './visa/visa.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
+import { InputTextModule } from 'primeng/inputtext';
+
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -41,23 +47,32 @@ import { DropdownModule } from 'primeng/dropdown';
        AvisComponent,
        VisaComponent,
        MotifAbsenceComponent,
-       ModalPaiementComponent
+       ModalPaiementComponent,
+       AutorisationComponent
   ],
   imports: [
     AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     ButtonModule,
+    InputTextModule,
     DropdownModule,
     CheckboxModule,
+    MessageModule,
+    ProgressBarModule,
     DialogModule,
+    DividerModule,
     TableModule,
+    CardModule,
+    ProgressSpinnerModule,
     HttpClientModule,
     ContextMenuModule
 
 
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  providers: [ConfirmationService,MessageService],
+ // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdministrationModule { }

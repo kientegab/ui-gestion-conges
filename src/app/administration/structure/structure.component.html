@@ -1,6 +1,6 @@
 <div style="margin-top:-30px ;">
   <p-card>
-  <!-- ToolBar -->
+    <!-- ToolBar -->
 
     <div class="p-d-flex mt-2 mb-3">
       <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
@@ -11,193 +11,198 @@
         </p-progressSpinner>
       </div>
     </div>
-      <p-divider></p-divider>
+    <p-divider></p-divider>
 
-      <p-table #dt [value]="structures" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
-          (onLazyLoad)="load($event)" [totalRecords]="totalRecords"
-          [globalFilterFields]="['sigle','description']"
-          currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
-          [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
+    <p-table #dt [value]="structures" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+      (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['sigle','description']"
+      currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
+      [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
-          <ng-template pTemplate="caption">
-              <div class="row">
-                  <!-- titre -->
-                  <div class="col" style="padding: 8px; margin-left: 8px">
-                      <span>Liste des structures</span>
-                  </div>
+      <ng-template pTemplate="caption">
+        <div class="row">
+          <!-- titre -->
+          <div class="col" style="padding: 8px; margin-left: 8px">
+            <span>Liste des structures</span>
+          </div>
 
-                  <!-- volet recherche -->
-                  <div class="col text-right">
-                      <span class="p-input-icon-left">
-                          <i class="pi pi-search"></i>
-                          <input pInputText type="text"
-                              (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
-                              placeholder="Recherche..." />
-                      </span>
-                  </div>
-              </div>
-          </ng-template>
+          <!-- volet recherche -->
+          <div class="col text-right">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
+                placeholder="Recherche..." />
+            </span>
+          </div>
+        </div>
+      </ng-template>
 
-          <ng-template pTemplate="header">
-              <tr>
-                  <th pSortableColumn="sigle">sigle
-                      <p-sortIcon field="sigle"></p-sortIcon>
-                  </th>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="sigle">sigle
+            <p-sortIcon field="sigle"></p-sortIcon>
+          </th>
 
-                  <th pSortableColumn="libelle">Libelle
-                    <p-sortIcon field="libelle"></p-sortIcon>
-                </th>
+          <th pSortableColumn="libelle">Libelle
+            <p-sortIcon field="libelle"></p-sortIcon>
+          </th>
 
-                <th pSortableColumn="typeStructure">TypeStructure
-                  <p-sortIcon field="typeStructure"></p-sortIcon>
-              </th>
+          <th pSortableColumn="typeStructure">TypeStructure
+            <p-sortIcon field="typeStructure"></p-sortIcon>
+          </th>
 
-                  <th pSortableColumn="ministere">Ministere
-                      <p-sortIcon field="ministere"></p-sortIcon>
-                  </th>
+          <th pSortableColumn="ministere">Ministere
+            <p-sortIcon field="ministere"></p-sortIcon>
+          </th>
 
-                  <th class="actionStyle">
-                      Actions
-                  </th>
-              </tr>
-          </ng-template>
+          <th class="actionStyle">
+            Actions
+          </th>
+        </tr>
+      </ng-template>
 
-          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-structure>
-              <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="structure">
-                  <td>{{structure.sigle}} </td>
-                  <td>{{structure.libelle}} </td>
-                  <td>{{structure.typeStructure?.libelle}} </td>
-                  <td>{{structure.ministere?.sigle}} </td>
-                  <td class="actionStyle">
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-structure>
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="structure">
+          <td>{{structure.sigle}} </td>
+          <td>{{structure.libelle}} </td>
+          <td>{{structure.typeStructure?.libelle}} </td>
+          <td>{{structure.ministere?.sigle}} </td>
+          <td class="actionStyle">
 
-                      <app-actions-toolbal-iud
-                          (info)="onInfo(structure)" [enableBtnInfo]="enableBtnInfo"
-                          (edit)="onEdit(structure)" [enableBtnEdit]="enableBtnEdit"
-                          (delete)="onDelete(structure)" [enableBtnDelete]="enableBtnDelete">
-                      </app-actions-toolbal-iud>
+            <app-actions-toolbal-iud (info)="onInfo(structure)" [enableBtnInfo]="enableBtnInfo"
+              (edit)="onEdit(structure)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(structure)"
+              [enableBtnDelete]="enableBtnDelete">
+            </app-actions-toolbal-iud>
 
-                  </td>
-              </tr>
-          </ng-template>
-      </p-table>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </p-card>
 
-<!-- formulaire d'ajout et de modification -->
+  <!-- formulaire d'ajout et de modification -->
 
-<p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body"
-  [style]="{width: '55vw'}" [contentStyle]="{height: '650px'}"
-  [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
-  <ng-template pTemplate="header">
-    <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
-    <span class="mr-auto">
-      {{structure.id ? 'Modifier' : 'Ajouter'}} une structure
-    </span>
-  </ng-template>
-  <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
-  <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
-  <p-divider></p-divider>
-  <!-- Form -->
-  <form (ngSubmit)="save()" #dtf="ngForm">
-
-<!--  -->
-
-
-<div class="formgrid grid">
-
-
-
-  <div class="field col-12 md:col-6">
-      <label for="sigle">Sigle:</label>
-      <input type="text" id="sigle" name="sigle" #sigle="ngModel" [(ngModel)]="structure.sigle" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="libelle">Libelle:</label>
-    <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="structure.libelle" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="typeStructure">TypeStructure:</label>
-   <div>
-    <p-dropdown [options]="typeStructures" [(ngModel)]="structure.typeStructure" optionLabel="libelle" inputId="typeStructure"
-    name="typeStructure" placeholder="Selectionner un typeStructure..." [filter]="true" appendTo="body" [showClear]="true">
-    </p-dropdown>
-  </div>
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="ministere">Ministère de tutelle :</label>
-    <div>
-    <p-dropdown [options]="ministeres" [(ngModel)]="structure.ministere" optionLabel="libelle" inputId="ministere"
-    name="ministere" placeholder="Selectionner un ministere..." [filter]="true" appendTo="body" [showClear]="true"
-    (onChange)="onSelectMinistere()"
-    >
-   </p-dropdown>
-  </div>
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="parent">Relève de la structure:</label>
-    <div>
-    <p-dropdown [options]="ministereStructures" [(ngModel)]="structure.parent" optionLabel="libelle" inputId="parent"
-            name="parent" placeholder="Selectionner une structure..." [filter]="true" appendTo="body" [showClear]="true" >
-    </p-dropdown>
-  </div>
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="active">Active: </label>
-    <div>
-    <p-checkbox name="active" [(ngModel)]="structure.active" [binary]="true" inputId="binary"></p-checkbox>
-    </div>
-  </div>
-
-
-  <div class="field col-12 md:col-6">
-    <label for="responsable">Responsable:</label>
-    <input type="text" id="responsable" name="responsable" #responsable="ngModel" [(ngModel)]="structure.responsable" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="adresse">Adresse:</label>
-    <input type="text" id="adresse" name="adresse" #adresse="ngModel" [(ngModel)]="structure.adresse" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-
-
-  <div class="field col-12 md:col-6">
-    <label for="tel">Telephone:</label>
-    <input type="text" id="tel" name="tel" #tel="ngModel" [(ngModel)]="structure.tel" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="structure.email" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-
-  <div class="field col-12 md:col-12">
-      <label for="description">Description:</label>
-      <textarea type="text" id="description"  rows="3" name="description" #description="ngModel" [(ngModel)]="structure.description" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
-  </div>
-</div>
-
+  <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body" [style]="{width: '75vw'}"
+    [contentStyle]="{height: '650px'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+    <ng-template pTemplate="header">
+      <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
+      <span class="mr-auto">
+        {{structure.id ? 'Modifier' : 'Ajouter'}} une structure
+      </span>
+    </ng-template>
+    <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
+    <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
     <p-divider></p-divider>
-    <div class="p-ml-auto text-right">
-      <button description="reset" label="Annuler" (click)="showDialog=false"
-        class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
-      <button description="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
-        icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
-        class="p-button-raised p-button-text {{isEditing() ? 'p-button-primary' : 'p-button-success'}}"
-        pButton></button>
-    </div>
-  </form>
-</p-dialog>
+    <!-- Form -->
+    <form (ngSubmit)="save()" #dtf="ngForm">
 
-<!-- formulaire d'affichage du détail -->
+      <!--  -->
+      <div class="p-fluid grid">
 
 
-  <p-dialog [(visible)]="structureDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="sigle">Sigle:</label>
+          <input type="text" id="sigle" name="sigle" #sigle="ngModel" [(ngModel)]="structure.sigle" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="libelle">Libelle:</label>
+          <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="structure.libelle" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="typeStructure">TypeStructure:</label>
+
+          <p-dropdown [options]="typeStructures" [(ngModel)]="structure.typeStructure" optionLabel="libelle"
+            inputId="typeStructure" name="typeStructure" placeholder="Selectionner un typeStructure..." [filter]="true"
+            appendTo="body" [showClear]="true">
+          </p-dropdown>
+
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="ministere">Ministère de tutelle :</label>
+          <div>
+            <p-dropdown [options]="ministeres" [(ngModel)]="structure.ministere" optionLabel="libelle"
+              inputId="ministere" name="ministere" placeholder="Selectionner un ministere..." [filter]="true"
+              appendTo="body" [showClear]="true" (onChange)="onSelectMinistere()">
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="parent">Relève de la structure:</label>
+          <div>
+            <p-dropdown [options]="ministereStructures" [(ngModel)]="structure.parent" optionLabel="libelle"
+              inputId="parent" name="parent" placeholder="Selectionner une structure..." [filter]="true" appendTo="body"
+              [showClear]="true">
+            </p-dropdown>
+          </div>
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="active">Active: </label>
+          <div>
+            <p-checkbox name="active" [(ngModel)]="structure.active" [binary]="true" inputId="binary"></p-checkbox>
+          </div>
+        </div>
+
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="responsable">Responsable:</label>
+          <input type="text" id="responsable" name="responsable" #responsable="ngModel"
+            [(ngModel)]="structure.responsable" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="adresse">Adresse:</label>
+          <input type="text" id="adresse" name="adresse" #adresse="ngModel" [(ngModel)]="structure.adresse" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="tel">Telephone:</label>
+          <input type="text" id="tel" name="tel" #tel="ngModel" [(ngModel)]="structure.tel" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="structure.email" required
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+
+
+        <div class="p-field p-col-12 md:col-12">
+          <label for="description">Description:</label>
+          <textarea type="text" id="description" rows="3" name="description" #description="ngModel"
+            [(ngModel)]="structure.description"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+        </div>
+      </div>
+        <p-divider></p-divider>
+        <div class="p-ml-auto text-right">
+          <button description="reset" label="Annuler" (click)="showDialog=false"
+            class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+          <button description="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
+            icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
+            class="p-button-raised p-button-text {{isEditing() ? 'p-button-primary' : 'p-button-success'}}"
+            pButton></button>
+        </div>
+
+    </form>
+  </p-dialog>
+
+  <!-- formulaire d'affichage du détail -->
+
+
+  <p-dialog [(visible)]="structureDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    [style]="{width: '50vw'}">
     <ng-template pTemplate="header">
 
       <span class="p-mr-auto"> DETAILS structure</span>
@@ -206,56 +211,60 @@
       <div class="col-md-12">
         <ul class="list-group list-group-flush">
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Id:</span>  {{structure.id}}</span>
+            <span class="va-m"><span class="font-weight-bold">Id:</span> {{structure.id}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">sigle:</span>  {{structure.sigle}}</span>
+            <span class="va-m"><span class="font-weight-bold">sigle:</span> {{structure.sigle}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Libelle:</span>  {{structure.libelle}}</span>
+            <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{structure.libelle}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Responsable:</span>  {{structure.responsable}}</span>
+            <span class="va-m"><span class="font-weight-bold">Responsable:</span> {{structure.responsable}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">Active:</span>
-            <p-checkbox name="active" [disabled]="true" [(ngModel)]="structure.active" [binary]="true" inputId="binary"></p-checkbox>
-          </span>
+              <p-checkbox name="active" [disabled]="true" [(ngModel)]="structure.active" [binary]="true"
+                inputId="binary"></p-checkbox>
+            </span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Telephone:</span>  {{structure.tel}}</span>
+            <span class="va-m"><span class="font-weight-bold">Telephone:</span> {{structure.tel}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Email:</span>  {{structure.email}}</span>
+            <span class="va-m"><span class="font-weight-bold">Email:</span> {{structure.email}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Adresse:</span>  {{structure.adresse? structure.adresse: '-'}}</span>
+            <span class="va-m"><span class="font-weight-bold">Adresse:</span> {{structure.adresse? structure.adresse:
+              '-'}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">typeStructure:</span>  {{structure.typeStructure?.libelle}}</span>
+            <span class="va-m"><span class="font-weight-bold">typeStructure:</span>
+              {{structure.typeStructure?.libelle}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
-             Est rattachée à la structure : </span> {{structure.parent? structure.parent.libelle : '-'}}</span>
+                Est rattachée à la structure : </span> {{structure.parent? structure.parent.libelle : '-'}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Ministere: </span>  {{structure.ministere? structure.ministere?.libelle:'-'}}</span>
+            <span class="va-m"><span class="font-weight-bold">Ministere: </span> {{structure.ministere?
+              structure.ministere?.libelle:'-'}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-           <span class="va-m"><span class="font-weight-bold">Description:</span>  {{structure.description}}</span>
+            <span class="va-m"><span class="font-weight-bold">Description:</span> {{structure.description}}</span>
           </li>
 
         </ul>
-     </div>
+      </div>
 
- </div>
- <p-divider></p-divider>
- <div class="p-ml-auto text-right">
-     <button description="reset" label="Fermer" (click)="structureDetail=false" class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
- </div>
-</p-dialog>
+    </div>
+    <p-divider></p-divider>
+    <div class="p-ml-auto text-right">
+      <button description="reset" label="Fermer" (click)="structureDetail=false"
+        class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+    </div>
+  </p-dialog>
 
-<!-- Confirmation -->
-<app-confirmation></app-confirmation>
+  <!-- Confirmation -->
+  <app-confirmation></app-confirmation>
 </div>
-
