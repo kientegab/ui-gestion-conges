@@ -1,0 +1,97 @@
+<div style="margin-top:-30px ;">
+    <p-card>
+    <!-- ToolBar -->
+
+      <div class="p-d-flex mt-2 mb-3">
+        <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
+        </app-crud-toolbar>
+        <div class="p-ml-auto">
+          <p-message *ngIf="message" [severity]="message.severity" [text]="message.summary"></p-message>
+          <p-progressSpinner *ngIf="isOpInProgress" strokeWidth="4" [style]="{width: '50px', height: '50px'}">
+          </p-progressSpinner>
+        </div>
+      </div>
+        <p-divider></p-divider>
+
+        <p-table #dt [value]="agents" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+            (onLazyLoad)="load($event)" [totalRecords]="totalRecords"
+            [globalFilterFields]="['matricule','nom','prenom','email']"
+            currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
+            [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
+
+            <ng-template pTemplate="caption">
+                <div class="row">
+                    <div class="col" style="padding: 8px; margin-left: 8px">
+                        <span>Liste des Utilisateurs</span>
+                    </div>
+                    <div class="col text-right">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text"
+                                (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
+                                placeholder="Recherche..." />
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="matricule">Matricule
+                        <p-sortIcon field="matricule"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="nom">Nom
+                        <p-sortIcon field="nom"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="prenom">Prénom
+                        <p-sortIcon field="prenom"></p-sortIcon>
+                    </th>
+                    <!-- <th pSortableColumn="dateNaissance">Date naissance
+                        <p-sortIcon field="dateNaissance"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="lieuNaissance">Lieu naissance
+                        <p-sortIcon field="lieuNaissance"></p-sortIcon>
+                    </th> -->
+                    <th pSortableColumn="telephone">Téléphone
+                        <p-sortIcon field="telephone"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="email">Email
+                        <p-sortIcon field="email"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="email">Statut
+                        <p-sortIcon field="email"></p-sortIcon>
+                    </th>
+                    <!--th pSortableColumn="structure">Structure
+                        <p-sortIcon field="structure"></p-sortIcon>
+                    </th-->
+                    
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-agent>
+                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="agent">
+                    <td>{{agent.matricule}} </td>
+                    <td>{{agent.nom}} </td>
+                    <td>{{agent.prenom}} </td>
+                    <td>{{agent.telephone}} </td>
+                    <td>{{agent.email}} </td>
+                    <td>{{agent.actif ? 'activé' : 'désactivé'}}</td>
+                    <!--td>{{agent.email}} </td-->
+                   
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+
+
+  <!-- formulaire d'ajout et de modification -->
+
+  
+
+  <!-- formulaire d'affichage du détail -->
+
+
+   
+
+  <!-- Confirmation -->
+  <app-confirmation></app-confirmation>
+  </div>

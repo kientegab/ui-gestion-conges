@@ -33,6 +33,7 @@ import { AdministrationModule } from './administration/administration.module';
 import { AdministrationRoutingModule } from './administration/administration-routing.module';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { CongeAnnuelComponent } from './public/decision-conges/conge-annuel/conge-annuel.component';
+import { JouissanceAnnuelleComponent } from './public/autorisation-absences/jouissance-annuelle/jouissance-annuelle.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -47,10 +48,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MenuComponent,
     FooterComponent,
     GalerieComponent,
-    CongeAnnuelComponent
+    CongeAnnuelComponent,
+    JouissanceAnnuelleComponent
   ],
   imports: [
-    CommonModule,
+
+  CommonModule,
     BrowserModule,
     FormsModule, 
     ReactiveFormsModule,

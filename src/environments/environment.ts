@@ -6,7 +6,7 @@ const commonAppURI: string = 'http://localhost:8080/api/';
 
 export const environment = {
   production: false,
-  recordsPerPage: 10,
+  recordsPerPage: 100,
   exempleResource: commonAppURI + 'exemples',
   structureRessource:commonAppURI + 'structure',
   ministereRessource:commonAppURI + 'ministere',
@@ -20,6 +20,9 @@ export const environment = {
   
 
   
+  privilegeResource: commonAppURI + 'privileges',
+  profilResource: commonAppURI + 'profils',
+ 
 };
 
 /*

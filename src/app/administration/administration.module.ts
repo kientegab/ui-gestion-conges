@@ -28,6 +28,11 @@ import { AvisComponent } from './avis/avis.component';
 import { VisaComponent } from './visa/visa.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
+import { ArticleComponent } from './article/article.component';
+import { CorpsComponent } from './corps/corps.component';
+import { AgentComponent } from './agent/agent.component';
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { ModalPaiementComponent } from './modal-paiement/modal-paiement.componen
        AvisComponent,
        VisaComponent,
        MotifAbsenceComponent,
-       ModalPaiementComponent
+       ModalPaiementComponent,
+       PrivilegeComponent,
+       ProfilComponent,
+       ArticleComponent,
+       CorpsComponent,
+       AgentComponent
   ],
   imports: [
 AdministrationRoutingModule,
