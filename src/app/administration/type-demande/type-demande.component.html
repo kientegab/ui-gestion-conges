@@ -95,7 +95,16 @@
   <form (ngSubmit)="save()" #dtf="ngForm">
 
 <!--  -->
-
+<!-- <div class="p-fluid grid">
+  <div class="p-fluid p-col-12 col-md-6">
+    <label for="libelle">Libéllé </label>
+          <input id="libelle" name="libelle" pInputText required />
+  </div>
+  <div class="p-fluid p-col-12 col-md-6">
+    <label for="libelle">Libéllé </label>
+    <input id="libelle" name="libelle" pInputText required />
+  </div>
+</div> -->
 <div class="formgrid grid">
   <div class="field col-12 md:col-12">
       <label for="libelle">Libelle</label>
@@ -105,7 +114,7 @@
     <label for="libelle">Mode paiement</label>
     <div>
       <p-checkbox name="modePaie" [(ngModel)]="typeDemande.modePaie" [binary]="true" inputId="binary"></p-checkbox>
-      </div>
+    </div>
 </div>
 
   <div class="field col-12 md:col-12">

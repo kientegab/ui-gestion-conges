@@ -27,6 +27,11 @@ import { AvisComponent } from './avis/avis.component';
 import { VisaComponent } from './visa/visa.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
+import { ArticleComponent } from './article/article.component';
+import { CorpsComponent } from './corps/corps.component';
+import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
 import { InputTextModule } from 'primeng/inputtext';
@@ -34,6 +39,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoginComponent } from '../theme/components/login/login.component';
 
 
 @NgModule({
@@ -48,7 +54,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
-       AutorisationComponent
+       AutorisationComponent,
+       PrivilegeComponent,
+       ProfilComponent,
+       ArticleComponent,
+       CorpsComponent,
+       AgentComponent
   ],
   imports: [
     AdministrationRoutingModule,
@@ -73,6 +84,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
   ],
   providers: [ConfirmationService,MessageService],
- // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+ schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdministrationModule { }

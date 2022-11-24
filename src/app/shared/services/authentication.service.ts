@@ -5,8 +5,9 @@ import { Authentication } from 'src/app/shared/models/authentication.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IPasswordForgot } from '../models/vo/password-forgot';
 import { IChangePassword } from '../models/vo/change-password';
+import { environment } from 'src/environments/environment';
 
-const authenticationUrl = 'environment.authenticationRessource';
+const authenticationUrl = environment.authenticationRessource;
 const passwordForgetUrl = 'environment.passwordForgetRessource';
 const changePasswordUrl = 'environment.changePasswordRessource';
 const TOKEN_KEY = 'auth-token';
