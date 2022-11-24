@@ -2,7 +2,6 @@
   <p-card>
       <!-- ToolBar -->
       <div class="p-d-flex">
-        <!--  <app-crud-toolbar *ngIf="this.authService.checkPermission(this.permissions, ['ROLE_ADMIN'])" [enableCreate]="enableCreate" (create)="onCreate()">  -->
           <app-crud-toolbar  [enableCreate]="enableCreate" (create)="onCreate()">
           </app-crud-toolbar>
           <div class="p-ml-auto">
@@ -13,7 +12,7 @@
       </div>
       <p-divider></p-divider>
 
-      <p-table #dt [value]="profils" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading" (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['name','description']" currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
+      <p-table #dt [value]="profils" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading" (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['name']" currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
           [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
           <!-- <p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
@@ -103,8 +102,8 @@
           <!-- <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i> -->
           <span class="p-mr-auto">
 <!-- {{profil.id ? 'Modifier' : 'Ajouter'}} un privilege -->
-Privilèges
-</span>
+   Privilèges
+     </span>
       </ng-template>
       <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
       <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>

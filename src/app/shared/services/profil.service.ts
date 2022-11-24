@@ -16,8 +16,8 @@ export class ProfilService {
   constructor(private http:HttpClient) { }
 
    getAll(event?: LazyLoadEvent): Observable<GetAllProfilResponse> {
-   // return this.http.get(profilUrl, { observe: 'response' })
-   return this.http.get("assets/data/profil.json", { observe: 'response' })
+    return this.http.get(profilUrl, { observe: 'response' })
+  // return this.http.get("assets/data/profil.json", { observe: 'response' })
     .pipe(map(response => {
         let profilsResponse: GetAllProfilResponse = {
           //totalCount: parseInt(response.headers.get(totalCountHeader)),

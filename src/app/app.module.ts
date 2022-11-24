@@ -55,7 +55,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
   CommonModule,
     BrowserModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     ToolbarModule,
     GalleriaModule,

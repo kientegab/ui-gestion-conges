@@ -33,6 +33,7 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { LoginComponent } from '../theme/components/login/login.component';
 
 
 @NgModule({
@@ -47,6 +48,9 @@ import { DropdownModule } from 'primeng/dropdown';
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
+
+  //  ExempleComponent
+       ExampleComponent,
        PrivilegeComponent,
        ProfilComponent,
        ArticleComponent,
