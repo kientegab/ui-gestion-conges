@@ -13,6 +13,7 @@ export const environment = {
   exempleResource: commonAppURI + 'exemples',
   structureRessource:commonAppURI + 'structure',
   ministereRessource:commonAppURI + 'ministere',
+  
   typeDemandeRessource:commonAppURI + 'typeDemande',
   typeStructureRessource: commonAppURI + 'typeStructure',
   avisRessource: commonAppURI + 'avis',
@@ -20,7 +21,7 @@ export const environment = {
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement',
   
-  
+  articleRessource:commonAppURI+'article',
 
   
   privilegeResource: commonAppURI + 'privileges',

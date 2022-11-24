@@ -34,6 +34,7 @@ import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { LoginComponent } from '../theme/components/login/login.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { LoginComponent } from '../theme/components/login/login.component';
     CommonModule,
     FormsModule,
     ButtonModule,
+    InputTextModule,
     DropdownModule,
     CheckboxModule,
     DialogModule,
