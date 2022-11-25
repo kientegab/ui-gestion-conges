@@ -5,6 +5,8 @@ import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
 import { ModalPaiement } from 'src/app/shared/models/modalPaiement.model';
 import { ModalPaiementService } from 'src/app/shared/services/modal-paiement.service';
 import { environment } from 'src/environments/environment';
+import { TypeDemandeService } from '../../shared/services/type-demande.service';
+import { TypeDemande } from '../../shared/models/typeDemande.model';
 
 @Component({
   selector: 'app-modal-paiement',
@@ -31,17 +33,36 @@ export class ModalPaiementComponent implements OnInit {
   modalPaiementDetail: boolean = false;
   message: any;
   dialogErrorMessage: any;
+  typeDemandes!: TypeDemande[];
+  typeDemande: TypeDemande = {};
   constructor(
     private modalPaiementService: ModalPaiementService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private TypeDemandeService: TypeDemandeService
   ) { }
 
   ngOnInit(): void {
     this.load();
+    this.loadTypeDemande();
   }
 
   isEditing() {
     return !!this.modalPaiement.id;
+  }
+
+  loadTypeDemande(event?: LazyLoadEvent) {
+    this.isLoading = true;
+    this.TypeDemandeService.getAll().subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.typeDemandes = response.typeDemandes;
+
+        console.log("type structure", this.typeDemandes);
+      },
+      (error) => {
+        this.message = { severity: 'error', summary: error.error };
+      }
+    );
   }
   // Affichage
 
