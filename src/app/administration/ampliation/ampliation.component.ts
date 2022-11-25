@@ -1,27 +1,24 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { Ampliation } from './../../shared/models/ampliation.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
-import { ModalPaiement } from 'src/app/shared/models/modalPaiement.model';
-import { ModalPaiementService } from 'src/app/shared/services/modal-paiement.service';
 import { environment } from 'src/environments/environment';
-import { TypeDemandeService } from '../../shared/services/type-demande.service';
-import { TypeDemande } from '../../shared/models/typeDemande.model';
+import { AmpliationService } from 'src/app/shared/services/ampliation.service';
+import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
+import { NgForm } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-modal-paiement',
-  templateUrl: './modal-paiement.component.html',
-  styleUrls: ['./modal-paiement.component.scss']
+  selector: 'app-ampliation',
+  templateUrl: './ampliation.component.html',
+  styleUrls: ['./ampliation.component.scss']
 })
-export class ModalPaiementComponent implements OnInit {
-
+export class AmpliationComponent implements OnInit {
 
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
   recordsPerPage = environment.recordsPerPage;
-  modalPaiements!: ModalPaiement[];
-  modalPaiement: ModalPaiement = {};
+  ampliations!: Ampliation[];
+  ampliation: Ampliation = {};
   enableCreate = true;
   enableBtnInfo = true;
   enableBtnEdit = true;
@@ -30,47 +27,28 @@ export class ModalPaiementComponent implements OnInit {
   isOpInProgress!: boolean;
   isDialogOpInProgress!: boolean;
   showDialog = false;
-  modalPaiementDetail: boolean = false;
+  ampliationDetail: boolean = false;
   message: any;
   dialogErrorMessage: any;
-  typeDemandes!: TypeDemande[];
-  typeDemande: TypeDemande = {};
   constructor(
-    private modalPaiementService: ModalPaiementService,
-    private confirmationService: ConfirmationService,
-    private TypeDemandeService: TypeDemandeService
+    private ampliationService: AmpliationService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
     this.load();
-    this.loadTypeDemande();
   }
 
   isEditing() {
-    return !!this.modalPaiement.id;
-  }
-
-  loadTypeDemande(event?: LazyLoadEvent) {
-    this.isLoading = true;
-    this.TypeDemandeService.getAll().subscribe(
-      (response) => {
-        this.isLoading = false;
-        this.typeDemandes = response.typeDemandes;
-
-        console.log("type structure", this.typeDemandes);
-      },
-      (error) => {
-        this.message = { severity: 'error', summary: error.error };
-      }
-    );
+    return !!this.ampliation.id;
   }
   // Affichage
 
   load(event?: LazyLoadEvent) {
     this.isLoading = true;
-    this.modalPaiementService.getAll().subscribe(response => {
+    this.ampliationService.getAll().subscribe(response => {
       this.isLoading = false;
-      this.modalPaiements = response.modalPaiements;
+      this.ampliations = response.ampliations;
 
     }, error => {
       this.message = { severity: 'error', summary: error.error };
@@ -81,7 +59,7 @@ export class ModalPaiementComponent implements OnInit {
   //Creation
 
   save() {
-    if (this.modalPaiement.id) {
+    if (this.ampliation.id) {
       this.edit();
     } else {
       this.create();
@@ -89,7 +67,7 @@ export class ModalPaiementComponent implements OnInit {
   }
 
   onCreate() {
-    this.modalPaiement = {};
+    this.ampliation = {};
     this.clearDialogMessages();
     this.form.resetForm();
     this.showDialog = true;
@@ -98,10 +76,10 @@ export class ModalPaiementComponent implements OnInit {
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    this.modalPaiementService.create(this.modalPaiement).subscribe(response => {
-      if (this.modalPaiements.length !== this.recordsPerPage) {
-        this.modalPaiements.push(response);
-        this.modalPaiements = this.modalPaiements.slice();
+    this.ampliationService.create(this.ampliation).subscribe(response => {
+      if (this.ampliations.length !== this.recordsPerPage) {
+        this.ampliations.push(response);
+        this.ampliations = this.ampliations.slice();
       }
       this.totalRecords++;
       this.isDialogOpInProgress = false;
@@ -112,14 +90,14 @@ export class ModalPaiementComponent implements OnInit {
 
   //Détail
   onInfo(selection: any) {
-    this.modalPaiement = Object.assign({}, selection);
+    this.ampliation = Object.assign({}, selection);
     this.clearDialogMessages();
-    this.modalPaiementDetail = true;
+    this.ampliationDetail = true;
   }
 
   // Edit
   onEdit(selection: any) {
-    this.modalPaiement = Object.assign({}, selection);
+    this.ampliation = Object.assign({}, selection);
     this.clearDialogMessages();
     this.showDialog = true;
   }
@@ -127,9 +105,9 @@ export class ModalPaiementComponent implements OnInit {
   edit() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    this.modalPaiementService.update(this.modalPaiement).subscribe(response => {
-      let index = this.modalPaiements.findIndex(modalPaiement => modalPaiement.id === response.id);
-      this.modalPaiements[index] = response;
+    this.ampliationService.update(this.ampliation).subscribe(response => {
+      let index = this.ampliations.findIndex(ampliation => ampliation.id === response.id);
+      this.ampliations[index] = response;
       this.isDialogOpInProgress = false;
       this.showDialog = false;
       this.showMessage({ severity: 'success', summary: 'Type Structure modifié avec succès' });
@@ -149,14 +127,14 @@ export class ModalPaiementComponent implements OnInit {
 
   delete(selection: any) {
     this.isOpInProgress = true;
-    this.modalPaiementService.delete(selection.id).subscribe(() => {
-      this.modalPaiements = this.modalPaiements.filter(modalPaiement => modalPaiement.id !== selection.id);
+    this.ampliationService.delete(selection.id).subscribe(() => {
+      this.ampliations = this.ampliations.filter(ampliation => ampliation.id !== selection.id);
       selection = null;
       this.isOpInProgress = false;
       this.totalRecords--;
       this.showMessage({
         severity: 'success',
-        summary: 'modalPaiement supprimé avec succès',
+        summary: 'ampliation supprimé avec succès',
       });
     }, (error) => this.handleError(error)
     );

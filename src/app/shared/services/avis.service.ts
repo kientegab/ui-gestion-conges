@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllAvisResponse, Avis } from '../models/avis.model';
 
-const Url = environment.avisRessource;
+const avisUrl = environment.avisRessource;
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class AvisService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllAvisResponse> {
-    return this.http.get("assets/data/avis.json", { observe: 'response' })
-    // return this.http.get(Url, { observe: 'response' })
+    //return this.http.get("assets/data/avis.json", { observe: 'response' })
+    return this.http.get(avisUrl, { observe: 'response' })
     .pipe(map(response => {
         let avissResponse: GetAllAvisResponse = {
           aviss: response.body as Avis[]
@@ -26,14 +26,14 @@ export class AvisService {
   }
 
   create(avis: Avis): Observable<Avis> {
-    return this.http.post(Url, avis);
+    return this.http.post(avisUrl, avis);
   }
 
   update(avis: Avis): Observable<Avis> {
-    return this.http.put(Url, avis);
+    return this.http.put(avisUrl, avis);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${Url}/${id}`);
+    return this.http.delete<void>(`${avisUrl}/${id}`);
   }
 }

@@ -13,8 +13,8 @@
         </div>
         <p-divider></p-divider>
 
-        <p-table #dt [value]="modalPaiements" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
-            (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['libelle','description','typeDemande']"
+        <p-table #dt [value]="ampliations" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+            (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['libelle','code']"
             currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
             [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
@@ -22,7 +22,7 @@
                 <div class="row">
                     <!-- titre -->
                     <div class="col" style="padding: 8px; margin-left: 8px">
-                        <span>Liste des modalPaiements</span>
+                        <span>Liste des ampliations</span>
                     </div>
 
                     <!-- volet recherche -->
@@ -38,18 +38,12 @@
             </ng-template>
 
             <ng-template pTemplate="header">
-
-                
                 <tr>
-                    <th pSortableColumn="typeDemande">Type de Demande
-                        <p-sortIcon field="typeDemande"></p-sortIcon>
+                    <th pSortableColumn="code">Code
+                        <p-sortIcon field="code"></p-sortIcon>
                     </th>
                     <th pSortableColumn="libelle">Libelle
                         <p-sortIcon field="libelle"></p-sortIcon>
-                    </th>
-
-                    <th pSortableColumn="description">Description
-                        <p-sortIcon field="description"></p-sortIcon>
                     </th>
 
                     <th class="actionStyle">
@@ -58,16 +52,15 @@
                 </tr>
             </ng-template>
 
-            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-modalPaiement>
-                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="modalPaiement">
-                    <td>{{modalPaiement.typeDemande?.libelle}} </td>
-                    <td>{{modalPaiement.libelle}} </td>
-                    <td>{{modalPaiement.description}} </td>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-ampliation>
+                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="ampliation">
+                    <td>{{ampliation.code}} </td>
+                    <td>{{ampliation.libelle}} </td>
                     <td class="actionStyle">
 
-                        <app-actions-toolbal-iud (info)="onInfo(modalPaiement)" [enableBtnInfo]="enableBtnInfo"
-                            (edit)="onEdit(modalPaiement)" [enableBtnEdit]="enableBtnEdit"
-                            (delete)="onDelete(modalPaiement)" [enableBtnDelete]="enableBtnDelete">
+                        <app-actions-toolbal-iud (info)="onInfo(ampliation)" [enableBtnInfo]="enableBtnInfo"
+                            (edit)="onEdit(ampliation)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(ampliation)"
+                            [enableBtnDelete]="enableBtnDelete">
                         </app-actions-toolbal-iud>
 
                     </td>
@@ -83,7 +76,7 @@
         <ng-template pTemplate="header">
             <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
             <span class="mr-auto">
-                {{modalPaiement.id ? 'Modifier' : 'Ajouter'}} un type de Demande
+                {{ampliation.id ? 'Modifier' : 'Ajouter'}} un type de Demande
             </span>
         </ng-template>
         <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
@@ -95,28 +88,21 @@
             <!--  -->
 
             <div class="formgrid grid">
-                <div class="field col-12 md:col-6">
-                    <label for="typeDemande">TypeDemande:</label>
-                    <div>
-                        <p-dropdown [options]="typeDemandes" [(ngModel)]="modalPaiement.typeDemande" optionLabel="libelle"
-                            inputId="typeDemande" name="typeDemande" placeholder="Selectionner un typeDemande..." [filter]="true"
-                            appendTo="body" [showClear]="true">
-                        </p-dropdown>
-                    </div>
+
+                <div class="field col-12 md:col-12">
+                    <label for="code">Code</label>
+                    <textarea type="text" id="code" rows="4" name="code" #description="ngModel" [(ngModel)]="ampliation.code"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
                 </div>
+
                 <div class="field col-12 md:col-12">
                     <label for="libelle">Libelle</label>
-                    <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="modalPaiement.libelle"
+                    <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="ampliation.libelle"
                         required
                         class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
 
-                <div class="field col-12 md:col-12">
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" rows="4" name="description" #description="ngModel"
-                        [(ngModel)]="modalPaiement.description"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
-                </div>
+
             </div>
 
             <p-divider></p-divider>
@@ -135,28 +121,26 @@
     <!-- formulaire d'affichage du détail -->
 
 
-    <p-dialog [(visible)]="modalPaiementDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    <p-dialog [(visible)]="ampliationDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
         [style]="{width: '50vw'}">
         <ng-template pTemplate="header">
 
-            <span class="p-mr-auto"> DETAILS modalPaiement</span>
+            <span class="p-mr-auto"> DETAILS ampliation</span>
         </ng-template>
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">Id:</span> {{modalPaiement.id}}</span>
+                        <span class="va-m"><span class="font-weight-bold">Id:</span> {{ampliation.id}}</span>
                     </li>
                     <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">typeDemande:</span> {{modalPaiement.typeDemande?.libelle}}</span>
+                        <span class="va-m"><span class="font-weight-bold">Code:</span>
+                            {{ampliation.code}}</span>
                     </li>
                     <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{modalPaiement.libelle}}</span>
+                        <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{ampliation.libelle}}</span>
                     </li>
-                    <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">Description:</span>
-                            {{modalPaiement.description}}</span>
-                    </li>
+
 
                 </ul>
             </div>
@@ -164,7 +148,7 @@
         </div>
         <p-divider></p-divider>
         <div class="p-ml-auto text-right">
-            <button description="reset" label="Fermer" (click)="modalPaiementDetail=false"
+            <button description="reset" label="Fermer" (click)="ampliationDetail=false"
                 class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
         </div>
     </p-dialog>

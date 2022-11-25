@@ -32,7 +32,7 @@ export class TypeDemandeService {
   update(typeDemande: TypeDemande): Observable<TypeDemande> {
     return this.http.put(typeDemandeUrl, typeDemande);
   }
-  
+
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${typeDemandeUrl}/${id}`);
   }
