@@ -1,5 +1,12 @@
 import { MotifAbsence } from './motifAbsence.model';
 import { TypeDemande } from './typeDemande.model';
+
+export interface Utilisateur {
+  matricule?:string;
+  nom?:string;
+  prenom?:string;
+  emploi?:string;
+}
 export interface Demande {
   id?:number;
   numeroDemande?:string;
@@ -11,9 +18,13 @@ export interface Demande {
   periodeDebut?:Date;
   periodeFin?:Date;
   position?:string;
+  avis?:string;
+  etat?:string;
+  utilisateur?:Utilisateur
   typeDemande?:TypeDemande;
   motifAbsence?:MotifAbsence;
   motifRejet?:string;
+
 }
 
 export interface GetAllDemandeResponse {

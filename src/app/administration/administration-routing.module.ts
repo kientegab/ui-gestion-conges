@@ -16,6 +16,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { ArticleComponent } from './article/article.component';
 import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
+import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
     {path: 'typeDemande', component: TypeDemandeComponent },
     {path: 'structure', component: StructureComponent },
     { path: 'ministere', component: MinistereComponent },
-    
+
     { path: 'visa', component: VisaComponent },
     { path: 'avis', component: AvisComponent },
     { path: 'motifAbsence', component: MotifAbsenceComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
     {path: 'article', component: ArticleComponent },
     {path: 'corps', component: CorpsComponent },
     {path: 'agent', component: AgentComponent },
+    {path: 'autorisation', component: AutorisationComponent }
   ]}
 ];
 

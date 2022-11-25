@@ -35,7 +35,8 @@ import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
 import { InputTextModule } from 'primeng/inputtext';
-
+import {CalendarModule} from 'primeng/calendar';
+import {FileUploadModule} from 'primeng/fileupload';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -67,6 +68,8 @@ import { LoginComponent } from '../theme/components/login/login.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    CalendarModule,
+    FileUploadModule,
     ButtonModule,
     InputTextModule,
     DropdownModule,
@@ -80,8 +83,6 @@ import { LoginComponent } from '../theme/components/login/login.component';
     ProgressSpinnerModule,
     HttpClientModule,
     ContextMenuModule
-
-
   ],
   providers: [ConfirmationService,MessageService],
  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

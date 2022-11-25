@@ -11,6 +11,7 @@ export const environment = {
   production: false,
   recordsPerPage: 100,
   exempleResource: commonAppURI + 'exemples',
+  demandeResource: commonAppURI + 'demande',
   structureRessource:commonAppURI + 'structure',
   ministereRessource:commonAppURI + 'ministere',
   typeDemandeRessource:commonAppURI + 'typeDemande',
@@ -19,10 +20,10 @@ export const environment = {
   visaRessource: commonAppURI + 'visa',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement',
-  
-  
 
-  
+
+
+
   privilegeResource: commonAppURI + 'privileges',
   profilResource: commonAppURI + 'profils',
   authenticationRessource: commonAppURIA + 'authenticate',
