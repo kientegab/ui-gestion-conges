@@ -15,8 +15,8 @@ export class TypeDemandeService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllTypeDemandeResponse> {
-    return this.http.get("assets/data/typeDemande.json", { observe: 'response' })
-    // return this.http.get(Url, { observe: 'response' })
+    //return this.http.get("assets/data/typeDemande.json", { observe: 'response' })
+    return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let typeDemandesResponse: GetAllTypeDemandeResponse = {
           typeDemandes: response.body as TypeDemande[]

@@ -17,6 +17,7 @@ import { ArticleComponent } from './article/article.component';
 import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
 import { CompteComponent } from './compte/compte.component';
+import { AmpliationComponent } from './ampliation/ampliation.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     { path: 'avis', component: AvisComponent },
     { path: 'motifAbsence', component: MotifAbsenceComponent },
     { path: 'modalPaiement', component: ModalPaiementComponent },
+    { path: 'ampliation', component: AmpliationComponent },
 
 
     {path: 'exemple', component: ExampleComponent },

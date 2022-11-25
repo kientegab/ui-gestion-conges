@@ -25,7 +25,9 @@ export const environment = {
   visaRessource: commonAppURI + 'visa',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement', 
-  articleRessource:commonAppURI+'article',
+  articleRessource: commonAppURI + 'article',
+  ampliationRessource: commonAppURI + 'ampliation',
+  
 
 
 

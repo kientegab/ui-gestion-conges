@@ -37,6 +37,7 @@ import { LoginComponent } from '../theme/components/login/login.component';
 import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { AmpliationComponent } from './ampliation/ampliation.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { InputTextModule } from 'primeng/inputtext';
        CorpsComponent,
        AgentComponent,
        CompteComponent,
-       VisaTypeDemandeComponent
+       VisaTypeDemandeComponent,
+       AmpliationComponent
   ],
   imports: [
     AdministrationRoutingModule,
