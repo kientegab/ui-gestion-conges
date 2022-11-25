@@ -52,7 +52,7 @@ export class MinistereComponent implements OnInit {
     this.ministereService.getAll().subscribe(response => {
       this.isLoading = false;
       this.ministeres = response.ministeres;
-
+      console.log("ministere", this.ministeres)
     }, error => {
       this.message = { severity: 'error', summary: error.error };
       console.error(JSON.stringify(error));

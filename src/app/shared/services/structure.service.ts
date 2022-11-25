@@ -16,7 +16,7 @@ export class StructureService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllStructureResponse> {
-    return this.http.get("assets/data/structure.json", { observe: 'response' })
+    return this.http.get(structureUrl, { observe: 'response' })
     // return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let structuresResponse: GetAllStructureResponse = {
