@@ -34,6 +34,8 @@ import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { LoginComponent } from '../theme/components/login/login.component';
+import { CompteComponent } from './compte/compte.component';
+import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { InputTextModule } from 'primeng/inputtext';
 
 
@@ -41,6 +43,9 @@ import { InputTextModule } from 'primeng/inputtext';
   declarations: [
   //  ExempleComponent
       ExampleComponent,
+       ExampleComponent,
+       PrivilegeComponent,
+       ProfilComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -56,13 +61,16 @@ import { InputTextModule } from 'primeng/inputtext';
        ProfilComponent,
        ArticleComponent,
        CorpsComponent,
-       AgentComponent
+       AgentComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent
   ],
   imports: [
     AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
     DropdownModule,
@@ -70,8 +78,8 @@ import { InputTextModule } from 'primeng/inputtext';
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule
-
+    ContextMenuModule,
+    InputTextModule,
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
