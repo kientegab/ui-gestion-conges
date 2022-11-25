@@ -1,10 +1,9 @@
+import { CheckboxModule } from 'primeng/checkbox';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
-
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
@@ -34,15 +33,19 @@ import { ModalPaiementComponent } from './modal-paiement/modal-paiement.componen
 import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { ArticleComponent } from './article/article.component';
+import { CorpsComponent } from './corps/corps.component';
+import { AgentComponent } from './agent/agent.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [
-
   //  ExempleComponent
        ExampleComponent,
        PrivilegeComponent,
        ProfilComponent,
+      ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -52,20 +55,32 @@ import { InputTextModule } from 'primeng/inputtext';
        MotifAbsenceComponent,
        ModalPaiementComponent,
        CompteComponent,
-       VisaTypeDemandeComponent
+       VisaTypeDemandeComponent,
+
+  //  ExempleComponent
+       ExampleComponent,
+       PrivilegeComponent,
+       ProfilComponent,
+       ArticleComponent,
+       CorpsComponent,
+       AgentComponent
   ],
   imports: [
-AdministrationRoutingModule,
+    AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
+    DropdownModule,
+    CheckboxModule,
     DialogModule,
     TableModule,
     HttpClientModule,
     ContextMenuModule,
     InputTextModule,
+    ContextMenuModule
+
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

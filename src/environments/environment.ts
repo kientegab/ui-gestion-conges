@@ -14,7 +14,7 @@ export const environment = {
   visaTypeDemandeResource: commonAppURI + 'visa',
 
   privilegeResource: commonAppURIA + 'privileges',
-  profilResource: commonAppURIA + '/profils',
+  profilResource: commonAppURIA + 'profiles',
   authenticationRessource: commonAppURIA + 'authenticate',
 
   compteRessource: commonAppURI  ,
@@ -22,6 +22,7 @@ export const environment = {
 
   activateResource:commonAppURI+'activate',
   recordsPerPage: 100,
+
   structureRessource:commonAppURI + 'structure',
   ministereRessource:commonAppURI + 'ministere',
   typeDemandeRessource:commonAppURI + 'typeDemande',

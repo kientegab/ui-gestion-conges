@@ -14,6 +14,9 @@ import { AvisComponent } from './avis/avis.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
 import { CompteComponent } from './compte/compte.component';
+import { ArticleComponent } from './article/article.component';
+import { AgentComponent } from './agent/agent.component';
+import { CorpsComponent } from './corps/corps.component';
 
 
 const routes: Routes = [
@@ -39,6 +42,13 @@ const routes: Routes = [
     { path: 'motifAbsence', component: MotifAbsenceComponent },
     { path: 'modalPaiement', component: ModalPaiementComponent },
 
+
+    {path: 'exemple', component: ExampleComponent },
+    {path: 'privilege', component: PrivilegeComponent },
+    {path: 'profil', component: ProfilComponent },
+    {path: 'article', component: ArticleComponent },
+    {path: 'corps', component: CorpsComponent },
+    {path: 'agent', component: AgentComponent },
   ]}
 ];
 
