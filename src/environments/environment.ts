@@ -2,30 +2,34 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const commonAppURI: string = 'http://localhost:8080/api/';
-const commonAppURIN: string = 'http://localhost:8080/nomination/api/';
-const commonAppURIA: string = 'http://localhost:8080/nomination/api/';
+
+const commonAppURI: string = 'http://localhost:8080/conges/api/';
 
 
 export const environment = {
   production: false,
   recordsPerPage: 100,
   exempleResource: commonAppURI + 'exemples',
+  visatypedemandeesource: commonAppURI + 'visa',
+  privilegeResource: commonAppURI + 'privileges',
+  profilResource: commonAppURI + 'profiles',
+  authenticationRessource: commonAppURI + 'authenticate',
+  compteRessource: commonAppURI  ,
+  agentResource: commonAppURI +'utilisateurs',
+  activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structure',
-  ministereRessource:commonAppURI + 'ministere',
+  ministereRessource:commonAppURI + 'ministere', 
   typeDemandeRessource:commonAppURI + 'typeDemande',
   typeStructureRessource: commonAppURI + 'typeStructure',
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visa',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
-  modalPaiementRessource: commonAppURI + 'modalpaiement',
-  
-  
+  modalPaiementRessource: commonAppURI + 'modalpaiement', 
+  articleRessource:commonAppURI+'article',
 
-  
-  privilegeResource: commonAppURI + 'privileges',
-  profilResource: commonAppURI + 'profils',
-  authenticationRessource: commonAppURIA + 'authenticate',
+
+
+
 
 };
 

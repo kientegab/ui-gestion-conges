@@ -36,6 +36,17 @@ export class StructureService {
       }));
   }
 
+  getStructureById(id: number): Observable<any> {
+    return this.http.get(`${structureUrl}/${id}`, { observe: 'response' })
+    .pipe(map(response => {
+      let value: Structure={};
+      value= response.body as Structure;
+
+      let data :Structure[]=[];
+       data.push(value);
+        return data;
+      }));
+    }
 
   create(structure: Structure): Observable<Structure> {
     return this.http.post(Url, structure);
