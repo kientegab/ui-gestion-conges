@@ -12,8 +12,13 @@
     border-top: .05rem solid #e5e5e5;
     bottom: 0;
     font-size: large; 
+    height: 200px;
   }
 
   .blog-footer p:last-child {
     margin-bottom: 0;
   }
+  a {
+    color: white;
+    text-decoration: none;
+}

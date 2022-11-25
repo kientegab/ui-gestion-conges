@@ -23,6 +23,17 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { PrivilegeComponent } from './privilege/privilege.component';
 import { ProfilComponent } from './profil/profil.component';
 import { LoginComponent } from '../theme/components/login/login.component';
+import { TypeDemandeComponent } from './type-demande/type-demande.component';
+import { TypeStructureComponent } from './type-structure/type-structure.component';
+import { StructureComponent } from './structure/structure.component';
+import { MinistereComponent } from './ministere/ministere.component';
+import { AvisComponent } from './avis/avis.component';
+import { VisaComponent } from './visa/visa.component';
+import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
+import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { CompteComponent } from './compte/compte.component';
+import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -31,19 +42,30 @@ import { LoginComponent } from '../theme/components/login/login.component';
   //  ExempleComponent
        ExampleComponent,
        PrivilegeComponent,
-       ProfilComponent
+       ProfilComponent,
+       TypeDemandeComponent,
+       TypeStructureComponent,
+       StructureComponent,
+       MinistereComponent,
+       AvisComponent,
+       VisaComponent,
+       MotifAbsenceComponent,
+       ModalPaiementComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent
   ],
   imports: [
 AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     DialogModule,
     TableModule,
     HttpClientModule,
-    ContextMenuModule
-
+    ContextMenuModule,
+    InputTextModule,
 
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

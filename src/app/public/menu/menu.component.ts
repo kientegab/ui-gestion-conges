@@ -29,10 +29,10 @@ export class MenuComponent implements OnInit {
         routerLink: ['/'] 
       },
       { 
-        label: 'Congés',
+        label: 'Décision de Congés',
         items: [
           {
-            label: 'Autorisation congés',
+            label: 'Annuel',
             routerLink: ['/attestation-soumission'],
             routerLinkActiveOptions: {
               exact: true
@@ -42,7 +42,27 @@ export class MenuComponent implements OnInit {
             separator: true
           },
           {
-            label: 'Aut. absence',
+            label: 'Maternité',
+            routerLink: ['/declaration-etablissement'],
+            routerLinkActiveOptions: {
+              exact: true
+            } 
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Maladie',
+            routerLink: ['/declaration-etablissement'],
+            routerLinkActiveOptions: {
+              exact: true
+            } 
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Fin de service',
             routerLink: ['/declaration-etablissement'],
             routerLinkActiveOptions: {
               exact: true
@@ -51,28 +71,48 @@ export class MenuComponent implements OnInit {
           
         ]
       },
-      // {
-      //   label: 'Actes individuels',
-      //   items: [  
-      //     {
-      //       label: 'Attestation du travail',
-      //       routerLink: ['/attestation-travail'],
-      //       routerLinkActiveOptions: {
-      //         exact: true
-      //       },
-      //     },
-      //     {
-      //       separator: true
-      //     },
-      //     {
-      //       label: 'Attestation du chômage',
-      //       routerLink: ['/attestation-chomage'],
-      //       routerLinkActiveOptions: {
-      //         exact: true
-      //       },
-      //     }
-      //   ] 
-      // },
+      {
+        label: 'Autorisations',
+        items: [  
+          {
+            label: 'Jouissance Annuelle',
+            routerLink: ['/attestation-travail'],
+            routerLinkActiveOptions: {
+              exact: true
+            },
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Jouissance Examen',
+            routerLink: ['/attestation-chomage'],
+            routerLinkActiveOptions: {
+              exact: true
+            },
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Jouissance SND',
+            routerLink: ['/attestation-chomage'],
+            routerLinkActiveOptions: {
+              exact: true
+            },
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Autres absences',
+            routerLink: ['/attestation-chomage'],
+            routerLinkActiveOptions: {
+              exact: true
+            },
+          }
+        ] 
+      },
       {
         label: 'Comment ça marche ?',
         routerLink: ['/commment-ca-marche'] 

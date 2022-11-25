@@ -1,8 +1,8 @@
 <div style="margin-top:-30px ;">
     <p-card>
     <!-- ToolBar -->
-  
-      <div class="p-d-flex mb-2">
+
+      <div class="p-d-flex mt-2 mb-3">
         <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
         </app-crud-toolbar>
         <div class="p-ml-auto">
@@ -12,62 +12,67 @@
         </div>
       </div>
         <p-divider></p-divider>
-  
+
         <p-table #dt [value]="exemples" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
             (onLazyLoad)="load($event)" [totalRecords]="totalRecords"
             [globalFilterFields]="['libelle','description']"
             currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
             [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
-  
+
             <ng-template pTemplate="caption">
                 <div class="text-right p-d-flex">
-                   
-                    <span class="p-ml-auto  p-input-icon-left">
+                  <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" id="inputtext-left"  (input)="dt.filterGlobal($any($event.target)!.value, 'contains')" pInputText >
+                    <label for="inputtext-left">Recherche...</label>
+                   </span>
+
+                    <!-- <span class="p-ml-auto  p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
                             placeholder="Recherche..." />
-                    </span>
+                    </span> -->
                 </div>
-               
+
             </ng-template>
-  
+
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="libelle">Libelle
                         <p-sortIcon field="libelle"></p-sortIcon>
                     </th>
-  
+
                     <th pSortableColumn="description">Description
                         <p-sortIcon field="description"></p-sortIcon>
                     </th>
-  
+
                     <th class="actionStyle">
                         Actions
                     </th>
                 </tr>
             </ng-template>
-  
+
             <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-exemple>
                 <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="exemple">
                     <td>{{exemple.libelle}} </td>
                     <td>{{exemple.description}} </td>
                     <td class="actionStyle">
-  
+
                         <app-actions-toolbal-iud
                             (info)="onInfo(exemple)" [enableBtnInfo]="enableBtnInfo"
                             (edit)="onEdit(exemple)" [enableBtnEdit]="enableBtnEdit"
                             (delete)="onDelete(exemple)" [enableBtnDelete]="enableBtnDelete">
                         </app-actions-toolbal-iud>
-  
+
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </p-card>
-  
-    
+
+
   <!-- formulaire d'ajout et de modification -->
-  
+
   <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body"
     [style]="{width: '50vw'}" [contentStyle]="{height: '300px'}"
     [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
@@ -82,8 +87,8 @@
     <p-divider></p-divider>
     <!-- Form -->
     <form (ngSubmit)="save()" #dtf="ngForm">
-       
-           
+
+
             <div class="field">
                 <label for="libelle">libelle</label>
                 <input id="libelle" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
@@ -92,9 +97,9 @@
                 <label for="description">description</label>
                 <input id="description" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
             </div>
-       
-    
-  
+
+
+
       <p-divider></p-divider>
       <div class="p-ml-auto text-right">
         <button description="reset" label="Annuler" (click)="showDialog=false"
@@ -106,13 +111,13 @@
       </div>
     </form>
   </p-dialog>
-  
+
   <!-- formulaire d'affichage du détail -->
-  
-  
+
+
     <p-dialog [(visible)]="exempleDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
       <ng-template pTemplate="header">
-  
+
         <span class="p-mr-auto"> DETAILS EXEMPLE</span>
       </ng-template>
       <div class="row">
@@ -127,18 +132,17 @@
             <li class="list-group-item list-group-item-action">
              <span class="va-m"><span class="font-weight-bold">Description:</span>  {{exemple.description}}</span>
            </li>
-  
+
           </ul>
        </div>
-  
+
    </div>
    <p-divider></p-divider>
    <div class="p-ml-auto text-right">
        <button description="reset" label="Fermer" (click)="exempleDetail=false" class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
    </div>
   </p-dialog>
-  
+
   <!-- Confirmation -->
   <app-confirmation></app-confirmation>
   </div>
-  

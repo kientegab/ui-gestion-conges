@@ -5,6 +5,15 @@ import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-l
 import { ExampleComponent } from './example/example.component';
 import { PrivilegeComponent } from './privilege/privilege.component';
 import { ProfilComponent } from './profil/profil.component';
+import { TypeStructureComponent } from './type-structure/type-structure.component';
+import { TypeDemandeComponent } from './type-demande/type-demande.component';
+import { StructureComponent } from './structure/structure.component';
+import { MinistereComponent } from './ministere/ministere.component';
+import { VisaComponent } from './visa/visa.component';
+import { AvisComponent } from './avis/avis.component';
+import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
+import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
+import { CompteComponent } from './compte/compte.component';
 
 
 const routes: Routes = [
@@ -16,7 +25,20 @@ const routes: Routes = [
 
     {path: 'exemple', component: ExampleComponent },
     {path: 'privilege', component: PrivilegeComponent },
+    {path: 'compte', component: CompteComponent },
+
     {path: 'profil', component: ProfilComponent },
+    {path: 'exemple', component: ExampleComponent },
+    {path: 'typeStructure', component: TypeStructureComponent },
+    {path: 'typeDemande', component: TypeDemandeComponent },
+    {path: 'structure', component: StructureComponent },
+    { path: 'ministere', component: MinistereComponent },
+
+    { path: 'visa', component: VisaComponent },
+    { path: 'avis', component: AvisComponent },
+    { path: 'motifAbsence', component: MotifAbsenceComponent },
+    { path: 'modalPaiement', component: ModalPaiementComponent },
+
   ]}
 ];
 

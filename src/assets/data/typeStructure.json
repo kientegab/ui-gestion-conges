@@ -1,0 +1,7 @@
+[
+  {"id":1, "libelle": "type structure 1", "description": "description1"},
+  {"id":2, "libelle": "type structure 2", "description": "description2"},
+  {"id":3, "libelle": "type structure 3", "description": "description3"},
+  {"id":4, "libelle": "type structure 4", "description": "description4"}
+
+]
