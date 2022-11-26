@@ -4,6 +4,7 @@ export interface ModalPaiement {
   libelle?:string;
   description?: string;
   typeDemande?: TypeDemande;
+  desactiver?: boolean;
 }
 
 export interface GetAllModalPaiementResponse {
