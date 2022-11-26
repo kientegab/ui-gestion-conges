@@ -47,7 +47,7 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
 
    this.load();
-    //this.loadPrivilege();
+    this.loadPrivilege();
 
   }
 

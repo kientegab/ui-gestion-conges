@@ -113,6 +113,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
       },
       {
+        title: 'Privileges',
+        link: '/workspace/privilege',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
+      },
+      {
         title: 'Utilisateurs',
         link: '/workspace/agent',
         icon: 'people-outline'

@@ -62,6 +62,11 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
        MotifAbsenceComponent,
        ModalPaiementComponent,
        AutorisationComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent,
+
+  //  ExempleComponent
+       ExampleComponent,
        PrivilegeComponent,
        ProfilComponent,
        ArticleComponent,

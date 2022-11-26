@@ -12,7 +12,7 @@
       </div>
       <p-divider></p-divider>
 
-      <p-table #dt [value]="profils" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading" (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['name']" currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
+      <p-table #dt [value]="profils" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading" (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['name','description']" currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
           [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
           <!-- <p-contextMenu #cm [model]="contextMenuItems"></p-contextMenu>
