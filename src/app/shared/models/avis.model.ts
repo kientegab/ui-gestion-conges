@@ -1,11 +1,11 @@
-import { TypeDemande } from './typeDemande.model';
+import { Demande } from './demande.model';
 export interface Avis {
   id?:number;
   avisDrh?:string;
   avisSg?: string;
   avisSh?: string;
   avisDg?: string;
-  demande?: TypeDemande;
+  demande?: Demande;
 }
 
 export interface GetAllAvisResponse {
