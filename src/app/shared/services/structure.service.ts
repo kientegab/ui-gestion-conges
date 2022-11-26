@@ -26,15 +26,7 @@ export class StructureService {
       }));
   }
 
-  getStructureByMinistereId(id: number|null): Observable<GetAllStructureResponse> {
-    return this.http.get(`${structureUrl}/section/${id}`, { observe: 'response' })
-    .pipe(map(response => {
-        let structuresResponse: GetAllStructureResponse = {
-          structures: response.body as Structure[]
-        };
-        return structuresResponse;
-      }));
-  }
+
 
   getStructureById(id: number): Observable<any> {
     return this.http.get(`${structureUrl}/${id}`, { observe: 'response' })
@@ -47,6 +39,16 @@ export class StructureService {
         return data;
       }));
     }
+  getStructureByMinistereId(id: number|null): Observable<GetAllStructureResponse> {
+    return this.http.get(`${structureUrl}/section/${id}`, { observe: 'response' })
+    .pipe(map(response => {
+        let structuresResponse: GetAllStructureResponse = {
+          structures: response.body as Structure[]
+        };
+        return structuresResponse;
+      }));
+  }
+
 
   create(structure: Structure): Observable<Structure> {
     return this.http.post(structureUrl, structure);

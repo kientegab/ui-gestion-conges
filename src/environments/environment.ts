@@ -20,6 +20,7 @@ export const environment = {
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres', 
+  demandeResource: commonAppURI + 'demande',
   typeDemandeRessource:commonAppURI + 'typeDemande',
   typeStructureRessource: commonAppURI + 'type-structure',
   avisRessource: commonAppURI + 'avis',
@@ -29,10 +30,6 @@ export const environment = {
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
   
-
-
-
-
 
 };
 

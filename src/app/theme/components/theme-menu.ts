@@ -11,6 +11,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/workspace',
     home: true,
   },
+  // {
+  //   title: 'Décision',
+  //   icon: 'list-outline',
+  //   link: '/workspace',
+  //   home: true,
+  // },
+  {
+    title: 'Autorisation',
+    icon: 'list-outline',
+    link: '/workspace/autorisation',
+    home: true,
+  },
   {
     title: 'Paramétrage',
     icon: 'lock-outline',
@@ -42,14 +54,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
 
-
       {
         title: 'Visa',
         link: '/workspace/visas',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
-
       {
         title: 'Ampliation',
         link: '/workspace/ampliation',
@@ -57,15 +67,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
 
-
       {
         title: 'Motif absence',
         link: '/workspace/motifAbsence',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
-
-
       {
         title: 'Modalité de paie',
         link: '/workspace/modalPaiement',
@@ -92,7 +99,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   }
-
   ,
   {
     title: 'Utilisateurs',
@@ -105,6 +111,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/workspace/compte',
         icon: 'person-add-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
+      },
+      {
+        title: 'Privileges',
+        link: '/workspace/privilege',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
       {
         title: 'Utilisateurs',
