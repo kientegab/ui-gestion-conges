@@ -4,10 +4,10 @@ import { environment } from 'src/environments/environment';
 import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { GetAllDemandeResponse, Demande } from '../models/demande.model';
+import { GetAllDemandeResponse, Demande, Utilisateur, GetUtilisateurResponse } from '../models/demande.model';
 
 const Url = environment.demandeResource;
-const structureUrl = environment.structureRessource;
+const utilisateurUrl = environment.utilisateurRessource;
 
 
 @Injectable({
@@ -27,15 +27,15 @@ export class AutorisationService {
       }));
   }
 
-  // getdemandeByMinistereId(id: number|null): Observable<GetAllDemandeResponse> {
-  //   return this.http.get(`${structureUrl}/section/${id}`, { observe: 'response' })
-  //   .pipe(map(response => {
-  //       let demandesResponse: GetAllDemandeResponse = {
-  //         demandes: response.body as Demande[]
-  //       };
-  //       return demandesResponse;
-  //     }));
-  // }
+  getUtilisateurByMatricule(matricule: string): Observable<GetUtilisateurResponse> {
+    return this.http.get(`${utilisateurUrl}?matricule=${matricule}`, { observe: 'response' })
+    .pipe(map(response => {
+        let utilisateurResponse: GetUtilisateurResponse = {
+          utilisateur: response.body as Utilisateur
+        };
+        return utilisateurResponse;
+      }));
+  }
 
 
   create(demande: Demande): Observable<Demande> {

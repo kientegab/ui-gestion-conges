@@ -108,23 +108,26 @@
       <!--  -->
       <div class="p-fluid grid">
 
+        <!-- <div>matricule: {{agent.matricule}}</div>
+        <div>nom: {{agent.nom}}</div>
+        <div>Utilisteur nom: {{utilisateur.nom}}</div>
 
-
+        <br> -->
         <div class="p-field p-col-12 md:col-6">
-          <label for="matricule">Matricule:</label>
-          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="utilisateur.matricule" required
+          <label for="matricule">Matricule: </label>
+          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="agent.matricule" required
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="utilisateur.nom" required
+          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="agent.nom" required
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="prenom">Prenom:</label>
-          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="utilisateur.prenom" required
+          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="agent.prenom" required
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
