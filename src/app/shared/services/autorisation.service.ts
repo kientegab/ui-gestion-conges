@@ -17,8 +17,8 @@ export class AutorisationService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
-    return this.http.get("assets/data/demande.json", { observe: 'response' })
-    // return this.http.get(Url, { observe: 'response' })
+    // return this.http.get("assets/data/demande.json", { observe: 'response' })
+    return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let demandesResponse: GetAllDemandeResponse = {
           demandes: response.body as Demande[]
@@ -38,12 +38,12 @@ export class AutorisationService {
   }
 
 
-  create(demande: Demande): Observable<Demande> {
-    return this.http.post(Url, demande);
+  create(request: any): Observable<Demande> {
+    return this.http.post(Url, request);
   }
 
-  update(demande: Demande): Observable<Demande> {
-    return this.http.put(Url, demande);
+  update(request: any): Observable<Demande> {
+    return this.http.put(Url, request);
   }
 
   delete(id: number): Observable<void> {

@@ -16,6 +16,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { ArticleComponent } from './article/article.component';
 import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
+import { CompteComponent } from './compte/compte.component';
+import { AmpliationComponent } from './ampliation/ampliation.component';
 import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
 
 
@@ -25,6 +27,12 @@ const routes: Routes = [
 
 
   children: [
+
+    {path: 'exemple', component: ExampleComponent },
+    {path: 'privilege', component: PrivilegeComponent },
+    {path: 'compte', component: CompteComponent },
+
+    {path: 'profil', component: ProfilComponent },
     {path: 'exemple', component: ExampleComponent },
     {path: 'typeStructure', component: TypeStructureComponent },
     {path: 'typeDemande', component: TypeDemandeComponent },
@@ -35,6 +43,7 @@ const routes: Routes = [
     { path: 'avis', component: AvisComponent },
     { path: 'motifAbsence', component: MotifAbsenceComponent },
     { path: 'modalPaiement', component: ModalPaiementComponent },
+    { path: 'ampliation', component: AmpliationComponent },
 
 
     {path: 'exemple', component: ExampleComponent },

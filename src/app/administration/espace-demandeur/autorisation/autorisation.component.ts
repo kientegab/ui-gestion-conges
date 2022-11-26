@@ -45,6 +45,7 @@ export class AutorisationComponent implements OnInit {
   showDialog = false;
   demandeDetail: boolean=false;
   file: Blob | string = '';
+  files: Blob | string ='';
   message: any;
   dialogErrorMessage: any;
   constructor(
@@ -61,7 +62,7 @@ export class AutorisationComponent implements OnInit {
     this.loadMotifAbsence();
     //A remplacer par le numero matricule de l'agent connecté
     this.matricule= '224365';
-    this.getUtilisateurByMatricule( this.matricule);
+    this.getUtilisateurByMatricule(this.matricule);
 
     console.log('Agent',this.agent);
 
@@ -96,10 +97,10 @@ export class AutorisationComponent implements OnInit {
     this.agent.prenom="Aboubacar";
     this.agent.emploi="Technicien Supérieur";
 
-    this.utilisateur.matricule="224365";
-    this.utilisateur.nom="OUEDRAOGO";
-    this.utilisateur.prenom="Aboubacar";
-    this.utilisateur.emploi="Technicien Supérieur";
+    // this.utilisateur.matricule="224365";
+    // this.utilisateur.nom="OUEDRAOGO";
+    // this.utilisateur.prenom="Aboubacar";
+    // this.utilisateur.emploi="Technicien Supérieur";
 
    console.log('utilisateur',this.utilisateur)
   }
@@ -167,6 +168,7 @@ export class AutorisationComponent implements OnInit {
   }
 
   onCreate() {
+
     this.demande = {};
     this.clearDialogMessages();
     this.form.resetForm();
@@ -176,7 +178,22 @@ export class AutorisationComponent implements OnInit {
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    this.autorisationService.create(this.demande).subscribe(response => {
+    this.utilisateur={
+      matricule:'224365',
+      nom:'OUEDRAOGO',
+      prenom:'Aboubacar',
+      emploi:'Technicien Supérieur'
+    };
+    this.demande.utilisateur= this.utilisateur;
+
+    const formData: FormData = new FormData();
+    const fichesAsJson: Blob = new Blob([JSON.stringify(this.demande)], { type: 'text' });
+    formData.append('demande', fichesAsJson);
+    formData.append('files', this.files);
+
+    console.log('demande',this.demande);
+    console.log('formdata',formData);
+    this.autorisationService.create(formData).subscribe(response => {
       if (this.demandes.length !== this.recordsPerPage) {
         this.demandes.push(response);
         this.demandes = this.demandes.slice();
@@ -191,10 +208,14 @@ export class AutorisationComponent implements OnInit {
   onSelectFile(event:any): void {
     // console.log(event.files[0]);
     // console.log(event.files[0].name);
-    let file:File = event.files[0];
-    this.file = file;
+    // let file:File = event.files[0];
+    // this.file = file;
     // this.document.fileName =  event.files[0].name;
     // this.document.fileSize = event.files[0].size;
+
+    let files:File = event.files[0];
+    this.files = files;
+    console.log(this.files);
   }
 
   //Détail

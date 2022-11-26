@@ -41,12 +41,18 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoginComponent } from '../theme/components/login/login.component';
+import { CompteComponent } from './compte/compte.component';
+import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
+import { AmpliationComponent } from './ampliation/ampliation.component';
 
 
 @NgModule({
   declarations: [
   //  ExempleComponent
       ExampleComponent,
+       ExampleComponent,
+       PrivilegeComponent,
+       ProfilComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -56,11 +62,19 @@ import { LoginComponent } from '../theme/components/login/login.component';
        MotifAbsenceComponent,
        ModalPaiementComponent,
        AutorisationComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent,
+
+  //  ExempleComponent
+       ExampleComponent,
        PrivilegeComponent,
        ProfilComponent,
        ArticleComponent,
        CorpsComponent,
-       AgentComponent
+       AgentComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent,
+       AmpliationComponent
   ],
   imports: [
     AdministrationRoutingModule,
@@ -68,6 +82,7 @@ import { LoginComponent } from '../theme/components/login/login.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     CalendarModule,
     FileUploadModule,
     ButtonModule,
@@ -82,7 +97,9 @@ import { LoginComponent } from '../theme/components/login/login.component';
     CardModule,
     ProgressSpinnerModule,
     HttpClientModule,
-    ContextMenuModule
+    ContextMenuModule,
+    InputTextModule,
+    FileUploadModule,
   ],
   providers: [ConfirmationService,MessageService],
  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

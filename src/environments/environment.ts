@@ -2,32 +2,35 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const commonAppURI: string = 'http://localhost:8080/api/';
-const commonAppURIN: string = 'http://localhost:8080/nomination/api/';
-const commonAppURIA: string = 'http://localhost:8080/nomination/api/';
+
+const commonAppURI: string = 'http://localhost:8080/conges/api/';
 
 
 export const environment = {
   production: false,
   recordsPerPage: 100,
+  importRessource:commonAppURI+'import-data/agents',
   exempleResource: commonAppURI + 'exemples',
-  demandeResource: commonAppURI + 'demande',
+  visatypedemandeesource: commonAppURI + 'visa',
+  privilegeResource: commonAppURI + 'privileges',
+  profilResource: commonAppURI + 'profiles',
+  authenticationRessource: commonAppURI + 'authenticate',
+  compteRessource: commonAppURI  ,
+  agentResource: commonAppURI +'utilisateurs',
+  activateResource:commonAppURI+'activate',
+  structureRessource:commonAppURI + 'structures',
+  ministereRessource:commonAppURI + 'ministeres',
+  demandeResource: commonAppURI + 'demandes',
   utilisateurRessource: commonAppURI + 'utilisateur',
-  structureRessource:commonAppURI + 'structure',
-  ministereRessource:commonAppURI + 'ministere',
   typeDemandeRessource:commonAppURI + 'typeDemandes',
-  typeStructureRessource: commonAppURI + 'typeStructure',
+  typeStructureRessource: commonAppURI + 'type-structure',
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visa',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement',
+  articleRessource: commonAppURI + 'article',
+  ampliationRessource: commonAppURI + 'ampliation',
 
-
-
-
-  privilegeResource: commonAppURI + 'privileges',
-  profilResource: commonAppURI + 'profils',
-  authenticationRessource: commonAppURIA + 'authenticate',
 
 };
 

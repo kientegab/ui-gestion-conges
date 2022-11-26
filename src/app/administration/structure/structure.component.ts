@@ -27,7 +27,7 @@ export class StructureComponent implements OnInit {
   structure: Structure= {};
   ministeres!: Ministere[];
   typeStructures!: TypeStructure[];
-  typeStructure: TypeStructure={};
+  type: TypeStructure={};
 
 
   enableCreate = true;
@@ -114,7 +114,7 @@ export class StructureComponent implements OnInit {
  // Affichage
 
   load(event?: LazyLoadEvent) {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.structureService.getAll().subscribe(response => {
       this.isLoading = false;
       this.structures = response.structures;
@@ -145,6 +145,7 @@ export class StructureComponent implements OnInit {
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
+    console.log("aaaa", this.structure);
     this.structureService.create(this.structure).subscribe(response => {
       if (this.structures.length !== this.recordsPerPage) {
         this.structures.push(response);

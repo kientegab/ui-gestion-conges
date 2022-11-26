@@ -1,0 +1,64 @@
+
+<div  class="couleur">
+ <nb-card-header style=" font-size:25px;">Informations sur l'agent</nb-card-header>
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<fieldset>
+  <legend> Formulaire de creation</legend>
+<form (ngSubmit)="save()" #dtf="ngForm">
+  <!--  -->
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-4">
+      <label for="matricule">Matricule</label>
+      <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="compte.matricule" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+  </div>
+  <div class="field col-12 md:col-4">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="compte.nom" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+  </div>
+    <div class="field col-12 md:col-4">
+        <label for="prenom">Prenom</label>
+        <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="compte.prenom" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+
+    <div class="field col-12 md:col-4">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="compte.email" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-12 md:col-4">
+      <label for="telephone">Telephone</label>
+      <input type="text" id="telephone" name="telephone" #telephone="ngModel" [(ngModel)]="compte.telephone" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+  </div>
+  <div class="field col-12 md:col-4">
+    <label for="email">Matricule du responsable</label>
+    <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="compte.email" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+</div>
+
+<div class="p-fluid grid">
+  <div class="p-fluid p-col-12 col-24">
+    <label for="structureId">Structure <span class="text-danger">*</span> </label>
+    <!-- optionValue="id" -->
+    <p-dropdown formControlName="structureId" optionLabel="sigle" inputId="structureId"
+      [options]="structures" [filter]="true" filterBy="libelle" [showClear]="true"
+      placeholder="Selectionner...">
+    </p-dropdown>
+  </div>
+</div>
+
+
+
+  </div>
+
+      <p-divider></p-divider>
+      <div class="p-ml-auto text-right">
+        <button description="reset" label="Annuler" (click)="showDialog=false"
+          class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+        <button description="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
+          icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
+          class="p-button-raised p-button-text {{isEditing() ? 'p-button-primary' : 'p-button-success'}}"
+          pButton></button>
+      </div>
+    </form>
+  </fieldset>

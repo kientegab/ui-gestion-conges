@@ -61,8 +61,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
       {
-        title: 'Avis',
-        link: '/workspace/avis',
+        title: 'Ampliation',
+        link: '/workspace/ampliation',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
@@ -111,6 +111,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/workspace/compte',
         icon: 'person-add-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
+      },
+      {
+        title: 'Privileges',
+        link: '/workspace/privilege',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
       {
         title: 'Utilisateurs',

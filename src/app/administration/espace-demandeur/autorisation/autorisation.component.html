@@ -115,25 +115,25 @@
         <br> -->
         <div class="p-field p-col-12 md:col-6">
           <label for="matricule">Matricule: </label>
-          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="agent.matricule" required
+          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="utilisateur.matricule"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="agent.nom" required
+          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="utilisateur.nom"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="prenom">Prenom:</label>
-          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="agent.prenom" required
+          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="utilisateur.prenom"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="emploi">Emploi:</label>
-          <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="utilisateur.emploi" required
+          <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="utilisateur.emploi"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
@@ -156,14 +156,14 @@
         <div class="p-field p-col-12 md:col-6">
           <label for="lieuJouissanceBF">Lieu jouissance BF:</label>
           <input type="text" id="lieuJouissanceBF" name="lieuJouissanceBF" #lieuJouissanceBF="ngModel"
-            [(ngModel)]="demande.lieuJouissanceBF" required
+            [(ngModel)]="demande.lieuJouissanceBF"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="lieuJouissanceEtranger">LieuJouissance Etranger:</label>
           <input type="text" id="lieuJouissanceEtranger" name="lieuJouissanceEtranger" #responsable="ngModel"
-            [(ngModel)]="demande.lieuJouissanceEtranger" required
+            [(ngModel)]="demande.lieuJouissanceEtranger"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
@@ -175,29 +175,31 @@
 
         <div class="p-field p-col-12 md:col-6">
           <label for="situationSND">situation SND:</label>
-          <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND" required
+          <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="periodeDebut">Période Debut:</label>
           <p-calendar name="periodeDebut" #periodeDebut="ngModel" [(ngModel)]="demande.periodeDebut"
-                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="false">
+                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
           </p-calendar>
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="periodeFin">Période Fin:</label>
           <p-calendar name="periodeFin" #periodeFin="ngModel" [(ngModel)]="demande.periodeFin"
-                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="false">
+                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
           </p-calendar>
         </div>
 
         <div class="p-field p-col-12 md:col-12">
-          <p-fileUpload id="description"  name="description"
+          <p-fileUpload id="description"  name="files"
           mode="advanced" [showCancelButton]="false" [auto]="true" [customUpload]="true" accept="application/pdf"
          [showUploadButton]="false" chooseLabel="Selectionnez" (uploadHandler)="onSelectFile($event)"
-         [required]="true">
+         [required]="false"
+
+         >
          <ng-template pTemplate="content" let-files>
            <div *ngIf="!files.length" class="text-danger text-center p-p-5 app-yellow">
              <i class="pi pi-upload" style="font-size: 2rem"></i>
