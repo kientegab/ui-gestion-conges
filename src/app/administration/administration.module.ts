@@ -33,12 +33,18 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
+import { InputTextModule } from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
+import {FileUploadModule} from 'primeng/fileupload';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoginComponent } from '../theme/components/login/login.component';
 import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
-import { InputTextModule } from 'primeng/inputtext';
 import { AmpliationComponent } from './ampliation/ampliation.component';
-import {FileUploadModule} from 'primeng/fileupload';
+
 
 @NgModule({
   declarations: [
@@ -55,9 +61,7 @@ import {FileUploadModule} from 'primeng/fileupload';
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
-
-  //  ExempleComponent
-       ExampleComponent,
+       AutorisationComponent,
        PrivilegeComponent,
        ProfilComponent,
        ArticleComponent,
@@ -71,19 +75,28 @@ import {FileUploadModule} from 'primeng/fileupload';
     AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
+    CalendarModule,
+    FileUploadModule,
     ButtonModule,
     InputTextModule,
     DropdownModule,
     CheckboxModule,
+    MessageModule,
+    ProgressBarModule,
     DialogModule,
+    DividerModule,
     TableModule,
+    CardModule,
+    ProgressSpinnerModule,
     HttpClientModule,
     ContextMenuModule,
     InputTextModule,
     FileUploadModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  providers: [ConfirmationService,MessageService],
+ schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdministrationModule { }
