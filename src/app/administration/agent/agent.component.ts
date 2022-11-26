@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LazyLoadEvent, Message } from 'primeng/api';
@@ -27,12 +28,39 @@ export class AgentComponent implements OnInit {
   articleDetail: boolean=false;
   message: any;
   dialogErrorMessage: any;
+  file: Blob | string = '';
   constructor(
     private importationService: ImportedService,
   ) { }
 
   ngOnInit(): void {
     this.load();
+  }
+
+  importer(){
+    console.log("eee")
+    const formData: FormData = new FormData();
+    const fichesAsJson: Blob = new Blob([JSON.stringify(this.file)], { type: 'application/xlsx' });
+    formData.append('file', this.file);
+    this.importationService.import(fichesAsJson).subscribe(response => {
+      console.log("eee", fichesAsJson)
+      this.load();
+      this.totalRecords++;
+      this.isDialogOpInProgress = false;
+      this.showDialog = false;
+      this.showMessage({ severity: 'success', summary: 'agent enregistré avec succès' });
+    }, error => this.handleError(error));
+  }
+  onCreate() {
+    
+    this.showDialog = true;
+  }
+
+  onSelectFile(event:any): void {
+
+    let file:File = event.files[0];
+    this.file = file;
+   
   }
 
   load(event?: LazyLoadEvent) {
@@ -47,10 +75,6 @@ export class AgentComponent implements OnInit {
     });
   }
 
-  onCreate() {
-    this.agent = {};
-    this.clearDialogMessages();
-  }
  
      // Messages
 
@@ -63,5 +87,13 @@ export class AgentComponent implements OnInit {
       this.timeoutHandle = setTimeout(() => {
         this.message = null;
       }, 5000);
+    }
+
+     // Errors
+
+     handleError(error: HttpErrorResponse) {
+      console.error(`Processing Error: ${JSON.stringify(error)}`);
+      this.isDialogOpInProgress = false;
+      this.dialogErrorMessage = error.error.title;
     }
 }

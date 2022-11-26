@@ -9,6 +9,7 @@ const commonAppURI: string = 'http://localhost:8080/conges/api/';
 export const environment = {
   production: false,
   recordsPerPage: 100,
+  importRessource:commonAppURI+'import-data/agents',
   exempleResource: commonAppURI + 'exemples',
   visatypedemandeesource: commonAppURI + 'visa',
   privilegeResource: commonAppURI + 'privileges',
@@ -17,7 +18,7 @@ export const environment = {
   compteRessource: commonAppURI  ,
   agentResource: commonAppURI +'utilisateurs',
   activateResource:commonAppURI+'activate',
-  structureRessource:commonAppURI + 'structure',
+  structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres', 
   typeDemandeRessource:commonAppURI + 'typeDemande',
   typeStructureRessource: commonAppURI + 'type-structure',

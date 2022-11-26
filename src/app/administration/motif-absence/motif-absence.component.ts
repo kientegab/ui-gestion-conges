@@ -84,7 +84,7 @@ export class MotifAbsenceComponent implements OnInit {
       this.totalRecords++;
       this.isDialogOpInProgress = false;
       this.showDialog = false;
-      this.showMessage({ severity: 'success', summary: 'Type Structure créé avec succès' });
+      this.showMessage({ severity: 'success', summary: 'motif créé avec succès' });
     }, error => this.handleError(error));
   }
 

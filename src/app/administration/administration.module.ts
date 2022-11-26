@@ -38,7 +38,7 @@ import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { AmpliationComponent } from './ampliation/ampliation.component';
-
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,7 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
     HttpClientModule,
     ContextMenuModule,
     InputTextModule,
-
+    FileUploadModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
