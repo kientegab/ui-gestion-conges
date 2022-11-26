@@ -86,7 +86,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Jouissance Examen',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissExamen'],
             routerLinkActiveOptions: {
               exact: true
             },
@@ -96,7 +96,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Jouissance SND',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissSND'],
             routerLinkActiveOptions: {
               exact: true
             },
@@ -106,7 +106,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Autres absences',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissAutre'],
             routerLinkActiveOptions: {
               exact: true
             },

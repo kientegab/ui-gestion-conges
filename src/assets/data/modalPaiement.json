@@ -1,7 +1,7 @@
 [
-  {"id":1, "libelle": "Type demande1", "description": "description1"},
-  {"id":2, "libelle": "Type demande2", "description": "description2"},
-  {"id":3, "libelle": "Type demande3", "description": "description3"},
-  {"id":4, "libelle": "Type demande4", "description": "description4"}
+  {"id":1, "typeDemande": {"id":1, "libelle": "demande 1 ", "description": "description1"},"libelle": "demande 1  ", "description": "description1"},
+  {"id":2, "typeDemande": {"id":1, "libelle": "Type d'autorisation", "description": "description1"} ,"libelle": "demande 2", "description": "description2"},
+  {"id":3, "typeDemande": { "id": 1, "libelle": "Type d'autorisation", "description": "description1" },"libelle": "demande 2", "description": "description3"},
+  {"id":4, "typeDemande":{ "id": 1, "libelle": "Type d'autorisation", "description": "description1" },"libelle": "demande 8", "description": "description4"}
 
 ]

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllModalPaiementResponse, ModalPaiement } from '../models/modalPaiement.model';
 
-const Url = environment.modalPaiementRessource;
+const modalPaiementUrl = environment.modalPaiementRessource;
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class ModalPaiementService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllModalPaiementResponse> {
-    return this.http.get("assets/data/modalPaiement.json", { observe: 'response' })
-    // return this.http.get(Url, { observe: 'response' })
+    //return this.http.get("assets/data/modalPaiement.json", { observe: 'response' })
+    return this.http.get(modalPaiementUrl, { observe: 'response' })
     .pipe(map(response => {
         let modalpaiementsResponse: GetAllModalPaiementResponse = {
           modalPaiements: response.body as ModalPaiement[]
@@ -26,14 +26,14 @@ export class ModalPaiementService {
   }
 
   create(modalpaiement: ModalPaiement): Observable<ModalPaiement> {
-    return this.http.post(Url, modalpaiement);
+    return this.http.post(modalPaiementUrl, modalpaiement);
   }
 
   update(modalpaiement: ModalPaiement): Observable<ModalPaiement> {
-    return this.http.put(Url, modalpaiement);
+    return this.http.put(modalPaiementUrl, modalpaiement);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${Url}/${id}`);
+    return this.http.delete<void>(`${modalPaiementUrl}/${id}`);
   }
 }

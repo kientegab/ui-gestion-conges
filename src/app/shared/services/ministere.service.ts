@@ -15,7 +15,7 @@ export class MinistereService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllMinistereResponse> {
-    return this.http.get("assets/data/ministere.json", { observe: 'response' })
+    return this.http.get(ministereUrl, { observe: 'response' })
     // return this.http.get(ministereUrl, { observe: 'response' })
     .pipe(map(response => {
         let ministeresResponse: GetAllMinistereResponse = {

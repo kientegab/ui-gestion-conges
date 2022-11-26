@@ -34,6 +34,9 @@ import { AdministrationRoutingModule } from './administration/administration-rou
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { CongeAnnuelComponent } from './public/decision-conges/conge-annuel/conge-annuel.component';
 import { JouissanceAnnuelleComponent } from './public/autorisation-absences/jouissance-annuelle/jouissance-annuelle.component';
+import { JouissanceExamenComponent } from './public/autorisation-absences/jouissance-examen/jouissance-examen.component';
+import { JouissanceSNDComponent } from './public/autorisation-absences/jouissance-snd/jouissance-snd.component';
+import { AutreAbsencesComponent } from './public/autorisation-absences/autre-absences/autre-absences.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -49,7 +52,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     GalerieComponent,
     CongeAnnuelComponent,
-    JouissanceAnnuelleComponent
+    JouissanceAnnuelleComponent,
+    JouissanceExamenComponent,
+    JouissanceSNDComponent,
+    AutreAbsencesComponent,
   ],
   imports: [
 

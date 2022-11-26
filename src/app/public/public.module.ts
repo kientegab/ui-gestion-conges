@@ -11,6 +11,9 @@ import { GalerieComponent } from './galerie/galerie.component';
 import { AdministrationRoutingModule } from '../administration/administration-routing.module';
 import { CongeAnnuelComponent } from './decision-conges/conge-annuel/conge-annuel.component';
 import { JouissanceAnnuelleComponent } from './autorisation-absences/jouissance-annuelle/jouissance-annuelle.component';
+import { JouissanceExamenComponent } from './autorisation-absences/jouissance-examen/jouissance-examen.component';
+import { JouissanceSNDComponent } from './autorisation-absences/jouissance-snd/jouissance-snd.component';
+import { AutreAbsencesComponent } from './autorisation-absences/autre-absences/autre-absences.component';
 
 
 
@@ -18,6 +21,9 @@ import { JouissanceAnnuelleComponent } from './autorisation-absences/jouissance-
   declarations: [
   CongeAnnuelComponent,
   JouissanceAnnuelleComponent,
+  JouissanceExamenComponent,
+  JouissanceSNDComponent,
+  AutreAbsencesComponent,
   ],
   imports: [
   

@@ -50,10 +50,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
 
-
       {
-        title: 'Avis',
-        link: '/workspace/avis',
+        title: 'Ampliation',
+        link: '/workspace/ampliation',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },
