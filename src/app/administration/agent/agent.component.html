@@ -84,7 +84,47 @@
 
 
   <!-- formulaire d'ajout et de modification -->
+  <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body"
+  [style]="{width: '50vw'}" [contentStyle]="{height: '600px'}"
+  [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+  <ng-template pTemplate="header">
+    
+    <span class="mr-auto">
+    importer
+    </span>
+  </ng-template>
+  <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
+  <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
+  <p-divider></p-divider>
+  <div class="p-fluid p-col-12 col-md-12 mb-2">
+    <label for="description"> Fichier</label>
+      <p-fileUpload id="file" name="file" 
+         mode="advanced" [showCancelButton]="false" [auto]="true" [customUpload]="true" accept="application/xlsx"
+        [showUploadButton]="false" chooseLabel="Selectionnez" (uploadHandler)="onSelectFile($event)"
+        [required]="true">
+        <ng-template pTemplate="content" let-files>
+          <div *ngIf="!files.length" class="text-danger text-center p-p-5 app-yellow">
+            <i class="pi pi-upload" style="font-size: 2rem"></i>
+            <div>
+              <span>Selectionnez ou glissez et deplacez un fichier ici </span>
+            </div>
+          </div>
 
+
+        </ng-template>
+      </p-fileUpload>
+
+  </div>
+ 
+    <p-divider></p-divider>
+    <div class="p-ml-auto text-right">
+      <button description="reset" label="Annuler" (click)="showDialog=false"
+        class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+      <button description="submit" description="importer" label="importer" (click)="importer()"
+        class="p-button-raised p-button-text p-button-primary" pButton></button>
+    </div>
+  
+</p-dialog>
   
 
   <!-- formulaire d'affichage du détail -->

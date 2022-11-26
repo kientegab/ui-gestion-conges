@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllTypeStructureResponse, TypeStructure } from '../models/typeStructure.model';
 
-const Url = environment.typeStructureRessource;
+const structureUrl = environment.typeStructureRessource;
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TypeStructureService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllTypeStructureResponse> {
-    return this.http.get("assets/data/typeStructure.json", { observe: 'response' })
+    return this.http.get(structureUrl, { observe: 'response' })
     // return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let typeStructuresResponse: GetAllTypeStructureResponse = {
@@ -26,14 +26,14 @@ export class TypeStructureService {
   }
 
   create(typeStructure: TypeStructure): Observable<TypeStructure> {
-    return this.http.post(Url, typeStructure);
+    return this.http.post(structureUrl, typeStructure);
   }
 
   update(typeStructure: TypeStructure): Observable<TypeStructure> {
-    return this.http.put(Url, typeStructure);
+    return this.http.put(structureUrl, typeStructure);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${Url}/${id}`);
+    return this.http.delete<void>(`${structureUrl}/${id}`);
   }
 }
