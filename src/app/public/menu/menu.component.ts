@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit {
         items: [
           {
             label: 'Annuel',
-            routerLink: ['/public/conges'],
+            routerLink: ['/public/congeAnnuel'],
             routerLinkActiveOptions: {
               exact: true
             }
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Maternité',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeMaternite'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -53,7 +53,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Maladie',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeMaladie'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -63,7 +63,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Fin de service',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeFinservice'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -123,7 +123,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Nous contacter',
-        routerLink: ['/contact'] 
+        routerLink: ['/public/contact'] 
       },
     ];
   }

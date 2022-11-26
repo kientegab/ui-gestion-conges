@@ -16,7 +16,9 @@ import { JouissanceSNDComponent } from './autorisation-absences/jouissance-snd/j
 import { AutreAbsencesComponent } from './autorisation-absences/autre-absences/autre-absences.component';
 import { CongeMaladieComponent } from './decision-conges/conge-maladie/conge-maladie.component';
 import { CongeMaterniteComponent } from './decision-conges/conge-maternite/conge-maternite.component';
-import { CongeMaterniteFinserviceComponent } from './decision-conges/conge-maternite-finservice/conge-maternite-finservice.component';
+import { CongeFinserviceComponent } from './decision-conges/conge-finservice/conge-finservice.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 
 
@@ -29,7 +31,9 @@ import { CongeMaterniteFinserviceComponent } from './decision-conges/conge-mater
   AutreAbsencesComponent,
   CongeMaladieComponent,
   CongeMaterniteComponent,
-  CongeMaterniteFinserviceComponent,
+  CongeFinserviceComponent,
+  ContactComponent,
+ 
   ],
   imports: [
   

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-conge-annuel',
-  templateUrl: './conge-annuel.component.html',
-  styleUrls: ['./conge-annuel.component.scss']
+  selector: 'app-conge-finservice',
+  templateUrl: './conge-finservice.component.html',
+  styleUrls: ['./conge-finservice.component.scss']
 })
-export class CongeAnnuelComponent implements OnInit {
+export class CongeFinserviceComponent implements OnInit {
 
   constructor(private router: Router) { }
 
