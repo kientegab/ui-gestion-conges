@@ -48,8 +48,8 @@
                     <p-sortIcon field="libelle"></p-sortIcon>
                 </th>
 
-                <th pSortableColumn="type">TypeStructure
-                  <p-sortIcon field="type"></p-sortIcon>
+                <th pSortableColumn="typeStructure">TypeStructure
+                  <p-sortIcon field="typeStructure"></p-sortIcon>
               </th>
 
                   <th pSortableColumn="ministere">Ministere
@@ -66,7 +66,7 @@
               <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="structure">
                   <td>{{structure.sigle}} </td>
                   <td>{{structure.libelle}} </td>
-                  <td>{{structure.type?.libelle}} </td>
+                  <td>{{structure.typeStructure?.libelle}} </td>
                   <td>{{structure.ministere?.sigle}} </td>
                   <td class="actionStyle">
 
@@ -117,10 +117,10 @@
   </div>
 
   <div class="field col-12 md:col-6">
-    <label for="type">TypeStructure:</label>
+    <label for="typeStructure">TypeStructure:</label>
    <div>
-    <p-dropdown [options]="typeStructures" [(ngModel)]="structure.type" optionLabel="libelle" inputId="type"
-    name="type" placeholder="Selectionner un type..." [filter]="true" appendTo="body" [showClear]="true">
+    <p-dropdown [options]="typeStructures" [(ngModel)]="structure.typeStructure" optionLabel="libelle" inputId="typeStructure"
+    name="typeStructure" placeholder="Selectionner un typeStructure..." [filter]="true" appendTo="body" [showClear]="true">
     </p-dropdown>
   </div>
   </div>
@@ -166,18 +166,13 @@
 
 
   <div class="field col-12 md:col-6">
-    <label for="telephone">Telephone:</label>
-    <input type="text" id="telephone" name="telephone" #telephone="ngModel" [(ngModel)]="structure.telephone" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    <label for="tel">Telephone:</label>
+    <input type="text" id="tel" name="tel" #tel="ngModel" [(ngModel)]="structure.tel" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
   </div>
 
   <div class="field col-12 md:col-6">
-    <label for="emailResp">Email:</label>
-    <input type="text" id="emailResp" name="emailResp" #emailResp="ngModel" [(ngModel)]="structure.emailResp" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-  </div>
-
-  <div class="field col-12 md:col-6">
-    <label for="emailStruct">Email structure:</label>
-    <input type="text" id="emailStruct" name="emailStruct" #emailStruct="ngModel" [(ngModel)]="structure.emailStruct" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="structure.email" required   class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
   </div>
 
 
@@ -227,18 +222,18 @@
             <p-checkbox name="active" [disabled]="true" [(ngModel)]="structure.active" [binary]="true" inputId="binary"></p-checkbox>
           </span>
           </li>
-          <!-- <li class="list-group-item list-group-item-action">
+          <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">Telephone:</span>  {{structure.tel}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">Email:</span>  {{structure.email}}</span>
-          </li> -->
+          </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">Adresse:</span>  {{structure.adresse? structure.adresse: '-'}}</span>
           </li>
-          <!-- <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">typeStructure:</span>  {{structure.type?.libelle}}</span>
-          </li> -->
+          <li class="list-group-item list-group-item-action">
+            <span class="va-m"><span class="font-weight-bold">typeStructure:</span>  {{structure.typeStructure?.libelle}}</span>
+          </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
              Est rattachée à la structure : </span> {{structure.parent? structure.parent.libelle : '-'}}</span>
