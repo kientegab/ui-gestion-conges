@@ -75,7 +75,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Modalité de paie',
-        link: '/workspace/modalPaiement',
+        link: '/workspace/modalite-paie',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },

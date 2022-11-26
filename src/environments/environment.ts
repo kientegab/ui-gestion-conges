@@ -26,12 +26,13 @@ export const environment = {
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
-  modalPaiementRessource: commonAppURI + 'modalpaiement', 
+  modalPaiementRessource: commonAppURI + 'modalite-paie', 
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
+  articletypeDemandeRessource: commonAppURI + 'articleTypeDemande',
   
 
-};
+}; 
 
 /*
  * For easier debugging in development mode, you can import the following file

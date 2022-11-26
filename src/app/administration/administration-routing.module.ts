@@ -42,7 +42,7 @@ const routes: Routes = [
     { path: 'visas', component: VisaComponent },
     { path: 'avis', component: AvisComponent },
     { path: 'motifAbsence', component: MotifAbsenceComponent },
-    { path: 'modalPaiement', component: ModalPaiementComponent },
+    { path: 'modalite-paie', component: ModalPaiementComponent },
     { path: 'ampliation', component: AmpliationComponent },
 
 
