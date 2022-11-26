@@ -22,7 +22,7 @@ export const environment = {
   typeDemandeRessource:commonAppURI + 'typeDemande',
   typeStructureRessource: commonAppURI + 'typeStructure',
   avisRessource: commonAppURI + 'avis',
-  visaRessource: commonAppURI + 'visa',
+  visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement', 
   articleRessource: commonAppURI + 'article',

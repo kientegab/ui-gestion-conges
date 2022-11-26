@@ -45,7 +45,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
       {
         title: 'Visa',
-        link: '/workspace/visa',
+        link: '/workspace/visas',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN'])
       },

@@ -14,7 +14,8 @@
         <p-divider></p-divider>
 
         <p-table #dt [value]="aviss" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
-            (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['avisDrh','avisDg','avisSg','avisSh']"
+            (onLazyLoad)="load($event)" [totalRecords]="totalRecords"
+            [globalFilterFields]="['avisDrh','avisDg','avisSg','avisSh']"
             currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
             [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
@@ -22,7 +23,7 @@
                 <div class="row">
                     <!-- titre -->
                     <div class="col" style="padding: 8px; margin-left: 8px">
-                        <span>Liste des  avis</span>
+                        <span>Liste des avis</span>
                     </div>
 
                     <!-- volet recherche -->
@@ -39,7 +40,7 @@
 
             <ng-template pTemplate="header">
                 <tr>
-                  
+
                     <th pSortableColumn="avisDrh">Avis DRH
                         <p-sortIcon field="avisDrh"></p-sortIcon>
                     </th>
@@ -56,6 +57,13 @@
                         <p-sortIcon field="avisDg"></p-sortIcon>
                     </th>
 
+                    <th pSortableColumn="demande"> Numero demande
+                        <p-sortIcon field="demande"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="demande"> Motif demande
+                        <p-sortIcon field="demande"></p-sortIcon>
+                    </th>
+
                     <th class="actionStyle">
                         Actions
                     </th>
@@ -64,15 +72,18 @@
 
             <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-avis>
                 <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="avis">
-                    <td>{{avis.avisDrh}} </td>
-                    <td>{{avis.avisSg}} </td>
-                    <td>{{avis.avisSh}} </td>
-                    <td>{{avis.avisDg}} </td>
+                    <td>{{avis.avisDRH}} </td>
+                    <td>{{avis.avisSG}} </td>
+                    <td>{{avis.avisSH}} </td>
+                    <td>{{avis.avisDG}} </td>
+                    <td>{{avis.typeDemande?.numero}} </td>
+                    <td>{{avis.typeDemande?.motif}} </td>
+
                     <td class="actionStyle">
 
                         <app-actions-toolbal-iud (info)="onInfo(avis)" [enableBtnInfo]="enableBtnInfo"
-                            (edit)="onEdit(avis)" [enableBtnEdit]="enableBtnEdit"
-                            (delete)="onDelete(avis)" [enableBtnDelete]="enableBtnDelete">
+                            (edit)="onEdit(avis)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(avis)"
+                            [enableBtnDelete]="enableBtnDelete">
                         </app-actions-toolbal-iud>
 
                     </td>
@@ -102,28 +113,27 @@
             <div class="formgrid grid">
                 <div class="field col-12 md:col-12">
                     <label for="avisDrh">Avis DRH</label>
-                    <input type="text" id="avisDrh" name="avisDrh" #avisDrh="ngModel" [(ngModel)]="avis.avisDrh"
+                    <input type="text" id="avisDRH" name="avisDRH" #avisDRH="ngModel" [(ngModel)]="avis.avisDrh"
                         required
                         class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
 
                 <div class="field col-12 md:col-12">
-                    <label for="avisSg">Avis Sg</label>
-                    <textarea type="text" id="avisSg" rows="4" name="avisSg" #avisSg="ngModel"
-                        [(ngModel)]="avis.avisSg"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                    <label for="avisSg">Avis SG</label>
+                    <input type="text" id="avisSG" name="avisSG" #avisSG="ngModel" [(ngModel)]="avis.avisSg" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
 
                 <div class="field col-12 md:col-12">
                     <label for="avisDg">Avis DG</label>
-                    <textarea type="text" id="avisDg" rows="4" name="avisDg" #avisDg="ngModel" [(ngModel)]="avis.avisDg"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                    <input type="text" id="avisDG" name="avisDG" #avisDG="ngModel" [(ngModel)]="avis.avisDg" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
 
                 <div class="field col-12 md:col-12">
                     <label for="avisSh">Avis SH</label>
-                    <textarea type="text" id="avisSh" rows="4" name="avisSh" #avisSh="ngModel" [(ngModel)]="avis.avisSh"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                    <input type="text" id="avisSH" name="avisSH" #avisSH="ngModel" [(ngModel)]="avis.avisSh" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
             </div>
 
@@ -152,9 +162,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-action">
+                    <!-- <li class="list-group-item list-group-item-action">
                         <span class="va-m"><span class="font-weight-bold">Id:</span> {{avis.id}}</span>
-                    </li>
+                    </li> -->
                     <li class="list-group-item list-group-item-action">
                         <span class="va-m"><span class="font-weight-bold">Avis DRH:</span> {{avis.avisDrh}}</span>
                     </li>

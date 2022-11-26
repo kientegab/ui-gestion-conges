@@ -3,6 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
 import { Visa } from 'src/app/shared/models/visa.model';
+import { VisaTypeDemande } from 'src/app/shared/models/visaTypeDemande.model';
+import { StructureService } from 'src/app/shared/services/structure.service';
+import { VisaTYpeDemandeService } from 'src/app/shared/services/visa-type-demande.service';
 import { VisaService } from 'src/app/shared/services/visa.service';
 import { environment } from 'src/environments/environment';
 
@@ -31,17 +34,39 @@ export class VisaComponent implements OnInit {
   visaDetail: boolean = false;
   message: any;
   dialogErrorMessage: any;
+  visaTypeDemandes!: VisaTypeDemande[];
+  visaTypeDemande: VisaTypeDemande = {};
+
+
   constructor(
     private visaService: VisaService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private visaTypeDemandeService: VisaTYpeDemandeService,
   ) { }
 
   ngOnInit(): void {
     this.load();
+    this.loadVisaTypeDemande();
+
   }
 
   isEditing() {
     return !!this.visa.id;
+  }
+
+  loadVisaTypeDemande(event?: LazyLoadEvent) {
+    this.isLoading = true;
+    this.visaTypeDemandeService.getAll().subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.visaTypeDemandes = response.visaTypeDemandes;
+
+        console.log("type de visa par demande", this.visaTypeDemandes);
+      },
+      (error) => {
+        this.message = { severity: 'error', summary: error.error };
+      }
+    );
   }
   // Affichage
 
