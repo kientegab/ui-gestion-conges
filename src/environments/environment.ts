@@ -17,6 +17,7 @@ export const environment = {
   profilResource: commonAppURIA + 'profiles',
   authenticationRessource: commonAppURIA + 'authenticate',
 
+
   compteRessource: commonAppURI  ,
   agentResource: commonAppURI +'utilisateurs',
 
@@ -31,6 +32,8 @@ export const environment = {
   visaRessource: commonAppURI + 'visa',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement',
+
+  typeVisaRessource: commonAppURI + 'typeVisas',
 
 
 

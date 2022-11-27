@@ -17,6 +17,7 @@ import { CompteComponent } from './compte/compte.component';
 import { ArticleComponent } from './article/article.component';
 import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
+import { TypeVisaComponent } from './type-visa/type-visa.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
     {path: 'typeDemande', component: TypeDemandeComponent },
     {path: 'structure', component: StructureComponent },
     { path: 'ministere', component: MinistereComponent },
+    { path: 'typeVisa', component: TypeVisaComponent },
+
 
     { path: 'visa', component: VisaComponent },
     { path: 'avis', component: AvisComponent },

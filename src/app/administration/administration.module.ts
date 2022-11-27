@@ -37,6 +37,8 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { TypeVisaComponent } from './type-visa/type-visa.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { DropdownModule } from 'primeng/dropdown';
        ProfilComponent,
        ArticleComponent,
        CorpsComponent,
-       AgentComponent
+       AgentComponent,
+       TypeVisaComponent
   ],
   imports: [
     AdministrationRoutingModule,
@@ -79,7 +82,8 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     ContextMenuModule,
     InputTextModule,
-    ContextMenuModule
+    ContextMenuModule,
+    CalendarModule
 
 
   ],
