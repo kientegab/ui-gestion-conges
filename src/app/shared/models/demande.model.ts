@@ -30,3 +30,7 @@ export interface Demande {
 export interface GetAllDemandeResponse {
   demandes: Demande[];
  }
+
+ export interface GetUtilisateurResponse {
+  utilisateur: Utilisateur;
+ }

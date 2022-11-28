@@ -39,6 +39,7 @@
 
             <ng-template pTemplate="header">
                 <tr>
+                    
                     <th pSortableColumn="code">Code
                         <p-sortIcon field="code"></p-sortIcon>
                     </th>
@@ -91,8 +92,8 @@
 
                 <div class="field col-12 md:col-12">
                     <label for="code">Code</label>
-                    <textarea type="text" id="code" rows="4" name="code" #description="ngModel" [(ngModel)]="visa.code"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="visa.code" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                 </div>
 
                 <div class="field col-12 md:col-12">

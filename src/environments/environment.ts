@@ -19,19 +19,20 @@ export const environment = {
   agentResource: commonAppURI +'utilisateurs',
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
-  ministereRessource:commonAppURI + 'ministeres', 
-  demandeResource: commonAppURI + 'demande',
-  typeDemandeRessource:commonAppURI + 'typeDemande',
+  ministereRessource:commonAppURI + 'ministeres',
+  demandeResource: commonAppURI + 'demandes',
+  utilisateurRessource: commonAppURI + 'utilisateur',
+  typeDemandeRessource:commonAppURI + 'typeDemandes',
   typeStructureRessource: commonAppURI + 'type-structure',
   avisRessource: commonAppURI + 'avis',
-  visaRessource: commonAppURI + 'visa',
+  visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement', 
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
   
 
-};
+}; 
 
 /*
  * For easier debugging in development mode, you can import the following file

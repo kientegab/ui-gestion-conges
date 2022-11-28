@@ -1,0 +1,53 @@
+<nb-layout windowMode>
+    <nb-layout-header fixed>
+      
+        <div class="header-container">
+            <div class="logo-container">
+              <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+                <nb-icon icon="menu-2-outline"></nb-icon>
+              </a>
+          
+              <img src="assets/images/logo/armoirie_BF.png" alt="Image" width="50" />
+              <h1 style="color: white;">SICCA </h1>
+          
+              <a class="logo d-none d-lg-block"><span>Système Intégré de gestion  <br> des congés et des autorisations d'absence</span></a>
+            </div>
+          
+          
+          
+          
+            <!-- partie details profil -->
+          
+          
+          </div>
+          
+          <div class="header-container">
+            <nb-actions size="medium">
+              <nb-action class="control-item" icon="email-outline"></nb-action>
+              <nb-action class="control-item" icon="bell-outline" badgeText="+" badgeStatus="danger" >
+              </nb-action>
+          
+          
+              <nb-action class="user-action">
+                <!--<nb-action class="user-action" *nbIsGranted="['view', 'user']" -->
+                <nb-user [nbContextMenu]="userMenu" [name]='username'>
+                </nb-user>
+              </nb-action>
+          
+            </nb-actions>
+          </div>
+          
+    </nb-layout-header>
+
+    <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
+      <pp-espace-shi-dashboard></pp-espace-shi-dashboard>
+    </nb-sidebar>
+
+    <nb-layout-column>
+      <ng-content select="router-outlet"></ng-content>
+    </nb-layout-column>
+
+    <nb-layout-footer fixed>
+      <app-footer></app-footer>
+    </nb-layout-footer>
+  </nb-layout>
