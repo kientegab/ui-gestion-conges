@@ -115,11 +115,11 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Comment ça marche ?',
-        routerLink: ['/commment-ca-marche'] 
+        routerLink: ['/public/commment-ca-marche'] 
       },
       {
         label: 'Rechercher un acte',
-        routerLink: ['/verifier-acte'] 
+        routerLink: ['/public/verifier-acte'] 
       },
       {
         label: 'Nous contacter',

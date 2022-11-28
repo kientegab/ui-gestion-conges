@@ -44,6 +44,7 @@ import { LoginComponent } from '../theme/components/login/login.component';
 import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
+import { DashboardComponent } from './espace SHI/espace-shi/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
        MotifAbsenceComponent,
        ModalPaiementComponent,
        AutorisationComponent,
+       DashboardComponent,
        CompteComponent,
        VisaTypeDemandeComponent,
 
@@ -77,7 +79,7 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
        AmpliationComponent
   ],
   imports: [
-    AdministrationRoutingModule,
+  AdministrationRoutingModule,
     AppCommonModule,
     CommonModule,
     ReactiveFormsModule,

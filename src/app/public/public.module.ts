@@ -18,6 +18,13 @@ import { CongeMaladieComponent } from './decision-conges/conge-maladie/conge-mal
 import { CongeMaterniteComponent } from './decision-conges/conge-maternite/conge-maternite.component';
 import { CongeFinserviceComponent } from './decision-conges/conge-finservice/conge-finservice.component';
 import { ContactComponent } from './contact/contact.component';
+import { CommentCaMarcheComponent } from './comment-ca-marche/comment-ca-marche.component';
+import { RechercherActeComponent } from './rechercher-acte/rechercher-acte.component';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { TableModule } from 'primeng/table';
+import { DividerModule } from 'primeng/divider';
+import { DropdownModule } from 'primeng/dropdown';
+import { NbAutocompleteModule } from '@nebular/theme';
 
 
 
@@ -33,15 +40,19 @@ import { ContactComponent } from './contact/contact.component';
   CongeMaterniteComponent,
   CongeFinserviceComponent,
   ContactComponent,
+  CommentCaMarcheComponent,
+  RechercherActeComponent,
  
   ],
   imports: [
-  
-
 
   CommonModule,
   PublicRoutingModule,
-    
+  ContextMenuModule,
+  TableModule,
+  DividerModule,
+  DropdownModule,
+  NbAutocompleteModule
    
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

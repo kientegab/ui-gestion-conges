@@ -18,10 +18,54 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   home: true,
   // },
   {
-    title: 'Autorisation',
+    title: 'Espace demandeur',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Dashboard',
+        icon: 'list-outline',
+        link: '/espacedemandeur',
+        home: true,
+      },
+  {
+    title: 'Autorisations',
+    icon: 'list-outline',
+    link: '/espacedemandeur/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés',
+    icon: 'list-outline',
+    link: '/espacedemandeur/autorisation',
+    home: true,
+  },
+   ]
+  },
+  {
+    title: 'Espace SHI',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Dashboard',
+        icon: 'list-outline',
+        link: '/espaceshi/dashboard',
+        home: true,
+      },
+  {
+    title: 'Autorisations',
+    icon: 'list-outline',
+    link: '/espaceshi/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés',
     icon: 'list-outline',
     link: '/workspace/autorisation',
     home: true,
+  },
+   ]
   },
   {
     title: 'Paramétrage',

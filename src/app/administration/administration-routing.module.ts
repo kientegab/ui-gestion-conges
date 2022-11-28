@@ -52,7 +52,7 @@ const routes: Routes = [
     {path: 'article', component: ArticleComponent },
     {path: 'corps', component: CorpsComponent },
     {path: 'agent', component: AgentComponent },
-    {path: 'autorisation', component: AutorisationComponent }
+    
   ]}
 ];
 

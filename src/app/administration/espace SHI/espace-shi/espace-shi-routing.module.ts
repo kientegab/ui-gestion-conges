@@ -12,15 +12,15 @@ const routes: Routes = [
 
   children: [
 
-    {path: 'exemple', component: ExampleComponent },
-    {path: 'autorisation', component: AutorisationComponent },
-    {path: 'dashboard', component: DashboardComponent },
+    {path: 'exemple', component: ExampleComponent},
+    {path: 'autorisation', component: AutorisationComponent},
+    {path: 'dashboard', component: DashboardComponent},
     
   ]}
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  exports: [RouterModule]
 })
 export class EspaceSHIRoutingModule { }

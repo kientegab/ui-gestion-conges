@@ -1,25 +1,34 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EspaceSHIRoutingModule } from './espace-shi-routing.module';
 import { EspaceShiMenuComponent } from './espace-shi-menu/espace-shi-menu.component';
-import { EspaceShiDashboardComponent } from './espace-shi-dashboard/espace-shi-dashboard.component';
 import { AutorisationComponent } from './autorisation/autorisation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardModule } from 'primeng/card';
-
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppCommonModule } from 'src/app/shared/common/app-common.module';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [
     EspaceShiMenuComponent,
-    EspaceShiDashboardComponent,
     AutorisationComponent,
     DashboardComponent
   ],
   imports: [
     CommonModule,
+    AppCommonModule,  
+    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     EspaceSHIRoutingModule,
-    CardModule
-  ]
+    CardModule,
+    PanelModule
+    
+  ],
+  providers: [ConfirmationService,MessageService],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class EspaceSHIModule { }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EspaceShiDashboardComponent } from './espace-shi-dashboard.component';
+import { CommentCaMarcheComponent } from './comment-ca-marche.component';
 
-describe('EspaceShiDashboardComponent', () => {
-  let component: EspaceShiDashboardComponent;
-  let fixture: ComponentFixture<EspaceShiDashboardComponent>;
+describe('CommentCaMarcheComponent', () => {
+  let component: CommentCaMarcheComponent;
+  let fixture: ComponentFixture<CommentCaMarcheComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EspaceShiDashboardComponent ]
+      declarations: [ CommentCaMarcheComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EspaceShiDashboardComponent);
+    fixture = TestBed.createComponent(CommentCaMarcheComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -19,7 +19,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { AuthInterceptorProviders } from './_helpers/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbDialogModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbAutocompleteModule, NbDialogModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
 import { ThemeModule } from './theme/theme.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -37,6 +37,15 @@ import { JouissanceAnnuelleComponent } from './public/autorisation-absences/joui
 import { JouissanceExamenComponent } from './public/autorisation-absences/jouissance-examen/jouissance-examen.component';
 import { JouissanceSNDComponent } from './public/autorisation-absences/jouissance-snd/jouissance-snd.component';
 import { AutreAbsencesComponent } from './public/autorisation-absences/autre-absences/autre-absences.component';
+import { CongeFinserviceComponent } from './public/decision-conges/conge-finservice/conge-finservice.component';
+import { CongeMaterniteComponent } from './public/decision-conges/conge-maternite/conge-maternite.component';
+import { CongeMaladieComponent } from './public/decision-conges/conge-maladie/conge-maladie.component';
+import { EspaceSHIRoutingModule } from './administration/espace SHI/espace-shi/espace-shi-routing.module';
+import { EspaceDemandeurRoutingModule } from './administration/espace-demandeur/espace-demandeur/espace-demandeur-routing.module';
+import { CardModule } from 'primeng/card';
+import { CommentCaMarcheComponent } from './public/comment-ca-marche/comment-ca-marche.component';
+import { RechercherActeComponent } from './public/rechercher-acte/rechercher-acte.component';
+import { DividerModule } from 'primeng/divider';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -56,14 +65,23 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     JouissanceExamenComponent,
     JouissanceSNDComponent,
     AutreAbsencesComponent,
+    CongeMaladieComponent,
+    CongeMaterniteComponent,
+    CongeFinserviceComponent,
+    CommentCaMarcheComponent,
+    RechercherActeComponent,
   ],
   imports: [
+
 
   CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     ToolbarModule,
+    CardModule,
+    NbAutocompleteModule,
+    DividerModule,
     GalleriaModule,
     HttpClientModule,
     MenuModule,
@@ -72,6 +90,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserAnimationsModule,
     PublicRoutingModule,
     AdministrationRoutingModule,
+    EspaceSHIRoutingModule,
+    EspaceDemandeurRoutingModule,
     AppRoutingModule,
     RouterModule,
     ToastModule,

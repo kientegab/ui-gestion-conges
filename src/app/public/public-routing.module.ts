@@ -7,6 +7,7 @@ import { AutreAbsencesComponent } from './autorisation-absences/autre-absences/a
 import { JouissanceAnnuelleComponent } from './autorisation-absences/jouissance-annuelle/jouissance-annuelle.component';
 import { JouissanceExamenComponent } from './autorisation-absences/jouissance-examen/jouissance-examen.component';
 import { JouissanceSNDComponent } from './autorisation-absences/jouissance-snd/jouissance-snd.component';
+import { CommentCaMarcheComponent } from './comment-ca-marche/comment-ca-marche.component';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CongeAnnuelComponent } from './decision-conges/conge-annuel/conge-annuel.component';
@@ -49,6 +50,9 @@ export const routes: Routes = [
     },
     {
       path: 'contact', component: ContactComponent
+    },
+    {
+      path: 'commment-ca-marche', component: CommentCaMarcheComponent
     },
    ]
    },

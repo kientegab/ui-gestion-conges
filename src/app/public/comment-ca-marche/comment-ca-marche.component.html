@@ -1,0 +1,148 @@
+<style>
+    .flex-container {
+      display: flex;
+      flex-wrap: nowrap;
+      /* background-color: DodgerBlue; */
+    }
+  
+    .flex-container>div {
+      background-color: #f1f1f1;
+      width: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+    }
+  
+    .content {
+      border: 1px solid #dfdfdf; 
+      min-height: 100px;
+      min-width: 74%;
+    }
+  
+    #pages {
+      padding: 10px;
+      color: black;
+    }
+  
+    .main-content {
+      margin-bottom: 20px;
+    }
+  
+    #menu {
+      margin-top: 20px;
+      margin-left: -30px;
+    }
+  
+    #menu li {
+      margin-top: 15px;
+    }
+  </style>
+  
+  <main>
+    <app-galerie></app-galerie>
+    <div class="main-content">
+  
+  
+      <div class="row mb-2">
+        <div class="t col-md-3">
+          <div class=" g-0 overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col d-flex flex-column p-0 position-static">
+              <div class="header-1">
+                <strong class="d-inline-block p-2">Demandes</strong>
+              </div>
+              <div class="bg-white">
+                <ul id="menu" class="menu no-bullet" style="list-style-type:none; font-size: medium; padding: auto;">
+                  <!-- <li><a data-page="asmap-definition" href="#"><strong>-</strong> Définition</a></li>
+                  <li><a data-page="asmap-piece" href="#"><strong>-</strong> Les pièces exigées  </a></li>
+                  <li><a data-page="asmap-cout" href="#"><strong>-</strong> Le coût</a></li>
+                  <li><a data-page="asmap-delais" href="#"><strong>-</strong> Délais de traitement</a></li>
+                  <li><a data-page="asmap-validite" href="#"><strong>-</strong> Validité du document</a></li>  -->
+                </ul>
+              </div>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class=" g-0  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col  d-flex p-0 flex-column position-static">
+              <div class="header-2">
+                <strong class="d-inline-block p-2 ">Comment postuler à une demande? </strong>
+              </div>
+              <div class="bg-white">
+                <div id="pages">
+                  <div id="asmap-definition" class="page" data-page="asmap-definition">
+                      <div class="columns large-6">                            
+                        <div class="row bs-wizard" style="border-bottom:0;">
+                
+                          <div class="col-sm-4 bs-wizard-step complete"><!-- complete -->
+                            <div class="text-center bs-wizard-stepnum">Etape 1</div>
+                            <div class="progress"><div class="progress-bar"></div></div>
+                            <a routerLink="/choix-type-compte" class="bs-wizard-dot"></a>
+                            <div class="bs-wizard-info text-center">1.Creer un compte</div>
+                          </div>
+                          <div class="col-sm-4 bs-wizard-step complete">
+                            <div class="text-center bs-wizard-stepnum">Etape 2</div>
+                            <div class="progress"><div class="progress-bar"></div></div>
+                            <a routerLink="/login" class="bs-wizard-dot"></a>
+                            <div class="bs-wizard-info text-center">2.Postuler à une demande</div>
+                          </div>
+                          
+                          <div class="col-sm-4 bs-wizard-step complete"><!-- complete -->
+                            <div class="text-center bs-wizard-stepnum">Etape 3</div>
+                            <div class="progress"><div class="progress-bar"></div></div>
+                            <a routerLink="/login" class="bs-wizard-dot"></a>
+                            <div class="bs-wizard-info text-center">3.Consulter mes demandes</div>
+                          </div>
+                         
+                      </div>
+                 
+                       
+                      </div>
+                  </div>
+                  <div id="asmap-piece" class="page hide" data-page="asmap-piece">
+                    <div class="columns large-6">
+                      <h4>Les pièces à fournir pour la demande d'attestation de soumission:</h4> 
+                      <p class="text-justify"> 
+                        <strong>1)</strong> Une déclaration d'ouverture d'établissement <br/>   
+                        <strong>2)</strong> Une attestation de l'ANPE <br/>   
+                        <strong>3)</strong> Une attestation de situation cotisante de la CNSS <br/>  
+                      </p>
+                    </div>
+                  </div>
+                  <div id="asmap-cout" class="page hide" data-page="asmap-cout">
+                          <div class="columns large-6">
+                              <h4> Coût du service </h4>
+                              <p> 1500 FCFA <br/><br/>
+                                
+                          </div>
+                  </div>
+                  <div id="asmap-delais" class="page hide" data-page="asmap-delais">
+                    <div class="columns large-6">
+                        <h4> Délais de traitement </h4>
+                        <p><strong>-</strong>Le traitement des demandes d'attestation de soumission aux marchés publics est de<br/> <b>24 heures</b><br/>
+                          
+                    </div>
+                 </div>
+                 <div id="asmap-validite" class="page hide" data-page="asmap-validite">
+                  <div class="columns large-6">
+                      <h4> Validité </h4>
+                      <p><strong>-</strong> Trois (03) mois pour compter de sa date de signature <br/><br/>
+                        
+                  </div>
+               </div>
+                </div>
+  
+              </div>
+  
+            </div>
+            <div class="col-auto d-none d-lg-block">
+  
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </main><!-- /.container -->
