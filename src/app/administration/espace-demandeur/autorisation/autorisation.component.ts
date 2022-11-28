@@ -1,6 +1,6 @@
 
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent, MenuItem, Message } from 'primeng/api';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
@@ -46,6 +46,12 @@ export class AutorisationComponent implements OnInit {
   demandeDetail: boolean=false;
   file: Blob | string = '';
   files: Blob | string ='';
+  uploadedFiles: any[] = [];
+  // uploadedFiles!:FileList;
+  fileUpload!: ElementRef;
+  // fileslist:FileList=[] ;
+  listFiles:string [] = [];
+
   message: any;
   dialogErrorMessage: any;
   constructor(
@@ -73,36 +79,22 @@ export class AutorisationComponent implements OnInit {
   }
 
   getUtilisateurByMatricule(matricule:string) {
-    // this.isLoading = true;
-    // this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
-    //   (response) => {
-    //     this.isLoading = false;
-    //     this.utilisateur = response.utilisateur;
-    //   },
-    //   (error) => {
-    //     this.message = { severity: 'error', summary: error.error };
-    //   }
-    // );
+    this.isLoading = true;
+    this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.utilisateur = response.utilisateur;
+      },
+      (error) => {
+        this.message = { severity: 'error', summary: error.error };
+      }
+    );
+  //   this.agent.matricule="224365";
+  //   this.agent.nom="OUEDRAOGO";
+  //   this.agent.prenom="Aboubacar";
+  //   this.agent.emploi="Technicien Supérieur";
 
-
-     //   this.utilisateur={
-  //   matricule:'224365',
-  //   nom:'OUEDRAOGO',
-  //   prenom:'Aboubacar',
-  //   emploi:'Technicien Supérieur'
-  // }
-
-    this.agent.matricule="224365";
-    this.agent.nom="OUEDRAOGO";
-    this.agent.prenom="Aboubacar";
-    this.agent.emploi="Technicien Supérieur";
-
-    // this.utilisateur.matricule="224365";
-    // this.utilisateur.nom="OUEDRAOGO";
-    // this.utilisateur.prenom="Aboubacar";
-    // this.utilisateur.emploi="Technicien Supérieur";
-
-   console.log('utilisateur',this.utilisateur)
+  //  console.log('utilisateur',this.utilisateur)
   }
 
    loadMotifAbsence(event?: LazyLoadEvent) {
@@ -125,7 +117,6 @@ export class AutorisationComponent implements OnInit {
       (response) => {
         this.isLoading = false;
         this.typeDemandes = response.typeDemandes;
-
         // console.log("type demande", this.typeDemandes);
       },
       (error) => {
@@ -134,17 +125,9 @@ export class AutorisationComponent implements OnInit {
     );
   }
 
-  // onSelectMinistere(){
-  // //  console.log("on select"+this.demande.ministere);
-  //   if(this.demande.ministere)
-  //   {
-  //     this.getMinisteredemandes();
-  //   }
-  // }
 
 
  // Affichage
-
   load(event?: LazyLoadEvent) {
     this.isLoading = true;
     this.autorisationService.getAll().subscribe(response => {
@@ -158,7 +141,6 @@ export class AutorisationComponent implements OnInit {
   }
 
   //Creation
-
   save() {
     if (this.demande.id) {
       this.edit();
@@ -168,7 +150,6 @@ export class AutorisationComponent implements OnInit {
   }
 
   onCreate() {
-
     this.demande = {};
     this.clearDialogMessages();
     this.form.resetForm();
@@ -178,19 +159,21 @@ export class AutorisationComponent implements OnInit {
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    this.utilisateur={
-      matricule:'224365',
-      nom:'OUEDRAOGO',
-      prenom:'Aboubacar',
-      emploi:'Technicien Supérieur'
-    };
-    this.demande.utilisateur= this.utilisateur;
+    // this.utilisateur={
+    //   matricule:'224365',
+    //   id:1,
+    //   nom:'OUEDRAOGO',
+    //   prenom:'Aboubacar',
+    // };
+    // this.demande.utilisateur= this.utilisateur;
 
+    // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
     const formData: FormData = new FormData();
-    const fichesAsJson: Blob = new Blob([JSON.stringify(this.demande)], { type: 'text' });
-    formData.append('demande', fichesAsJson);
-    formData.append('files', this.files);
-
+    formData.append('demande', JSON.stringify(this.demande));
+    // for (let i = 0; i < this.listFiles.length; i++) {
+    //   formData.append("files[]", this.listFiles[i]);
+    // }
+    formData.append("files", this.listFiles[0]);
     console.log('demande',this.demande);
     console.log('formdata',formData);
     this.autorisationService.create(formData).subscribe(response => {
@@ -201,21 +184,45 @@ export class AutorisationComponent implements OnInit {
       this.totalRecords++;
       this.isDialogOpInProgress = false;
       this.showDialog = false;
-      this.showMessage({ severity: 'success', summary: 'demande créée avec succès' });
+      this.showMessage({ severity: 'success', summary: 'Demande enregistrée avec succès' });
     }, error => this.handleError(error));
   }
 
   onSelectFile(event:any): void {
-    // console.log(event.files[0]);
-    // console.log(event.files[0].name);
-    // let file:File = event.files[0];
-    // this.file = file;
+    console.log(event.files[0]);
+    console.log(event.files[0].name);
+    let file:File = event.files[0];
+    this.file = file;
     // this.document.fileName =  event.files[0].name;
     // this.document.fileSize = event.files[0].size;
+  }
 
-    let files:File = event.files[0];
-    this.files = files;
-    console.log(this.files);
+//on select file
+// onUpload(event:any) : void{
+//   this.uploadedFiles = new Array();
+//   let file:File = event.files;
+//   this.uploadedFiles.push(file);
+//   console.log(this.uploadedFiles);
+// }
+
+  //on select file2
+  onUpload(event:any) : void{
+    this.listFiles = new Array();
+    console.log(this.uploadedFiles);
+    for (let i = 0; i < event.files.length; i++) {
+      this.listFiles.push(event.files[i]);
+      // console.log('index',i);
+      // console.log('file',event.files[i]);
+    }
+    console.log('files',this.listFiles);
+  }
+
+
+  //On remove file
+  onRemove(event:any){
+    console.log(event.file);
+    this.uploadedFiles = this.uploadedFiles.filter(file => file.name !== event.file.name);
+    console.log(this.uploadedFiles);
   }
 
   //Détail
