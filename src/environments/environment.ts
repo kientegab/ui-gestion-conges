@@ -19,17 +19,17 @@ export const environment = {
   agentResource: commonAppURI +'utilisateurs',
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
-  ministereRessource:commonAppURI + 'ministeres', 
-  demandeResource: commonAppURI + 'demande',
-  typeDemandeRessource:commonAppURI + 'typeDemande',
+  ministereRessource:commonAppURI + 'ministeres',
+  demandeResource: commonAppURI + 'demandes',
+  utilisateurRessource: commonAppURI + 'utilisateur',
+  typeDemandeRessource:commonAppURI + 'typeDemandes',
   typeStructureRessource: commonAppURI + 'type-structure',
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
-  modalPaiementRessource: commonAppURI + 'modalite-paie', 
+  modalPaiementRessource: commonAppURI + 'modalpaiement', 
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
-  articletypeDemandeRessource: commonAppURI + 'articleTypeDemande',
   
 
 }; 
