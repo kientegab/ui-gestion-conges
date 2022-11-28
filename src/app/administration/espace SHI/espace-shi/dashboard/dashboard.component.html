@@ -1,63 +1,64 @@
+<div class="p-fluid grid mb-2" >
+<div class="p-field p-col-12 md:col-12">
+  <label for="typedemande">Matricule:</label>
+  <p-dropdown   optionLabel="libelle"
+    inputId="typeDemande" name="typeDemande" placeholder="Selectionner le matricule..." [filter]="true"
+    appendTo="body" [showClear]="true">
+  </p-dropdown>
+</div>
+</div>
 <div class="formgrid grid">
     <div class="field col-12 md:col-4">
-      <p-card>
-         <p-card-header>
-            <p style="font-size:16px ;"><b><u>statistique congé annuel</u></b></p>
-         </p-card-header>
-         <p-card-content>
-            <div class="row mt-5" style="background-color:#006699;">
-                <div class="col-md-12" >
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-action">
-                      <span class="va-m"><span class="font-weight-bold">Nombre contracté:</span>15</span>
-                    </li>
-                    <li class="list-group-item list-group-item-action">
-                      <span class="va-m"><span class="font-weight-bold">Nombre restant:</span>15  </span>
-                    </li>
-                    <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Nombre total:</span> 30 </span>
-                   </li>
+      <p-panel>
+        <ng-template pTemplate="header">
+          <p>Statistiques congé annuel</p>
+      </ng-template>
+         
+          <div class="col-md-12" >
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item list-group-item-action">
+                <span class="va-m"><span class="font-weight-bold">2022:</span>SPMABG0005</span>
+              </li>
+              <li class="list-group-item list-group-item-action">
+                <span class="va-m"><span class="font-weight-bold">2021:</span>SPMABG58962 </span>
+              </li>
+              <li class="list-group-item list-group-item-action">
+               <span class="va-m"><span class="font-weight-bold">2020:</span> SPMABG458963 </span>
+             </li>
+  
+            </ul>
+         </div>
         
-                  </ul>
-               </div>
-        
-           </div>
-         </p-card-content>
-      </p-card>
+      </p-panel>
   </div>
   <div class="field col-12 md:col-4">
-    <p-card>
-        <p-card-header>
-           <span>statistique autorisation d'absence</span>
-        </p-card-header>
-        <p-card-content>
-           <div class="row mt-5">
+    <p-panel>
+      <ng-template pTemplate="header">
+        <p>statistique autorisation d'absence</p>
+      </ng-template>
+
                <div class="col-md-12">
                  <ul class="list-group list-group-flush">
                    <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Nombre contracté:</span>  </span>
+                     <span class="va-m"><span class="font-weight-bold">Nombre contracté:</span>8  </span>
                    </li>
                    <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Nombre restant:</span>  </span>
+                     <span class="va-m"><span class="font-weight-bold">Nombre restant:</span> 2 </span>
                    </li>
                    <li class="list-group-item list-group-item-action">
-                    <span class="va-m"><span class="font-weight-bold">Nombre total:</span>  </span>
+                    <span class="va-m"><span class="font-weight-bold">Nombre total:</span> 10 </span>
                   </li>
        
                  </ul>
               </div>
-       
-          </div>
-        </p-card-content>
-     </p-card>
+     </p-panel>
 </div>
 <div class="field col-12 md:col-4">
-    <p-card>
-        <p-card-header>
-           <span>statistique autres congés</span>
-        </p-card-header>
-        <p-card-content>
-           <div class="row mt-5">
+    <p-panel>
+      <ng-template pTemplate="header">
+        <p>statistique autres congés</p>
+      </ng-template>
+        
                <div class="col-md-12">
                  <ul class="list-group list-group-flush">
                    <li class="list-group-item list-group-item-action">
@@ -72,10 +73,7 @@
        
                  </ul>
               </div>
-       
-          </div>
-        </p-card-content>
-     </p-card>
+     </p-panel>
 </div>
 </div>
 
@@ -83,64 +81,47 @@
     <div class="field col-12 md:col-4">
         <p-panel >
             <ng-template pTemplate="header">
-                Header content here
+                <p>Statistique jouissance annuelle</p>
             </ng-template>
-            Body Content
-            <ng-template pTemplate="footer">
-                Footer content here
-            </ng-template>
+            <div class="col-md-12" >
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action">
+                  <span class="va-m"><span class="font-weight-bold">Nombre contracté:</span>15</span>
+                </li>
+                <li class="list-group-item list-group-item-action">
+                  <span class="va-m"><span class="font-weight-bold">Nombre restant:</span>15  </span>
+                </li>
+                <li class="list-group-item list-group-item-action">
+                 <span class="va-m"><span class="font-weight-bold">Nombre total:</span> 30 </span>
+               </li>
+    
+              </ul>
+           </div>
         </p-panel>
   </div>
   <div class="field col-12 md:col-4">
-    <p-card>
-        <p-card-header>
-           <span>statistique autorisation d'absence</span>
-        </p-card-header>
-        <p-card-content>
-           <div class="row mt-5">
+    <p-panel>
+      <ng-template pTemplate="header">
+        <p>Statistique autres absences</p>
+    </ng-template>
                <div class="col-md-12">
                  <ul class="list-group list-group-flush">
                    <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Nombre contracté:</span>  </span>
+                     <span class="va-m"><span class="font-weight-bold">Jouissance SND:</span>  </span>
                    </li>
                    <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Nombre restant:</span>  </span>
+                     <span class="va-m"><span class="font-weight-bold">Jouissance examen:</span>  </span>
                    </li>
                    <li class="list-group-item list-group-item-action">
-                    <span class="va-m"><span class="font-weight-bold">Nombre total:</span>  </span>
+                    <span class="va-m"><span class="font-weight-bold">Absence élection:</span>  </span>
+                  </li>
+                  <li class="list-group-item list-group-item-action">
+                    <span class="va-m"><span class="font-weight-bold">Absence syndicale:</span>  </span>
                   </li>
        
                  </ul>
               </div>
-       
-          </div>
-        </p-card-content>
-     </p-card>
+     </p-panel>
 </div>
-<div class="field col-12 md:col-4">
-    <p-card>
-        <p-card-header>
-           <span>statistique autres congés</span>
-        </p-card-header>
-        <p-card-content>
-           <div class="row mt-5">
-               <div class="col-md-12">
-                 <ul class="list-group list-group-flush">
-                   <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Maladie:</span>  </span>
-                   </li>
-                   <li class="list-group-item list-group-item-action">
-                     <span class="va-m"><span class="font-weight-bold">Maternité:</span>  </span>
-                   </li>
-                   <li class="list-group-item list-group-item-action">
-                    <span class="va-m"><span class="font-weight-bold">Fin service:</span>  </span>
-                  </li>
-       
-                 </ul>
-              </div>
-       
-          </div>
-        </p-card-content>
-     </p-card>
-</div>
+
 </div>

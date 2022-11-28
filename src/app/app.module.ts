@@ -46,6 +46,7 @@ import { CardModule } from 'primeng/card';
 import { CommentCaMarcheComponent } from './public/comment-ca-marche/comment-ca-marche.component';
 import { RechercherActeComponent } from './public/rechercher-acte/rechercher-acte.component';
 import { DividerModule } from 'primeng/divider';
+import { PanelModule } from 'primeng/panel';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
 
 
+
   CommonModule,
     BrowserModule,
     FormsModule,
@@ -82,6 +84,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CardModule,
     NbAutocompleteModule,
     DividerModule,
+    PanelModule,
     GalleriaModule,
     HttpClientModule,
     MenuModule,

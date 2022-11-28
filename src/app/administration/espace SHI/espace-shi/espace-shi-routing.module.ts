@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ThemeLandingComponent } from 'src/app/theme/components/theme-landing/theme-landing.component';
 import { ExampleComponent } from '../../example/example.component';
-import { AutorisationComponent } from './autorisation/autorisation.component';
+import { AutorisationComponent } from '../espace-shi/autorisation/autorisation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [

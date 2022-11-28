@@ -18,7 +18,7 @@ import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
 import { CompteComponent } from './compte/compte.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
-import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
+
 
 
 const routes: Routes = [
