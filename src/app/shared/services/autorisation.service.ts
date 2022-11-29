@@ -5,9 +5,10 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllDemandeResponse, Demande, Utilisateur, GetUtilisateurResponse } from '../models/demande.model';
+import { Agent, GetAgentResponse } from '../models/agent.model';
 
 const Url = environment.demandeResource;
-const utilisateurUrl = environment.utilisateurRessource;
+const agentUrl = environment.agentResource;
 
 
 @Injectable({
@@ -27,13 +28,13 @@ export class AutorisationService {
       }));
   }
 
-  getUtilisateurByMatricule(matricule: string): Observable<GetUtilisateurResponse> {
-    return this.http.get(`${utilisateurUrl}?matricule=${matricule}`, { observe: 'response' })
+  getUtilisateurByMatricule(matricule: string): Observable<GetAgentResponse> {
+    return this.http.get(`${agentUrl}/login/${matricule}`, { observe: 'response' })
     .pipe(map(response => {
-        let utilisateurResponse: GetUtilisateurResponse = {
-          utilisateur: response.body as Utilisateur
+        let agentResponse: GetAgentResponse = {
+          agent: response.body as Agent
         };
-        return utilisateurResponse;
+        return agentResponse;
       }));
   }
 

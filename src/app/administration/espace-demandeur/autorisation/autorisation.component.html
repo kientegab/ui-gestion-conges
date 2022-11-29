@@ -109,39 +109,39 @@
 
         <div class="p-field p-col-12 md:col-6">
           <label for="matricule">Matricule: </label>
-          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="utilisateur.matricule"
+          <input type="text" id="matricule"  [value]="agent.matricule"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <!-- <div class="p-field p-col-12 md:col-6">
           <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="utilisateur.nom"
+          <input type="text" id="nom"  name="nom" [value]="agent.nom"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div> -->
-        <!-- <div class="p-field p-col-12 md:col-6">
+        </div>
+        <div class="p-field p-col-12 md:col-6">
           <label for="prenom">Prenom:</label>
-          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="utilisateur.prenom"
+          <input type="text" id="prenom" name="prenom" [value]="agent.prenom"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div> -->
         <!-- <div class="p-field p-col-12 md:col-6">
           <label for="emploi">Emploi:</label>
-          <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="utilisateur.emploi"
+          <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="agent.emploi"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div> -->
         <div class="p-field p-col-12 md:col-6">
           <label for="ministere">Ministere:</label>
-          <input type="text" id="ministere" name="ministere" #ministere="ngModel" [(ngModel)]="utilisateur.ministere"
+          <input type="text" id="ministere" name="ministere"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="service">Service:</label>
-          <input type="text" id="service" name="service" #service="ngModel" [(ngModel)]="utilisateur.service"
+          <input type="text" id="service" name="service"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
           <label for="superieurHD">Nom du Supérieur:</label>
-          <input type="text" id="superieurHD" name="superieurHD" #superieurHD="ngModel" [(ngModel)]="utilisateur.superieurHD"
+          <input type="text" id="superieurHD" name="superieurHD"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
@@ -280,7 +280,7 @@
             <span class="va-m"><span class="font-weight-bold">
                 Matricule : </span> {{demande.utilisateur?.matricule }}</span>
           </li>
-          <li class="list-group-item list-group-item-action">
+          <!-- <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Ministere : </span> {{demande.utilisateur?.ministere }}</span>
           </li>
@@ -291,7 +291,7 @@
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Superieur Hierarchique : </span> {{demande.utilisateur?.superieurHD }}</span>
-          </li>
+          </li> -->
           <!-- <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Nom : </span> {{demande.utilisateur?.nom }}</span>

@@ -16,7 +16,7 @@ export const environment = {
   profilResource: commonAppURI + 'profiles',
   authenticationRessource: commonAppURI + 'authenticate',
   compteRessource: commonAppURI  ,
-  agentResource: commonAppURI +'utilisateurs',
+  agentResource: commonAppURI +'agents',
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres',

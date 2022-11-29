@@ -3,6 +3,7 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent, MenuItem, Message } from 'primeng/api';
+import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -24,6 +25,7 @@ export class AutorisationComponent implements OnInit {
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
+  Matri:string="admin2";
   recordsPerPage = environment.recordsPerPage;
   matricule!:string;
   demandes!:Demande[];
@@ -31,8 +33,9 @@ export class AutorisationComponent implements OnInit {
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
   typedemande:TypeDemande={};
-  utilisateur:Utilisateur={};
-  agent:Utilisateur={};
+  utilisateur:Agent={};
+  agent:Agent={};
+  // utilisateur:Utilisateur={};
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
   enableCreate = true;
@@ -47,9 +50,7 @@ export class AutorisationComponent implements OnInit {
   file: Blob | string = '';
   files: Blob | string ='';
   uploadedFiles: any[] = [];
-  // uploadedFiles!:FileList;
   fileUpload!: ElementRef;
-  // fileslist:FileList=[] ;
   listFiles:string [] = [];
 
   message: any;
@@ -63,14 +64,14 @@ export class AutorisationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+     //A remplacer par le numero matricule de l'agent connecté
+    this.matricule= 'admin';
+    this.getUtilisateurByMatricule(this.matricule);
     this.load();
     this.loadTypedemande();
     this.loadMotifAbsence();
-    //A remplacer par le numero matricule de l'agent connecté
-    this.matricule= '224365';
-    this.getUtilisateurByMatricule(this.matricule);
 
-    console.log('Agent',this.agent);
+
 
   }
 
@@ -83,18 +84,13 @@ export class AutorisationComponent implements OnInit {
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
-        this.utilisateur = response.utilisateur;
+        this.agent = response.agent;
+        console.log("Retour get agent",this.agent);
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };
       }
     );
-  //   this.agent.matricule="224365";
-  //   this.agent.nom="OUEDRAOGO";
-  //   this.agent.prenom="Aboubacar";
-  //   this.agent.emploi="Technicien Supérieur";
-
-  //  console.log('utilisateur',this.utilisateur)
   }
 
    loadMotifAbsence(event?: LazyLoadEvent) {
@@ -154,18 +150,23 @@ export class AutorisationComponent implements OnInit {
     this.clearDialogMessages();
     this.form.resetForm();
     this.showDialog = true;
+    // this.getUtilisateurByMatricule(this.matricule);
+    console.log("on create agent",this.agent);
+
   }
 
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
     // this.utilisateur={
-    //   matricule:'224365',
-    //   id:1,
-    //   nom:'OUEDRAOGO',
-    //   prenom:'Aboubacar',
+    //   id:2,
+    //   matricule:'admin',
+    //   nom:'Administrator',
+    //   prenom:'Administrator',
     // };
+    this.demande.numeroDemande="102";
     // this.demande.utilisateur= this.utilisateur;
+    // this.demande.dureeAbsence= 3;
 
     // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
     const formData: FormData = new FormData();

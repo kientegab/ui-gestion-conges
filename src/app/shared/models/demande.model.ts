@@ -1,15 +1,16 @@
 import { MotifAbsence } from './motifAbsence.model';
 import { TypeDemande } from './typeDemande.model';
+import { Agent } from './agent.model';
 
 export interface Utilisateur {
   id?:number;
   matricule?:string;
   nom?:string;
   prenom?:string;
-  ministere?:string;
-  service?:string;
-  emploi?:string;
-  superieurHD?:string;
+  // ministere?:string;
+  // service?:string;
+  // emploi?:string;
+  // superieurHD?:string;
 
 }
 export interface Demande {
@@ -25,7 +26,7 @@ export interface Demande {
   // position?:string;
   // avis?:string;
   // etat?:string;
-  utilisateur?:Utilisateur
+  utilisateur?:Agent
   typeDemande?:TypeDemande;
   motifAbsence?:MotifAbsence;
   // motifRejet?:string;
