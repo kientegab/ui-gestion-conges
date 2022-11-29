@@ -58,12 +58,10 @@
             <p-sortIcon field="periodeFin"></p-sortIcon>
           </th>
 
-          <th pSortableColumn="etat">E
+          <th pSortableColumn="etat">Etat
             <p-sortIcon field="etat"></p-sortIcon>
           </th>
-          <th pSortableColumn="etat">Avis
-            <p-sortIcon field="etat"></p-sortIcon>
-          </th>
+          
 
           <th class="actionStyle">
             Actions
@@ -78,7 +76,7 @@
           <td>{{demande.motifAbsence?.libelle}} </td>
           <td>{{demande.periodeDebut}} </td>
           <td>{{demande.periodeFin}} </td>
-          <td>{{demande.etat}} </td>
+          <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.etat}} </td>
           <td class="actionStyle">
 
             <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"

@@ -1,8 +1,7 @@
-
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ConfirmationService, LazyLoadEvent, MenuItem, Message } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -11,16 +10,15 @@ import { AutorisationService } from 'src/app/shared/services/autorisation.servic
 import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
-
 import { environment } from 'src/environments/environment';
 
-
 @Component({
-  selector: 'app-autorisation',
-  templateUrl: './autorisation.component.html',
-  styleUrls: ['./autorisation.component.scss']
+  selector: 'app-autorisationd',
+  templateUrl: './autorisationd.component.html',
+  styleUrls: ['./autorisationd.component.scss']
 })
-export class AutorisationComponent implements OnInit {
+export class AutorisationdComponent implements OnInit {
+
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
@@ -68,9 +66,9 @@ export class AutorisationComponent implements OnInit {
     this.loadMotifAbsence();
     //A remplacer par le numero matricule de l'agent connecté
     this.matricule= '224365';
-    this.getUtilisateurByMatricule(this.matricule);
+    // this.getUtilisateurByMatricule(this.matricule);
 
-    console.log('Agent',this.agent);
+    // console.log('Agent',this.agent);
 
   }
 
@@ -113,7 +111,7 @@ export class AutorisationComponent implements OnInit {
 
   loadTypedemande(event?: LazyLoadEvent) {
     this.isLoading = true;
-    this.typeDemandeService.getAll().subscribe(
+    this.typeDemandeService.getAllAutorisation().subscribe(
       (response) => {
         this.isLoading = false;
         this.typeDemandes = response.typeDemandes;
@@ -161,11 +159,12 @@ export class AutorisationComponent implements OnInit {
     this.isDialogOpInProgress = true;
     // this.utilisateur={
     //   matricule:'224365',
-    //   id:1,
-    //   nom:'OUEDRAOGO',
-    //   prenom:'Aboubacar',
+    //   id:2,
+    //   nom:'ADMIN',
+    //   prenom:'ADMIN',
     // };
     // this.demande.utilisateur= this.utilisateur;
+    this.demande.numeroDemande= "SPMABG124118";
 
     // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
     const formData: FormData = new FormData();
@@ -293,6 +292,7 @@ export class AutorisationComponent implements OnInit {
       this.message = null;
     }, 5000);
   }
+
 
 
 }

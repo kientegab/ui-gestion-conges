@@ -63,7 +63,7 @@ export class AutorisationComponent implements OnInit {
     this.loadMotifAbsence();
     //A remplacer par le numero matricule de l'agent connecté
     this.matricule= '224365';
-    this.getUtilisateurByMatricule(this.matricule);
+    //this.getUtilisateurByMatricule(this.matricule);
 
     console.log('Agent',this.agent);
 
