@@ -118,7 +118,7 @@ export class MenuComponent implements OnInit {
         routerLink: ['/public/commment-ca-marche'] 
       },
       {
-        label: 'Rechercher un acte',
+        label: 'Rechercher un agent',
         routerLink: ['/public/verifier-acte'] 
       },
       {

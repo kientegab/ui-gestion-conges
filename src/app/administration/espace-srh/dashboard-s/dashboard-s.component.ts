@@ -1,8 +1,7 @@
-
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ConfirmationService, LazyLoadEvent, MenuItem, Message } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -11,16 +10,15 @@ import { AutorisationService } from 'src/app/shared/services/autorisation.servic
 import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
-
 import { environment } from 'src/environments/environment';
 
-
 @Component({
-  selector: 'app-autorisation',
-  templateUrl: './autorisation.component.html',
-  styleUrls: ['./autorisation.component.scss']
+  selector: 'app-dashboard-s',
+  templateUrl: './dashboard-s.component.html',
+  styleUrls: ['./dashboard-s.component.scss']
 })
-export class AutorisationComponent implements OnInit {
+export class DashboardSComponent implements OnInit {
+
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
@@ -293,6 +291,5 @@ export class AutorisationComponent implements OnInit {
       this.message = null;
     }, 5000);
   }
-
 
 }

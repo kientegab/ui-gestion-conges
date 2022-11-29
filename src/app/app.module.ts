@@ -47,6 +47,7 @@ import { CommentCaMarcheComponent } from './public/comment-ca-marche/comment-ca-
 import { RechercherActeComponent } from './public/rechercher-acte/rechercher-acte.component';
 import { DividerModule } from 'primeng/divider';
 import { PanelModule } from 'primeng/panel';
+import { EspaceSRHRoutingModule } from './administration/espace-srh/espace-srh-routing.module';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdministrationRoutingModule,
     EspaceSHIRoutingModule,
     EspaceDemandeurRoutingModule,
+    EspaceSRHRoutingModule,
     AppRoutingModule,
     RouterModule,
     ToastModule,

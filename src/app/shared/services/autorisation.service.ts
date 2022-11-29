@@ -17,7 +17,7 @@ export class AutorisationService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
-    // return this.http.get("assets/data/demande.json", { observe: 'response' })
+    //  return this.http.get("assets/data/demande.json", { observe: 'response' })
     return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let demandesResponse: GetAllDemandeResponse = {
@@ -26,6 +26,26 @@ export class AutorisationService {
         return demandesResponse;
       }));
   }
+  getAllSHI(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
+    return this.http.get("assets/data/demandeSHI.json", { observe: 'response' })
+   //return this.http.get(Url, { observe: 'response' })
+   .pipe(map(response => {
+       let demandesResponse: GetAllDemandeResponse = {
+         demandes: response.body as Demande[]
+       };
+       return demandesResponse;
+     }));
+ }
+ getAllSRH(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
+  return this.http.get("assets/data/demandeSRH.json", { observe: 'response' })
+ //return this.http.get(Url, { observe: 'response' })
+ .pipe(map(response => {
+     let demandesResponse: GetAllDemandeResponse = {
+       demandes: response.body as Demande[]
+     };
+     return demandesResponse;
+   }));
+}
 
   getUtilisateurByMatricule(matricule: string): Observable<GetUtilisateurResponse> {
     return this.http.get(`${utilisateurUrl}?matricule=${matricule}`, { observe: 'response' })

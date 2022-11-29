@@ -1,7 +1,7 @@
 [
-  {"id":1, "libelle": "Type demande1","modePaie":true, "description": "description1"},
-  {"id":2, "libelle": "Type demande2","modePaie":false, "description": "description2"},
-  {"id":3, "libelle": "Type demande3","modePaie":true, "description": "description3"},
-  {"id":4, "libelle": "Type demande4","modePaie":false, "description": "description4"}
+  {"id":1, "libelle": "Autre absence","modePaie":true, "description": "description1"},
+  {"id":2, "libelle": "Jouissance annuelle","modePaie":false, "description": "description2"},
+  {"id":3, "libelle": "Jouissance examen","modePaie":false, "description": "description2"},
+  {"id":4, "libelle": "Jouissance SND","modePaie":false, "description": "description2"}
 
 ]

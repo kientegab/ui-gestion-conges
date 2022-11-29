@@ -1,0 +1,18 @@
+[
+    {"numeroDemande": "SPMABG758412", "lieuJouissanceBF": "OUAGADOUGOU","lieuJouissanceEtrang": "PARIS", "refLastDecision": "SG/DRH/4512","situationSND": "NON", "dureeAbsence": 5, "periodeDebut": "2022-11-12","periodeFin": "2022-11-17","motifAbsence": { "libelle": "EVENEMENTS FAMILIAUX"},
+  "typeDemande": {"libelle": "AUTRES ABSENCES"}, "utilisateur": {   
+    "matricule": "371268F",
+    "nom": "KIENTEGA",
+    "prenom": "TEGAWENDE BRIGITTE",
+    "email": "brikientega@gmail.com",
+    "telephone": "73061389",
+    "structure": {     
+      "sigle": "SPMABG"
+    }
+  },
+  "etat":"INITIATION",
+  "avis":"DEFAVORABLE"
+}
+
+
+]

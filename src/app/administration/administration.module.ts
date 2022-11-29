@@ -49,6 +49,12 @@ import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/auto
 import { EspaceSHIRoutingModule } from './espace SHI/espace-shi/espace-shi-routing.module';
 import { EspaceDemandeurRoutingModule } from './espace-demandeur/espace-demandeur/espace-demandeur-routing.module';
 import { PanelModule } from 'primeng/panel';
+import { AutorisationdComponent } from './espace-demandeur/espace-demandeur/autorisationd/autorisationd.component';
+import { DashboarddComponent } from './espace-demandeur/espace-demandeur/dashboardd/dashboardd.component';
+import { AutorisationSComponent } from './espace-srh/autorisation-s/autorisation-s.component';
+import { EspaceSRHRoutingModule } from './espace-srh/espace-srh-routing.module';
+import { DashboardSComponent } from './espace-srh/dashboard-s/dashboard-s.component';
+import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/conged.component';
 
 
 @NgModule({
@@ -67,7 +73,12 @@ import { PanelModule } from 'primeng/panel';
        MotifAbsenceComponent,
        ModalPaiementComponent,
        AutorisationComponent,
+       AutorisationdComponent,
        DashboardComponent,
+       DashboarddComponent,
+       AutorisationSComponent,
+       DashboardSComponent,
+       CongedComponent,//on ajoute
        CompteComponent,
        VisaTypeDemandeComponent,
 
@@ -83,9 +94,10 @@ import { PanelModule } from 'primeng/panel';
        AmpliationComponent
   ],
   imports: [
-AdministrationRoutingModule,
+  AdministrationRoutingModule,
   EspaceSHIRoutingModule,
-    EspaceDemandeurRoutingModule,
+  EspaceDemandeurRoutingModule,
+  EspaceSRHRoutingModule,
     AppCommonModule,
     CommonModule,
     ReactiveFormsModule,
