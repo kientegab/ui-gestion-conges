@@ -33,7 +33,7 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
+import { AutorisationComponent } from './espace-demandeur/espace-demandeur/autorisation/autorisation.component';
 import { InputTextModule } from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
