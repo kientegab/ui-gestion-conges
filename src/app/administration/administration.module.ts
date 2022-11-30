@@ -45,7 +45,7 @@ import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
 import { DashboardComponent } from './espace SHI/espace-shi/dashboard/dashboard.component';
-import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/autorisation.component';
+
 import { EspaceSHIRoutingModule } from './espace SHI/espace-shi/espace-shi-routing.module';
 import { EspaceDemandeurRoutingModule } from './espace-demandeur/espace-demandeur/espace-demandeur-routing.module';
 import { PanelModule } from 'primeng/panel';
@@ -55,6 +55,7 @@ import { AutorisationSComponent } from './espace-srh/autorisation-s/autorisation
 import { EspaceSRHRoutingModule } from './espace-srh/espace-srh-routing.module';
 import { DashboardSComponent } from './espace-srh/dashboard-s/dashboard-s.component';
 import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/conged.component';
+import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/autorisation.component';
 
 
 @NgModule({
@@ -72,11 +73,11 @@ import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/cong
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
-       AutorisationComponent,
        AutorisationdComponent,
        DashboardComponent,
        DashboarddComponent,
        AutorisationSComponent,
+       AutorisationComponent,
        DashboardSComponent,
        CongedComponent,//on ajoute
        CompteComponent,
@@ -94,7 +95,7 @@ import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/cong
        AmpliationComponent
   ],
   imports: [
-  AdministrationRoutingModule,
+AdministrationRoutingModule,
   EspaceSHIRoutingModule,
   EspaceDemandeurRoutingModule,
   EspaceSRHRoutingModule,

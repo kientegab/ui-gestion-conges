@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
+import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -29,7 +30,7 @@ export class CongedComponent implements OnInit {
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
   typedemande:TypeDemande={};
-  utilisateur:Utilisateur={};
+  utilisateur:Agent={};
   agent:Utilisateur={};
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
@@ -81,7 +82,7 @@ export class CongedComponent implements OnInit {
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
-        this.utilisateur = response.utilisateur;
+        this.utilisateur = response.agent;
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };

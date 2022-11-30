@@ -81,7 +81,7 @@ export class AutorisationSComponent implements OnInit {
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
-        this.utilisateur = response.utilisateur;
+        this.utilisateur = response.agent;
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };

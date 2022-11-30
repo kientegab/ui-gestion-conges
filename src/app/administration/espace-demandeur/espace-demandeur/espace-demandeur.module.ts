@@ -22,18 +22,18 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { HttpClientModule } from '@angular/common/http';
-import { AutorisationComponent } from './autorisation/autorisation.component';
+
 import { AutorisationdComponent } from './autorisationd/autorisationd.component';
 import { DashboarddComponent } from './dashboardd/dashboardd.component';
 import { CongedComponent } from './conged/conged.component';
-;
+
+
 
 
 
 
 @NgModule({
   declarations: [
-    AutorisationComponent,
     AutorisationdComponent,
     DashboarddComponent,
     CongedComponent,

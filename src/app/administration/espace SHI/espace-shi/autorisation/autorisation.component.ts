@@ -93,10 +93,10 @@ export class AutorisationComponent implements OnInit {
   //   emploi:'Technicien Supérieur'
   // }
 
-    this.agent.matricule="224365";
-    this.agent.nom="OUEDRAOGO";
-    this.agent.prenom="Aboubacar";
-    this.agent.emploi="Technicien Supérieur";
+    // this.agent.matricule="224365";
+    // this.agent.nom="OUEDRAOGO";
+    // this.agent.prenom="Aboubacar";
+    // this.agent.emploi="Technicien Supérieur";
 
     // this.utilisateur.matricule="224365";
     // this.utilisateur.nom="OUEDRAOGO";
@@ -180,12 +180,12 @@ export class AutorisationComponent implements OnInit {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
 
-    this.utilisateur={
-      matricule:'224365',
-      nom:'OUEDRAOGO',
-      prenom:'Aboubacar',
-      emploi:'Technicien Supérieur'
-    };
+    // this.utilisateur={
+    //   matricule:'224365',
+    //   nom:'OUEDRAOGO',
+    //   prenom:'Aboubacar',
+    //   emploi:'Technicien Supérieur'
+    // };
     this.demande.utilisateur;
     const formData: FormData = new FormData();
     const fichesAsJson: Blob = new Blob([JSON.stringify(this.demande)], { type: 'application/json' });

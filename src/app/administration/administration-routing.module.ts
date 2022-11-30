@@ -20,7 +20,6 @@ import { CompteComponent } from './compte/compte.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
 
 
-
 const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path: 'workspace', component: ThemeLandingComponent,
