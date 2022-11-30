@@ -18,6 +18,7 @@ import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
 import { CompteComponent } from './compte/compte.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
+import { TypeVisaComponent } from './type-visa/type-visa.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,8 @@ const routes: Routes = [
     {path: 'typeDemande', component: TypeDemandeComponent },
     {path: 'structure', component: StructureComponent },
     { path: 'ministere', component: MinistereComponent },
+    { path: 'typeVisa', component: TypeVisaComponent },
+
 
     { path: 'visas', component: VisaComponent },
     { path: 'avis', component: AvisComponent },

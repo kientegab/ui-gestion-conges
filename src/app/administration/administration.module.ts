@@ -33,6 +33,7 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { TypeVisaComponent } from './type-visa/type-visa.component';
 
 import { InputTextModule } from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
@@ -92,7 +93,8 @@ import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/auto
        AgentComponent,
        CompteComponent,
        VisaTypeDemandeComponent,
-       AmpliationComponent
+       AmpliationComponent,
+       TypeVisaComponent
   ],
   imports: [
 AdministrationRoutingModule,
@@ -122,6 +124,10 @@ AdministrationRoutingModule,
     ContextMenuModule,
     InputTextModule,
     FileUploadModule,
+    ContextMenuModule,
+    CalendarModule
+
+
   ],
   providers: [ConfirmationService,MessageService],
  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

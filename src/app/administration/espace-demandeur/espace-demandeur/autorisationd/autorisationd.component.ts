@@ -163,7 +163,7 @@ export class AutorisationdComponent implements OnInit {
     //   nom:'Administrator',
     //   prenom:'Administrator',
     // };
-    this.demande.numeroDemande="102";
+    this.demande.numeroDemande="100";
     // this.demande.utilisateur= this.utilisateur;
     // this.demande.dureeAbsence= 3;
 
