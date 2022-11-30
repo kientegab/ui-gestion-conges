@@ -1,0 +1,49 @@
+[
+    {"numeroDemande": "SPMABG758412", "lieuJouissanceBF": "OUAGADOUGOU","lieuJouissanceEtrang": "PARIS", "refLastDecision": "SG/DRH/4512","situationSND": "NON", "dureeAbsence": 5, "periodeDebut": "2022-11-12","periodeFin": "2022-11-17","motifAbsence": { "libelle": "EVENEMENTS FAMILIAUX"},
+  "typeDemande": {"libelle": "AUTRES ABSENCES"}, "utilisateur": {   
+    "matricule": "371268F",
+    "nom": "KIENTEGA",
+    "prenom": "TEGAWENDE BRIGITTE",
+    "email": "brikientega@gmail.com",
+    "telephone": "73061389",
+    "responsable":"345892F",
+    "structure": {     
+      "sigle": "SPMABG"
+    }
+  },
+  "etat":"INITIATION",
+  "avis":"DEFAVORABLE"
+},
+
+{"numeroDemande": "DSI712312", "lieuJouissanceBF": "OUAGADOUGOU","lieuJouissanceEtrang": "PARIS", "refLastDecision": "SG/DRH/4512","situationSND": "NON", "dureeAbsence": 5, "periodeDebut": "2022-10-12","periodeFin": "2022-10-17","motifAbsence": { "libelle": "EVENEMENTS FAMILIAUX"},
+  "typeDemande": {"libelle": "AUTRES ABSENCES"}, "utilisateur": {   
+    "matricule": "371268F",
+    "nom": "TEGUERA",
+    "prenom": "ZAKARIA",
+    "email": "brikientega@gmail.com",
+    "telephone": "73061389",
+    "responsable":"345892F",
+    "structure": {     
+      "sigle": "DSI"
+    }
+  },
+  "etat":"VALIDE",
+  "avis":"FAVORABLE"
+},
+{"numeroDemande": "SPMABG758412", "lieuJouissanceBF": "OUAGADOUGOU","lieuJouissanceEtrang": "PARIS", "refLastDecision": "SG/DRH/4512","situationSND": "NON", "dureeAbsence": 5, "periodeDebut": "2022-10-05","periodeFin": "2022-11-08","motifAbsence": { "libelle": "EVENEMENTS FAMILIAUX"},
+  "typeDemande": {"libelle": "AUTRES ABSENCES"}, "utilisateur": {   
+    "matricule": "371268F",
+    "nom": "DIARRA",
+    "prenom": "ARTHUR J.",
+    "email": "brikientega@gmail.com",
+    "telephone": "73061389",
+    "responsable":"345892F",
+    "structure": {     
+      "sigle": "SPMABG"
+    }
+  },
+  "etat":"REJETE",
+  "avis":"DEFAVORABLE"
+}
+
+]

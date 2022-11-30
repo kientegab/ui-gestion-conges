@@ -169,8 +169,8 @@ load(event?: LazyLoadEvent) {
 
 
  save() {
-   if (this.compte.id) {
-     this.edit();
+   if (this.compte) {
+    // this.edit();
    } else {
      this.create();
    }
@@ -229,7 +229,7 @@ load(event?: LazyLoadEvent) {
    this.showDialog = true;
  }
 
- edit() {
+/* edit() {
    this.clearDialogMessages();
    this.isDialogOpInProgress = true;
    this.compteService.update(this.compte).subscribe(response => {
@@ -239,24 +239,24 @@ load(event?: LazyLoadEvent) {
      this.showDialog = false;
      this.showMessage({ severity: 'success', summary: 'Compte modifié avec succès' });
    }, error => this.handleError(error));
- }
+ }*/
 
  isEditing() {
-   return !!this.compte.id;
+   return !!this.compte.matricule;
  }
 
  // Deletion
 
- onDelete(selection:any) {
+ /*onDelete(selection:any) {
    this.confirmationService.confirm({
      message: 'Etes-vous sur de vouloir supprimer cet agent?',
      accept: () => {
        this.delete(selection);
      }
    });
- }
+ }*/
 
- delete(selection:any) {
+ /*delete(selection:any) {
    this.isOpInProgress = true;
    this.compteService.delete(selection.id).subscribe(() => {
      this.comptes = this.comptes.filter(agent => agent.id !== selection.id);
@@ -265,7 +265,7 @@ load(event?: LazyLoadEvent) {
      this.totalRecords--;
      this.showMessage({ severity: 'success', summary: 'Compte supprimé avec succès' });
    }, error => this.handleError(error));
- }
+ }*/
 
 
  getStructureById(id:number){
@@ -300,13 +300,13 @@ load(event?: LazyLoadEvent) {
    this.dialogErrorMessage = null;
  }
 
- showMessage(message: Message) {
+/* showMessage(message: Message) {
    this.message = message;
    this.timeoutHandle = setTimeout(() => {
      this.message = null;
    }, 5000);
 
- }
+ }*/
 
 
 }

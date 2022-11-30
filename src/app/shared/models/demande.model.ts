@@ -1,29 +1,35 @@
 import { MotifAbsence } from './motifAbsence.model';
 import { TypeDemande } from './typeDemande.model';
+import { Agent } from './agent.model';
 
 export interface Utilisateur {
+  id?:number;
   matricule?:string;
   nom?:string;
   prenom?:string;
-  emploi?:string;
+  // ministere?:string;
+  // service?:string;
+  // emploi?:string;
+  // superieurHD?:string;
+
 }
 export interface Demande {
   id?:number;
   numeroDemande?:string;
   lieuJouissanceBF?:string;
-  lieuJouissanceEtranger?:string;
-  refeLastDecision?:string;
+  lieuJouissanceEtrang?:string;
+  refLastDecision?:string;
   situationSND?:string;
   dureeAbsence?:number;
   periodeDebut?:Date;
   periodeFin?:Date;
-  position?:string;
-  avis?:string;
-  etat?:string;
-  utilisateur?:Utilisateur
+  // position?:string;
+  // avis?:string;
+  // etat?:string;
+  utilisateur?:Agent
   typeDemande?:TypeDemande;
   motifAbsence?:MotifAbsence;
-  motifRejet?:string;
+  // motifRejet?:string;
 
 }
 

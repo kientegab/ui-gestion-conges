@@ -25,6 +25,18 @@ export class TypeDemandeService {
       }));
   }
 
+  getAllAutorisation(event?: LazyLoadEvent): Observable<GetAllTypeDemandeResponse> {
+    // return this.http.get(typeDemandeUrl, { observe: 'response' })
+    // return this.http.get(Url, { observe: 'response' })
+    return this.http.get("assets/data/typeDemande.json", { observe: 'response' })
+    .pipe(map(response => {
+        let typeDemandesResponse: GetAllTypeDemandeResponse = {
+          typeDemandes: response.body as TypeDemande[]
+        };
+        return typeDemandesResponse;
+      }));
+  }
+
   create(typeDemande: TypeDemande): Observable<TypeDemande> {
     return this.http.post(typeDemandeUrl, typeDemande);
   }

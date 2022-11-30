@@ -5,12 +5,12 @@ if(perms == null){
   perms = ['ROLE_FOCAL_STRUCT','ROLE_USER'];
 }
 export const MENU_ITEMS: NbMenuItem[] = [
-  {
-    title: 'Accueil',
-    icon: 'home-outline',
-    link: '/workspace',
-    home: true,
-  },
+  // {
+  //   title: 'Accueil',
+  //   icon: 'home-outline',
+  //   link: '/workspace',
+  //   home: true,
+  // },
   // {
   //   title: 'Décision',
   //   icon: 'list-outline',
@@ -18,10 +18,92 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   home: true,
   // },
   {
-    title: 'Autorisation',
+    title: 'Espace demandeur',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Dashboard',
+        icon: 'list-outline',
+        link: '/espacedemandeur/dashboardd',
+        home: true,
+      },
+  {
+    title: 'Autorisations',
+    icon: 'list-outline',
+    link: '/espacedemandeur/autorisationd',
+    home: true,
+  },
+  {
+    title: 'Congés',
+    icon: 'list-outline',
+    link: '/espacedemandeur/conged',
+    home: true,
+  },
+   ]
+  },
+  {
+    title: 'Espace SHI',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Dashboard',
+        icon: 'list-outline',
+        link: '/espaceshi/dashboard',
+        home: true,
+      },
+  {
+    title: 'Autorisations',
+    icon: 'list-outline',
+    link: '/espaceshi/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés',
     icon: 'list-outline',
     link: '/workspace/autorisation',
     home: true,
+  },
+   ]
+  },
+
+  {
+    title: 'Espace SRH',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Jouis. congé annuel',
+        icon: 'list-outline',
+        link: '/espacesrh/dashboards',
+        home: true,
+      },
+  {
+    title: 'Autorisations en cours',
+    icon: 'list-outline',
+    link: '/espacesrh/autorisations',
+    home: true,
+  },
+  {
+    title: 'Autorisations validées',
+    icon: 'list-outline',
+    link: '/espacesrh/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés en cours',
+    icon: 'list-outline',
+    link: '/espacesrh/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés validés',
+    icon: 'list-outline',
+    link: '/espacesrh/autorisation',
+    home: true,
+  },
+   ]
   },
   {
     title: 'Paramétrage',

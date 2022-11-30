@@ -73,8 +73,8 @@
           <td>{{demande.numeroDemande}} </td>
           <td>{{demande.typeDemande?.libelle}} </td>
           <td>{{demande.motifAbsence?.libelle}} </td>
-          <td>{{demande.periodeDebut}} </td>
-          <td>{{demande.periodeFin}} </td>
+          <td>{{demande.periodeDebut | date:'dd/MM/yyyy'}} </td>
+          <td>{{demande.periodeFin | date:'dd/MM/yyyy'}} </td>
           <td>{{demande.etat}} </td>
           <td class="actionStyle">
 
@@ -92,7 +92,7 @@
   <!-- formulaire d'ajout et de modification -->
 
   <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body" [style]="{width: '70vw'}"
-    [contentStyle]="{height: '700px'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+    [contentStyle]="{height: '900px'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
     <ng-template pTemplate="header">
       <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
       <span class="mr-auto">
@@ -101,39 +101,32 @@
     </ng-template>
     <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
     <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
-    <p-divider></p-divider>
+    <!-- <p-divider></p-divider> -->
     <!-- Form -->
     <form (ngSubmit)="save()" #dtf="ngForm">
 
-      <!--  -->
       <div class="p-fluid grid">
 
-        <!-- <div>matricule: {{agent.matricule}}</div>
-        <div>nom: {{agent.nom}}</div>
-        <div>Utilisteur nom: {{utilisateur.nom}}</div>
-
-        <br> -->
         <div class="p-field p-col-12 md:col-6">
           <label for="matricule">Matricule: </label>
-          <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="utilisateur.matricule"
+          <input type="text" id="matricule"  [value]="agent.matricule"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="p-field p-col-12 md:col-6">
+          <label for="ministere">Ministère:</label>
+          <input type="text" id="ministere" name="ministere" 
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
-          <label for="nom">Nom:</label>
-          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="utilisateur.nom"
+          <label for="service">Service:</label>
+          <input type="text" id="service" name="service"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
-          <label for="prenom">Prenom:</label>
-          <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="utilisateur.prenom"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-
-        <div class="p-field p-col-12 md:col-6">
-          <label for="emploi">Emploi:</label>
-          <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="utilisateur.emploi"
+          <label for="superieurHD">Nom du Supérieur:</label>
+          <input type="text" id="superieurHD" name="superieurHD"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
@@ -153,7 +146,7 @@
           </p-dropdown>
         </div>
 
-        <div class="p-field p-col-12 md:col-6">
+        <!-- <div class="p-field p-col-12 md:col-6">
           <label for="lieuJouissanceBF">Lieu jouissance BF:</label>
           <input type="text" id="lieuJouissanceBF" name="lieuJouissanceBF" #lieuJouissanceBF="ngModel"
             [(ngModel)]="demande.lieuJouissanceBF"
@@ -161,20 +154,20 @@
         </div>
 
         <div class="p-field p-col-12 md:col-6">
-          <label for="lieuJouissanceEtranger">LieuJouissance Etranger:</label>
-          <input type="text" id="lieuJouissanceEtranger" name="lieuJouissanceEtranger" #responsable="ngModel"
-            [(ngModel)]="demande.lieuJouissanceEtranger"
+          <label for="lieuJouissanceEtrang">LieuJouissance Etranger:</label>
+          <input type="text" id="lieuJouissanceEtrang" name="lieuJouissanceEtrang" #responsable="ngModel"
+            [(ngModel)]="demande.lieuJouissanceEtrang"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div> -->
+
+        <div class="p-field p-col-12 md:col-6">
+          <label for="refLastDecision">Ref dernier acte d'autorisation:</label>
+          <input type="text" id="refLastDecision" name="refLastDecision" #refLastDecision="ngModel" [(ngModel)]="demande.refLastDecision" required
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
         <div class="p-field p-col-12 md:col-6">
-          <label for="refeLastDecision">ref dernière decision:</label>
-          <input type="text" id="refeLastDecision" name="refeLastDecision" #refeLastDecision="ngModel" [(ngModel)]="demande.refeLastDecision" required
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
-
-        <div class="p-field p-col-12 md:col-6">
-          <label for="situationSND">situation SND:</label>
+          <label for="situationSND">trache(Pour jouissance annuelle):</label>
           <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
@@ -193,13 +186,11 @@
           </p-calendar>
         </div>
 
-        <div class="p-field p-col-12 md:col-12">
+        <!-- <div class="p-field p-col-12 md:col-12">
           <p-fileUpload id="description"  name="files"
           mode="advanced" [showCancelButton]="false" [auto]="true" [customUpload]="true" accept="application/pdf"
          [showUploadButton]="false" chooseLabel="Selectionnez" (uploadHandler)="onSelectFile($event)"
-         [required]="false"
-
-         >
+         [required]="false">
          <ng-template pTemplate="content" let-files>
            <div *ngIf="!files.length" class="text-danger text-center p-p-5 app-yellow">
              <i class="pi pi-upload" style="font-size: 2rem"></i>
@@ -209,10 +200,21 @@
            </div>
          </ng-template>
        </p-fileUpload>
+        </div> -->
+
+        <div class="p-field p-col-12 md:col-12">
+          <p-fileUpload name="demo[]" [auto]="true" [showCancelButton]="true" [customUpload]="true" (onRemove)="onRemove($event)" (uploadHandler)="onUpload($event)"
+          [multiple]=false [showUploadButton]="false" chooseLabel="Selectionnez" [required]="false"  accept="application/pdf" >
+                  <ng-template pTemplate="content" let-files>
+                      <div *ngIf="!files.length" class="text-danger text-center p-p-5 app-yellow">
+                        <i class="pi pi-upload" style="font-size: 2rem"></i>
+                        <div>
+                          <span>Selectionnez ou glissez et deplacez un fichier ici (format accepté pdf)</span>
+                        </div>
+                      </div>
+                  </ng-template>
+          </p-fileUpload>
         </div>
-
-
-
 
       </div>
         <p-divider></p-divider>
@@ -250,21 +252,32 @@
             <span class="va-m"><span class="font-weight-bold">Motif Absence:</span> {{demande.motifAbsence?.libelle}}</span>
           </li>
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Période Debut:</span> {{demande.periodeDebut}}</span>
+            <span class="va-m">
+              <span class="font-weight-bold">Période Debut:
+              </span> {{demande.periodeDebut| date:'dd/MM/yyyy'}}
+            </span>
           </li>
 
           <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Période Fin:</span> {{demande.periodeFin}}</span>
+            <span class="va-m"><span class="font-weight-bold">Période Fin:</span> {{demande.periodeFin| date:'dd/MM/yyyy'}}</span>
           </li>
-          <li class="list-group-item list-group-item-action">
-            <span class="va-m"><span class="font-weight-bold">Avis:</span> {{demande.avis}}</span>
-          </li>
-
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Matricule : </span> {{demande.utilisateur?.matricule }}</span>
           </li>
+          <!-- <li class="list-group-item list-group-item-action">
+            <span class="va-m"><span class="font-weight-bold">
+                Ministere : </span> {{demande.utilisateur?.ministere }}</span>
+          </li>
           <li class="list-group-item list-group-item-action">
+            <span class="va-m"><span class="font-weight-bold">
+                Structure : </span> {{demande.utilisateur?.service }}</span>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <span class="va-m"><span class="font-weight-bold">
+                Superieur Hierarchique : </span> {{demande.utilisateur?.superieurHD }}</span>
+          </li> -->
+          <!-- <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Nom : </span> {{demande.utilisateur?.nom }}</span>
           </li>
@@ -275,7 +288,7 @@
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
                 Emploi : </span> {{demande.utilisateur?.emploi }}</span>
-          </li>
+          </li> -->
 
         </ul>
       </div>

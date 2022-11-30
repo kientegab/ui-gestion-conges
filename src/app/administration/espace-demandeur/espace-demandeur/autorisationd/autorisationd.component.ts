@@ -1,8 +1,8 @@
-
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ConfirmationService, LazyLoadEvent, MenuItem, Message } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
+import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -11,19 +11,19 @@ import { AutorisationService } from 'src/app/shared/services/autorisation.servic
 import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
-
 import { environment } from 'src/environments/environment';
 
-
 @Component({
-  selector: 'app-autorisation',
-  templateUrl: './autorisation.component.html',
-  styleUrls: ['./autorisation.component.scss']
+  selector: 'app-autorisationd',
+  templateUrl: './autorisationd.component.html',
+  styleUrls: ['./autorisationd.component.scss']
 })
-export class AutorisationComponent implements OnInit {
+export class AutorisationdComponent implements OnInit {
+
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
+  Matri:string="admin2";
   recordsPerPage = environment.recordsPerPage;
   matricule!:string;
   demandes!:Demande[];
@@ -31,8 +31,9 @@ export class AutorisationComponent implements OnInit {
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
   typedemande:TypeDemande={};
-  utilisateur:Utilisateur={};
-  agent:Utilisateur={};
+  utilisateur:Agent={};
+  agent:Agent={};
+  // utilisateur:Utilisateur={};
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
   enableCreate = true;
@@ -46,6 +47,10 @@ export class AutorisationComponent implements OnInit {
   demandeDetail: boolean=false;
   file: Blob | string = '';
   files: Blob | string ='';
+  uploadedFiles: any[] = [];
+  fileUpload!: ElementRef;
+  listFiles:string [] = [];
+
   message: any;
   dialogErrorMessage: any;
   constructor(
@@ -57,14 +62,14 @@ export class AutorisationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+     //A remplacer par le numero matricule de l'agent connecté
+    this.matricule= 'admin';
+    this.getUtilisateurByMatricule(this.matricule);
     this.load();
     this.loadTypedemande();
     this.loadMotifAbsence();
-    //A remplacer par le numero matricule de l'agent connecté
-    this.matricule= '224365';
-    this.getUtilisateurByMatricule(this.matricule);
 
-    console.log('Agent',this.agent);
+
 
   }
 
@@ -73,36 +78,17 @@ export class AutorisationComponent implements OnInit {
   }
 
   getUtilisateurByMatricule(matricule:string) {
-    // this.isLoading = true;
-    // this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
-    //   (response) => {
-    //     this.isLoading = false;
-    //     this.utilisateur = response.utilisateur;
-    //   },
-    //   (error) => {
-    //     this.message = { severity: 'error', summary: error.error };
-    //   }
-    // );
-
-
-     //   this.utilisateur={
-  //   matricule:'224365',
-  //   nom:'OUEDRAOGO',
-  //   prenom:'Aboubacar',
-  //   emploi:'Technicien Supérieur'
-  // }
-
-    this.agent.matricule="224365";
-    this.agent.nom="OUEDRAOGO";
-    this.agent.prenom="Aboubacar";
-    this.agent.emploi="Technicien Supérieur";
-
-    // this.utilisateur.matricule="224365";
-    // this.utilisateur.nom="OUEDRAOGO";
-    // this.utilisateur.prenom="Aboubacar";
-    // this.utilisateur.emploi="Technicien Supérieur";
-
-   console.log('utilisateur',this.utilisateur)
+    this.isLoading = true;
+    this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
+      (response) => {
+        this.isLoading = false;
+        this.agent = response.agent;
+        console.log("Retour get agent",this.agent);
+      },
+      (error) => {
+        this.message = { severity: 'error', summary: error.error };
+      }
+    );
   }
 
    loadMotifAbsence(event?: LazyLoadEvent) {
@@ -125,7 +111,6 @@ export class AutorisationComponent implements OnInit {
       (response) => {
         this.isLoading = false;
         this.typeDemandes = response.typeDemandes;
-
         // console.log("type demande", this.typeDemandes);
       },
       (error) => {
@@ -134,17 +119,9 @@ export class AutorisationComponent implements OnInit {
     );
   }
 
-  // onSelectMinistere(){
-  // //  console.log("on select"+this.demande.ministere);
-  //   if(this.demande.ministere)
-  //   {
-  //     this.getMinisteredemandes();
-  //   }
-  // }
 
 
  // Affichage
-
   load(event?: LazyLoadEvent) {
     this.isLoading = true;
     this.autorisationService.getAll().subscribe(response => {
@@ -158,7 +135,6 @@ export class AutorisationComponent implements OnInit {
   }
 
   //Creation
-
   save() {
     if (this.demande.id) {
       this.edit();
@@ -168,29 +144,36 @@ export class AutorisationComponent implements OnInit {
   }
 
   onCreate() {
-
     this.demande = {};
     this.clearDialogMessages();
     this.form.resetForm();
     this.showDialog = true;
+    // this.getUtilisateurByMatricule(this.matricule);
+    console.log("on create agent",this.agent);
+
   }
+ 
 
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    this.utilisateur={
-      matricule:'224365',
-      nom:'OUEDRAOGO',
-      prenom:'Aboubacar',
-      emploi:'Technicien Supérieur'
-    };
-    this.demande.utilisateur= this.utilisateur;
+    // this.utilisateur={
+    //   id:2,
+    //   matricule:'admin',
+    //   nom:'Administrator',
+    //   prenom:'Administrator',
+    // };
+    this.demande.numeroDemande="100";
+    // this.demande.utilisateur= this.utilisateur;
+    // this.demande.dureeAbsence= 3;
 
+    // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
     const formData: FormData = new FormData();
-    const fichesAsJson: Blob = new Blob([JSON.stringify(this.demande)], { type: 'text' });
-    formData.append('demande', fichesAsJson);
-    formData.append('files', this.files);
-
+    formData.append('demande', JSON.stringify(this.demande));
+    // for (let i = 0; i < this.listFiles.length; i++) {
+    //   formData.append("files[]", this.listFiles[i]);
+    // }
+    formData.append("files", this.listFiles[0]);
     console.log('demande',this.demande);
     console.log('formdata',formData);
     this.autorisationService.create(formData).subscribe(response => {
@@ -201,21 +184,45 @@ export class AutorisationComponent implements OnInit {
       this.totalRecords++;
       this.isDialogOpInProgress = false;
       this.showDialog = false;
-      this.showMessage({ severity: 'success', summary: 'demande créée avec succès' });
+      this.showMessage({ severity: 'success', summary: 'Demande enregistrée avec succès' });
     }, error => this.handleError(error));
   }
 
   onSelectFile(event:any): void {
-    // console.log(event.files[0]);
-    // console.log(event.files[0].name);
-    // let file:File = event.files[0];
-    // this.file = file;
+    console.log(event.files[0]);
+    console.log(event.files[0].name);
+    let file:File = event.files[0];
+    this.file = file;
     // this.document.fileName =  event.files[0].name;
     // this.document.fileSize = event.files[0].size;
+  }
 
-    let files:File = event.files[0];
-    this.files = files;
-    console.log(this.files);
+//on select file
+// onUpload(event:any) : void{
+//   this.uploadedFiles = new Array();
+//   let file:File = event.files;
+//   this.uploadedFiles.push(file);
+//   console.log(this.uploadedFiles);
+// }
+
+  //on select file2
+  onUpload(event:any) : void{
+    this.listFiles = new Array();
+    console.log(this.uploadedFiles);
+    for (let i = 0; i < event.files.length; i++) {
+      this.listFiles.push(event.files[i]);
+      // console.log('index',i);
+      // console.log('file',event.files[i]);
+    }
+    console.log('files',this.listFiles);
+  }
+
+
+  //On remove file
+  onRemove(event:any){
+    console.log(event.file);
+    this.uploadedFiles = this.uploadedFiles.filter(file => file.name !== event.file.name);
+    console.log(this.uploadedFiles);
   }
 
   //Détail
@@ -286,6 +293,5 @@ export class AutorisationComponent implements OnInit {
       this.message = null;
     }, 5000);
   }
-
 
 }

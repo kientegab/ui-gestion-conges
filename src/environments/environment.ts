@@ -12,11 +12,16 @@ export const environment = {
   importRessource:commonAppURI+'import-data/agents',
   exempleResource: commonAppURI + 'exemples',
   visatypedemandeesource: commonAppURI + 'visa',
+
+  visaTypeDemandeResource: commonAppURI + 'visa',
+
   privilegeResource: commonAppURI + 'privileges',
   profilResource: commonAppURI + 'profiles',
   authenticationRessource: commonAppURI + 'authenticate',
+
+
   compteRessource: commonAppURI  ,
-  agentResource: commonAppURI +'utilisateurs',
+  agentResource: commonAppURI +'agents',
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres',
@@ -31,6 +36,12 @@ export const environment = {
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
   
+
+
+  typeVisaRessource: commonAppURI + 'typeVisas',
+
+
+
 
 }; 
 

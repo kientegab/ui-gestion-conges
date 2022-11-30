@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AutorisationComponent } from './autorisation.component';
+import { DashboarddComponent } from './dashboardd.component';
 
-describe('AutorisationComponent', () => {
-  let component: AutorisationComponent;
-  let fixture: ComponentFixture<AutorisationComponent>;
+describe('DashboarddComponent', () => {
+  let component: DashboarddComponent;
+  let fixture: ComponentFixture<DashboarddComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AutorisationComponent ]
+      declarations: [ DashboarddComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AutorisationComponent);
+    fixture = TestBed.createComponent(DashboarddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -33,7 +33,8 @@ import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { AutorisationComponent } from './espace-demandeur/autorisation/autorisation.component';
+import { TypeVisaComponent } from './type-visa/type-visa.component';
+
 import { InputTextModule } from 'primeng/inputtext';
 import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
@@ -44,6 +45,18 @@ import { LoginComponent } from '../theme/components/login/login.component';
 import { CompteComponent } from './compte/compte.component';
 import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
+import { DashboardComponent } from './espace SHI/espace-shi/dashboard/dashboard.component';
+
+import { EspaceSHIRoutingModule } from './espace SHI/espace-shi/espace-shi-routing.module';
+import { EspaceDemandeurRoutingModule } from './espace-demandeur/espace-demandeur/espace-demandeur-routing.module';
+import { PanelModule } from 'primeng/panel';
+import { AutorisationdComponent } from './espace-demandeur/espace-demandeur/autorisationd/autorisationd.component';
+import { DashboarddComponent } from './espace-demandeur/espace-demandeur/dashboardd/dashboardd.component';
+import { AutorisationSComponent } from './espace-srh/autorisation-s/autorisation-s.component';
+import { EspaceSRHRoutingModule } from './espace-srh/espace-srh-routing.module';
+import { DashboardSComponent } from './espace-srh/dashboard-s/dashboard-s.component';
+import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/conged.component';
+import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/autorisation.component';
 
 
 @NgModule({
@@ -61,7 +74,13 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
+       AutorisationdComponent,
+       DashboardComponent,
+       DashboarddComponent,
+       AutorisationSComponent,
        AutorisationComponent,
+       DashboardSComponent,
+       CongedComponent,//on ajoute
        CompteComponent,
        VisaTypeDemandeComponent,
 
@@ -74,10 +93,14 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
        AgentComponent,
        CompteComponent,
        VisaTypeDemandeComponent,
-       AmpliationComponent
+       AmpliationComponent,
+       TypeVisaComponent
   ],
   imports: [
-    AdministrationRoutingModule,
+AdministrationRoutingModule,
+  EspaceSHIRoutingModule,
+  EspaceDemandeurRoutingModule,
+  EspaceSRHRoutingModule,
     AppCommonModule,
     CommonModule,
     ReactiveFormsModule,
@@ -89,6 +112,7 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
     InputTextModule,
     DropdownModule,
     CheckboxModule,
+    PanelModule,
     MessageModule,
     ProgressBarModule,
     DialogModule,
@@ -100,6 +124,10 @@ import { AmpliationComponent } from './ampliation/ampliation.component';
     ContextMenuModule,
     InputTextModule,
     FileUploadModule,
+    ContextMenuModule,
+    CalendarModule
+
+
   ],
   providers: [ConfirmationService,MessageService],
  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
