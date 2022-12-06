@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 const commonAppURI: string = 'http://localhost:8080/api/';
-const commonAppURIA: string = 'http://localhost:8080/conges/api/';
+const commonAppURIA: string = 'http://localhost:8080/conges/api/activate-agent';
+const commonAppURIB: string = 'http://localhost:8080/conges/api/validate-compte';
+
 
 
 export const environment = {
@@ -18,7 +20,12 @@ export const environment = {
   authenticationRessource: commonAppURIA + 'authenticate',
 
 
-  compteRessource: commonAppURI  ,
+ // compteRessource: commonAppURIA  ,
+
+  compteRessource: commonAppURIA ,
+  compteSaveRessource: commonAppURIB ,
+
+
   agentResource: commonAppURI +'utilisateurs',
 
   activateResource:commonAppURI+'activate',

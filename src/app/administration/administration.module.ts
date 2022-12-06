@@ -6,7 +6,7 @@ import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -39,6 +39,8 @@ import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { TypeVisaComponent } from './type-visa/type-visa.component';
 import { CalendarModule } from 'primeng/calendar';
+import {StepsModule} from 'primeng/steps';
+import {MenuItem} from 'primeng/api';
 
 
 @NgModule({
@@ -83,7 +85,12 @@ import { CalendarModule } from 'primeng/calendar';
     ContextMenuModule,
     InputTextModule,
     ContextMenuModule,
-    CalendarModule
+    CalendarModule,
+    StepsModule,
+    NbStepperModule,
+    NbSelectModule,
+    NbInputModule,
+    CardModule
 
 
   ],
