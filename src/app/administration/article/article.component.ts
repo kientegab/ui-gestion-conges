@@ -34,6 +34,7 @@ export class ArticleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.load();
   }
 
   isEditing() {
@@ -46,7 +47,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getAll().subscribe(response => {
       this.isLoading = false;
       this.articles = response.articles;
-
+      console.log("articles", this.articles);
     }, error => {
       this.message = { severity: 'error', summary: error.error };
       console.error(JSON.stringify(error));
@@ -74,10 +75,10 @@ export class ArticleComponent implements OnInit {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
     this.articleService.create(this.article).subscribe(response => {
-      // if (this.articles.length !== this.recordsPerPage) {
-      //   this.articles.push(response);
-      //   this.articles = this.articles.slice();
-      // }
+      if (this.articles.length !== this.recordsPerPage) {
+        this.articles.push(response);
+        this.articles = this.articles.slice();
+      }
       this.totalRecords++;
       this.isDialogOpInProgress = false;
       this.showDialog = false;
@@ -103,8 +104,8 @@ export class ArticleComponent implements OnInit {
       this.clearDialogMessages();
       this.isDialogOpInProgress = true;
       this.articleService.update(this.article).subscribe(response => {
-        // let index = this.articles.findIndex(article => article.id === response.id);
-        // this.articles[index] = response;
+        let index = this.articles.findIndex(article => article.id === response.id);
+        this.articles[index] = response;
         this.isDialogOpInProgress = false;
         this.showDialog = false;
         this.showMessage({ severity: 'success', summary: 'article modifié avec succès' });
@@ -131,7 +132,7 @@ export class ArticleComponent implements OnInit {
       this.totalRecords--;
       this.showMessage({
         severity: 'success',
-        summary: 'Exemple supprimé avec succès',
+        summary: 'Article supprimé avec succès',
       });
     },(error) => this.handleError(error)
   );

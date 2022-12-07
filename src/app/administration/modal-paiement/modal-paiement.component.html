@@ -14,7 +14,7 @@
         <p-divider></p-divider>
 
         <p-table #dt [value]="modalPaiements" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
-            (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['libelle','description']"
+            (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['libelle','description','typeDemande']"
             currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements"
             [showCurrentPageReport]=true [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
 
@@ -38,14 +38,21 @@
             </ng-template>
 
             <ng-template pTemplate="header">
+
+                
                 <tr>
-                    <th pSortableColumn="libelle">Libelle
+                    <th pSortableColumn="typeDemande">Type de Demande
+                        <p-sortIcon field="typeDemande"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="libelle">Code
                         <p-sortIcon field="libelle"></p-sortIcon>
                     </th>
-
-                    <th pSortableColumn="description">Description
+                    <th pSortableColumn="description">Libelle
                         <p-sortIcon field="description"></p-sortIcon>
                     </th>
+                    <!-- <th pSortableColumn="desactiver">Satut de paie
+                        <p-sortIcon field="desactiver"></p-sortIcon>
+                    </th> -->
 
                     <th class="actionStyle">
                         Actions
@@ -55,8 +62,10 @@
 
             <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-modalPaiement>
                 <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="modalPaiement">
+                    <td>{{modalPaiement.typeDemande?.libelle}} </td>
+                    <td>{{modalPaiement.code}} </td>
                     <td>{{modalPaiement.libelle}} </td>
-                    <td>{{modalPaiement.description}} </td>
+                    <!-- <td>{{modalPaiement.desactiver}} </td> -->
                     <td class="actionStyle">
 
                         <app-actions-toolbal-iud (info)="onInfo(modalPaiement)" [enableBtnInfo]="enableBtnInfo"
@@ -89,6 +98,15 @@
             <!--  -->
 
             <div class="formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label for="typeDemande">TypeDemande:</label>
+                    <div>
+                        <p-dropdown [options]="typeDemandes" [(ngModel)]="modalPaiement.typeDemande" optionLabel="libelle"
+                            inputId="typeDemande" name="typeDemande" placeholder="Selectionner un typeDemande..." [filter]="true"
+                            appendTo="body" [showClear]="true">
+                        </p-dropdown>
+                    </div>
+                </div>
                 <div class="field col-12 md:col-12">
                     <label for="libelle">Libelle</label>
                     <input type="text" id="libelle" name="libelle" #libelle="ngModel" [(ngModel)]="modalPaiement.libelle"
@@ -97,11 +115,10 @@
                 </div>
 
                 <div class="field col-12 md:col-12">
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" rows="4" name="description" #description="ngModel"
-                        [(ngModel)]="modalPaiement.description"
-                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
-                </div>
+                    <label for="code">Code</label>
+                    <input type="text" id="code" name="code" #code="ngModel" [(ngModel)]="modalPaiement.code" required
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    </div>
             </div>
 
             <p-divider></p-divider>
@@ -129,16 +146,21 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-action">
+                    <!-- <li class="list-group-item list-group-item-action">
                         <span class="va-m"><span class="font-weight-bold">Id:</span> {{modalPaiement.id}}</span>
+                    </li> -->
+                    <li class="list-group-item list-group-item-action">
+                        <span class="va-m"><span class="font-weight-bold">typeDemande:</span> {{modalPaiement.typeDemande?.libelle}}</span>
                     </li>
                     <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{modalPaiement.libelle}}</span>
+                        <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{modalPaiement.code}}</span>
                     </li>
                     <li class="list-group-item list-group-item-action">
-                        <span class="va-m"><span class="font-weight-bold">Description:</span>
-                            {{modalPaiement.description}}</span>
+                        <span class="va-m"><span class="font-weight-bold">Description:</span> {{modalPaiement.libelle}}</span>
                     </li>
+                    <!-- <li class="list-group-item list-group-item-action">
+                        <span class="va-m"><span class="font-weight-bold">Description:</span> {{modalPaiement.desactiver}}</span>
+                    </li> -->
 
                 </ul>
             </div>

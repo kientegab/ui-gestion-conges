@@ -72,7 +72,7 @@
         <ng-template pTemplate="header">
             <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
             <span class="mr-auto">
-                {{motifAbsence.id ? 'Modifier' : 'Ajouter'}} un type de Demande
+                {{motifAbsence.id ? 'Modifier' : 'Ajouter'}} un motif
             </span>
         </ng-template>
         <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
@@ -117,9 +117,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-action">
+                    <!-- <li class="list-group-item list-group-item-action">
                         <span class="va-m"><span class="font-weight-bold">Id:</span> {{motifAbsence.id}}</span>
-                    </li>
+                    </li> -->
                     <li class="list-group-item list-group-item-action">
                         <span class="va-m"><span class="font-weight-bold">Libelle:</span> {{motifAbsence.libelle}}</span>
                     </li>

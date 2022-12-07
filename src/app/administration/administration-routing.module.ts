@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../theme/components/login/login.component';
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ExampleComponent } from './example/example.component';
-import { PrivilegeComponent } from './privilege/privilege.component';
-import { ProfilComponent } from './profil/profil.component';
 import { TypeStructureComponent } from './type-structure/type-structure.component';
 import { TypeDemandeComponent } from './type-demande/type-demande.component';
 import { StructureComponent } from './structure/structure.component';
@@ -13,10 +11,13 @@ import { VisaComponent } from './visa/visa.component';
 import { AvisComponent } from './avis/avis.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
-import { CompteComponent } from './compte/compte.component';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
 import { ArticleComponent } from './article/article.component';
 import { AgentComponent } from './agent/agent.component';
 import { CorpsComponent } from './corps/corps.component';
+import { CompteComponent } from './compte/compte.component';
+import { AmpliationComponent } from './ampliation/ampliation.component';
 import { TypeVisaComponent } from './type-visa/type-visa.component';
 
 
@@ -40,10 +41,11 @@ const routes: Routes = [
     { path: 'typeVisa', component: TypeVisaComponent },
 
 
-    { path: 'visa', component: VisaComponent },
+    { path: 'visas', component: VisaComponent },
     { path: 'avis', component: AvisComponent },
     { path: 'motifAbsence', component: MotifAbsenceComponent },
-    { path: 'modalPaiement', component: ModalPaiementComponent },
+    { path: 'modalite-paie', component: ModalPaiementComponent },
+    { path: 'ampliation', component: AmpliationComponent },
 
 
     {path: 'exemple', component: ExampleComponent },
@@ -52,6 +54,7 @@ const routes: Routes = [
     {path: 'article', component: ArticleComponent },
     {path: 'corps', component: CorpsComponent },
     {path: 'agent', component: AgentComponent },
+    
   ]}
 ];
 

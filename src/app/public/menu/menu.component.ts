@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit {
         items: [
           {
             label: 'Annuel',
-            routerLink: ['/public/conges'],
+            routerLink: ['/public/congeAnnuel'],
             routerLinkActiveOptions: {
               exact: true
             }
@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Maternité',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeMaternite'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -53,7 +53,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Maladie',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeMaladie'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -63,7 +63,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Fin de service',
-            routerLink: ['/declaration-etablissement'],
+            routerLink: ['/public/congeFinservice'],
             routerLinkActiveOptions: {
               exact: true
             } 
@@ -86,7 +86,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Jouissance Examen',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissExamen'],
             routerLinkActiveOptions: {
               exact: true
             },
@@ -96,7 +96,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Jouissance SND',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissSND'],
             routerLinkActiveOptions: {
               exact: true
             },
@@ -106,7 +106,7 @@ export class MenuComponent implements OnInit {
           },
           {
             label: 'Autres absences',
-            routerLink: ['/attestation-chomage'],
+            routerLink: ['/public/jouissAutre'],
             routerLinkActiveOptions: {
               exact: true
             },
@@ -115,15 +115,15 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Comment ça marche ?',
-        routerLink: ['/commment-ca-marche'] 
+        routerLink: ['/public/commment-ca-marche'] 
       },
       {
-        label: 'Rechercher un acte',
-        routerLink: ['/verifier-acte'] 
+        label: 'Rechercher un agent',
+        routerLink: ['/public/verifier-acte'] 
       },
       {
         label: 'Nous contacter',
-        routerLink: ['/contact'] 
+        routerLink: ['/public/contact'] 
       },
     ];
   }

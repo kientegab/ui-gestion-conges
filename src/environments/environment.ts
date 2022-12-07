@@ -2,43 +2,50 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const commonAppURI: string = 'http://localhost:8080/api/';
 const commonAppURIA: string = 'http://localhost:8080/conges/api/activate-agent';
 const commonAppURIB: string = 'http://localhost:8080/conges/api/validate-compte';
 
 
+const commonAppURI: string = 'http://localhost:8080/conges/api/';
+
 
 export const environment = {
   production: false,
+  recordsPerPage: 100,
+  importRessource:commonAppURI+'import-data/agents',
   exempleResource: commonAppURI + 'exemples',
   visatypedemandeesource: commonAppURI + 'visa',
 
   visaTypeDemandeResource: commonAppURI + 'visa',
 
-  privilegeResource: commonAppURIA + 'privileges',
-  profilResource: commonAppURIA + 'profiles',
-  authenticationRessource: commonAppURIA + 'authenticate',
+  privilegeResource: commonAppURI + 'privileges',
+  profilResource: commonAppURI + 'profiles',
+  authenticationRessource: commonAppURI + 'authenticate',
 
 
  // compteRessource: commonAppURIA  ,
 
-  compteRessource: commonAppURIA ,
+  compteRessource: commonAppURI + 'activate-agent' ,
   compteSaveRessource: commonAppURIB ,
 
 
   agentResource: commonAppURI +'utilisateurs',
 
   activateResource:commonAppURI+'activate',
-  recordsPerPage: 100,
-
-  structureRessource:commonAppURI + 'structure',
-  ministereRessource:commonAppURI + 'ministere',
-  typeDemandeRessource:commonAppURI + 'typeDemande',
-  typeStructureRessource: commonAppURI + 'typeStructure',
+  structureRessource:commonAppURI + 'structures',
+  ministereRessource:commonAppURI + 'ministeres',
+  demandeResource: commonAppURI + 'demandes',
+  utilisateurRessource: commonAppURI + 'utilisateur',
+  typeDemandeRessource:commonAppURI + 'typeDemandes',
+  typeStructureRessource: commonAppURI + 'type-structure',
   avisRessource: commonAppURI + 'avis',
-  visaRessource: commonAppURI + 'visa',
+  visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
   modalPaiementRessource: commonAppURI + 'modalpaiement',
+  articleRessource: commonAppURI + 'article',
+  ampliationRessource: commonAppURI + 'ampliation',
+
+
 
   typeVisaRessource: commonAppURI + 'typeVisas',
 

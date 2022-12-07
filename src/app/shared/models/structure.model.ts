@@ -7,13 +7,14 @@ export interface Structure {
   libelle?: string;
   description?: string;
   responsable?:string;
+  type?:string;
   active?:boolean;
-  tel?:number;
-  email?:string;
-  adresse?: string;
-  typeStructure?:TypeStructure;
+  telephone?:number;
+  emailResp?:string;
+  emailStruct?:string;
   parent?:Structure;
   ministere?: Ministere;
+  adresse?: string;
 }
 
 export interface GetAllStructureResponse {

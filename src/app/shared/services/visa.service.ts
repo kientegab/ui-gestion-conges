@@ -15,8 +15,9 @@ export class VisaService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllVisaResponse> {
-    return this.http.get("assets/data/visa.json", { observe: 'response' })
-    // return this.http.get(Url, { observe: 'response' })
+    // return this.http.get("assets/data/visa.json", { observe: 'response' })
+    return this.http.get(Url, { observe: 'response' })
+      
     .pipe(map(response => {
         let visasResponse: GetAllVisaResponse = {
           visas: response.body as Visa[]

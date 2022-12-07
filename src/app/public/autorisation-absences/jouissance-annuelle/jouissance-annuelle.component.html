@@ -9,13 +9,11 @@
                 <div class=" g-0 overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                   <div class="col d-flex flex-column p-0 position-static">
                     <div class="header-1">
-                    <strong class="d-inline-block p-2">Jouissance de congés annuel</strong>
+                    <strong class="d-inline-block p-2">Jouissance pour congé annuel</strong>
                   </div>
                   <div class="bg-white-actif">
                    <span>
-                     C’est une période d’arrêt de travail accordé à un agent avec
-                     maintien du traitement. Il peut s’agir d’une absence pour événements familiaux, pour activités
-                     syndicales, pour activité
+                    c’est une demande adressée au supérieur hiérarchique ou les fonctionnaires précisent la période à laquelle ils souhaitent jouir de leur congé annuel aprés avoir obtenu l'acte de décision de congé.
                    </span>
                    <br ><br ><br><br >
                   </div>
@@ -31,18 +29,19 @@
                     <strong class="d-inline-block p-2 ">Processus de demande</strong>
                   </div>
                   <div class="bg-white-plus-individuel">
-                    <span><b>Etape1:</b> Créer un compte sur la plateforme</span>
+                    <span><b>Etape1:</b> Créer un compte sur la plateforme(si vous ne posséder pas un compte)</span>
                     <br>
-                    <span><b>Etape2:</b> Se connecter à l'aide de ses identifiants</span>
+                    <span><b>Etape2:</b> Se connecter à l'aide de vos identifiants(matricule, mot de passe)</span>
                     <br>
-                    <span><b>Etape3:</b> cliquer sur le bouton ajouter pour soumettre sa demande</span>
-                    <br>
-                    <span><b>NB:</b> Pour les nouveaux agents, la validation de la demande nécessite l'ajout du certificat de prise de service</span>
+                    <span><b>Etape3:</b> cliquer sur le bouton soumettre pour enregistrer votre demande</span>
+                    
                     <br ><br ><br>
+                    <button (click)="soumettre()" label="Soumettre" class="p-button-raised p-button-text p-button-primary mr-2" pButton></button>
                   </div>
                   
                   </div>
-                  <div class="col-auto d-none d-lg-block"> </div>
+                  <div class="col-auto d-none d-lg-block"> 
+                  </div>
                 </div>
               </div> 
             </div>

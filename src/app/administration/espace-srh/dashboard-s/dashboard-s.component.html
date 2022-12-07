@@ -1,0 +1,108 @@
+<div class="p-fluid grid mb-2" >
+    <div class="p-field p-col-12 md:col-4">
+      <label for="typedemande">Structure:</label>
+      <p-dropdown   optionLabel="libelle"
+        inputId="typeDemande" name="typeDemande" placeholder="Selectionner la structure..." [filter]="true"
+        appendTo="body" [showClear]="true">
+      </p-dropdown>
+    </div>
+    <div class="p-field p-col-12 md:col-4">
+        <label for="typedemande">Année</label>
+        <p-dropdown   optionLabel="libelle"
+          inputId="typeDemande" name="typeDemande" placeholder="Selectionner l'année..." [filter]="true"
+          appendTo="body" [showClear]="true">
+        </p-dropdown>
+      </div>
+    <div class="p-field p-col-12 md:col-4">
+        <label for="typedemande">Mois:</label>
+        <p-dropdown   optionLabel="libelle"
+          inputId="typeDemande" name="typeDemande" placeholder="Selectionner le mois.." [filter]="true"
+          appendTo="body" [showClear]="true">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <div>
+        <p-card>
+            <!-- ToolBar -->
+        
+           
+            <p-divider></p-divider>
+        
+            <p-table #dt [value]="demandes" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+              (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['numeroDemande','typeDemande.libelle','motifAbsence.libelle']"
+              currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
+              [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
+        
+              <ng-template pTemplate="caption">
+                <div class="row">
+                  <!-- titre -->
+                  <div class="col" style="padding: 8px; margin-left: 8px">
+                    <span>Liste des demandes</span>
+                  </div>
+        
+                  <!-- volet recherche -->
+                  <div class="col text-right">
+                    <span class="p-input-icon-left">
+                      <i class="pi pi-search"></i>
+                      <input pInputText type="text" (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
+                        placeholder="Recherche..." />
+                    </span>
+                  </div>
+                </div>
+              </ng-template>
+        
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pSortableColumn="numeroDemande">Struture
+                    <p-sortIcon field="numeroDemande"></p-sortIcon>
+                  </th>
+        
+                  <th pSortableColumn="typeDemande">Nom
+                    <p-sortIcon field="typeDemande"></p-sortIcon>
+                  </th>
+        
+                  <th pSortableColumn="motifAbsence">Prénom
+                    <p-sortIcon field="motifAbsence"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="etat">Ref. décision
+                    <p-sortIcon field="etat"></p-sortIcon>
+                  </th>
+        
+                  <th pSortableColumn="periodeDebut">Période début
+                    <p-sortIcon field="periodeDebut"></p-sortIcon>
+                  </th>
+        
+                  <th pSortableColumn="periodeFin">Période fin
+                    <p-sortIcon field="periodeFin"></p-sortIcon>
+                  </th>
+        
+                  
+        
+                  <th class="actionStyle">
+                    Actions
+                  </th>
+                </tr>
+              </ng-template>
+        
+              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-demande>
+                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="demande">
+                  <td>{{demande.numeroDemande}} </td>
+                  <td>{{demande.typeDemande?.libelle}} </td>
+                  <td>{{demande.motifAbsence?.libelle}} </td>
+                  <td>{{demande.periodeDebut | date:'dd/MM/yyyy'}} </td>
+                  <td>{{demande.periodeFin | date:'dd/MM/yyyy'}} </td>
+                  <td>{{demande.etat}} </td>
+                  <td class="actionStyle">
+        
+                    <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"
+                      (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(demande)"
+                      [enableBtnDelete]="enableBtnDelete">
+                    </app-actions-toolbal-iud>
+        
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-card>
+    </div>

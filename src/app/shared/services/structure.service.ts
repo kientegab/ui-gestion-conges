@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllStructureResponse, Structure } from '../models/structure.model';
 
-const Url = environment.structureRessource;
+
 const structureUrl = environment.structureRessource;
 
 @Injectable({
@@ -16,7 +16,7 @@ export class StructureService {
 
   constructor(private http:HttpClient) { }
   getAll(event?: LazyLoadEvent): Observable<GetAllStructureResponse> {
-    return this.http.get("assets/data/structure.json", { observe: 'response' })
+    return this.http.get(structureUrl, { observe: 'response' })
     // return this.http.get(Url, { observe: 'response' })
     .pipe(map(response => {
         let structuresResponse: GetAllStructureResponse = {
@@ -25,6 +25,8 @@ export class StructureService {
         return structuresResponse;
       }));
   }
+
+
 
   getStructureById(id: number): Observable<any> {
     return this.http.get(`${structureUrl}/${id}`, { observe: 'response' })
@@ -49,14 +51,14 @@ export class StructureService {
 
 
   create(structure: Structure): Observable<Structure> {
-    return this.http.post(Url, structure);
+    return this.http.post(structureUrl, structure);
   }
 
   update(structure: Structure): Observable<Structure> {
-    return this.http.put(Url, structure);
+    return this.http.put(structureUrl, structure);
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${Url}/${id}`);
+    return this.http.delete<void>(`${structureUrl}/${id}`);
   }
 }

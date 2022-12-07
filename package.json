@@ -28,7 +28,7 @@
     "@nebular/theme": "^8.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "4.6.0",
     "chart.js": "^3.6.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.19.0",
@@ -46,6 +46,7 @@
     "rxjs": "~7.5.0",
     "socicon": "^3.0.5",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

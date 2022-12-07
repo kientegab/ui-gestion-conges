@@ -19,9 +19,6 @@ import { ActionsToolbalIudComponent } from '../shared/common/actions-toolbal-iud
 import { ExampleComponent } from './example/example.component';
 import { ButtonModule } from 'primeng/button';
 import { ContextMenuModule } from 'primeng/contextmenu';
-import { PrivilegeComponent } from './privilege/privilege.component';
-import { ProfilComponent } from './profil/profil.component';
-import { LoginComponent } from '../theme/components/login/login.component';
 import { TypeDemandeComponent } from './type-demande/type-demande.component';
 import { TypeStructureComponent } from './type-structure/type-structure.component';
 import { StructureComponent } from './structure/structure.component';
@@ -30,9 +27,8 @@ import { AvisComponent } from './avis/avis.component';
 import { VisaComponent } from './visa/visa.component';
 import { MotifAbsenceComponent } from './motif-absence/motif-absence.component';
 import { ModalPaiementComponent } from './modal-paiement/modal-paiement.component';
-import { CompteComponent } from './compte/compte.component';
-import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
-import { InputTextModule } from 'primeng/inputtext';
+import { PrivilegeComponent } from './privilege/privilege.component';
+import { ProfilComponent } from './profil/profil.component';
 import { ArticleComponent } from './article/article.component';
 import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
@@ -42,14 +38,36 @@ import { CalendarModule } from 'primeng/calendar';
 import {StepsModule} from 'primeng/steps';
 import {MenuItem} from 'primeng/api';
 
+import { InputTextModule } from 'primeng/inputtext';
+import {FileUploadModule} from 'primeng/fileupload';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoginComponent } from '../theme/components/login/login.component';
+import { CompteComponent } from './compte/compte.component';
+import { VisaTypeDemandeComponent } from './visa-type-demande/visa-type-demande.component';
+import { AmpliationComponent } from './ampliation/ampliation.component';
+import { DashboardComponent } from './espace SHI/espace-shi/dashboard/dashboard.component';
+
+import { EspaceSHIRoutingModule } from './espace SHI/espace-shi/espace-shi-routing.module';
+import { EspaceDemandeurRoutingModule } from './espace-demandeur/espace-demandeur/espace-demandeur-routing.module';
+import { PanelModule } from 'primeng/panel';
+import { AutorisationdComponent } from './espace-demandeur/espace-demandeur/autorisationd/autorisationd.component';
+import { DashboarddComponent } from './espace-demandeur/espace-demandeur/dashboardd/dashboardd.component';
+import { AutorisationSComponent } from './espace-srh/autorisation-s/autorisation-s.component';
+import { EspaceSRHRoutingModule } from './espace-srh/espace-srh-routing.module';
+import { DashboardSComponent } from './espace-srh/dashboard-s/dashboard-s.component';
+import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/conged.component';
+import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/autorisation.component';
+
 
 @NgModule({
   declarations: [
   //  ExempleComponent
+      ExampleComponent,
        ExampleComponent,
        PrivilegeComponent,
        ProfilComponent,
-      ExampleComponent,
        TypeDemandeComponent,
        TypeStructureComponent,
        StructureComponent,
@@ -58,6 +76,13 @@ import {MenuItem} from 'primeng/api';
        VisaComponent,
        MotifAbsenceComponent,
        ModalPaiementComponent,
+       AutorisationdComponent,
+       DashboardComponent,
+       DashboarddComponent,
+       AutorisationSComponent,
+       AutorisationComponent,
+       DashboardSComponent,
+       CongedComponent,//on ajoute
        CompteComponent,
        VisaTypeDemandeComponent,
 
@@ -68,22 +93,39 @@ import {MenuItem} from 'primeng/api';
        ArticleComponent,
        CorpsComponent,
        AgentComponent,
+       CompteComponent,
+       VisaTypeDemandeComponent,
+       AmpliationComponent,
        TypeVisaComponent
   ],
   imports: [
-    AdministrationRoutingModule,
+AdministrationRoutingModule,
+  EspaceSHIRoutingModule,
+  EspaceDemandeurRoutingModule,
+  EspaceSRHRoutingModule,
     AppCommonModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
+    CalendarModule,
+    FileUploadModule,
     ButtonModule,
+    InputTextModule,
     DropdownModule,
     CheckboxModule,
+    PanelModule,
+    MessageModule,
+    ProgressBarModule,
     DialogModule,
+    DividerModule,
     TableModule,
+    CardModule,
+    ProgressSpinnerModule,
     HttpClientModule,
     ContextMenuModule,
     InputTextModule,
+    FileUploadModule,
     ContextMenuModule,
     CalendarModule,
     StepsModule,
@@ -94,6 +136,7 @@ import {MenuItem} from 'primeng/api';
 
 
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  providers: [ConfirmationService,MessageService],
+ schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdministrationModule { }
