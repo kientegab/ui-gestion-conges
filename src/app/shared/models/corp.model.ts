@@ -1,7 +1,7 @@
 export interface Corps {
     id?:number;
-    cdCorps?:string;
-    lbCorps?:string;
+    codeCorps?:string;
+    libelleCorps?:string;
 }
 
 

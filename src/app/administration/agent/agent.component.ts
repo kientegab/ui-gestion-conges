@@ -40,10 +40,10 @@ export class AgentComponent implements OnInit {
   importer(){
     console.log("eee")
     const formData: FormData = new FormData();
-    const fichesAsJson: Blob = new Blob([JSON.stringify(this.file)], { type: 'application/xlsx' });
+    //const fichesAsJson: Blob = new Blob([JSON.stringify(this.file)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     formData.append('file', this.file);
-    this.importationService.import(fichesAsJson).subscribe(response => {
-      console.log("eee", fichesAsJson)
+    this.importationService.importAgent(formData).subscribe(response => {
+      console.log("eee", formData)
       this.load();
       this.totalRecords++;
       this.isDialogOpInProgress = false;

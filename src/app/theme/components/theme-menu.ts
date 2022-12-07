@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 let perms = AuthenticationService.getPrivilegeTest();
 if(perms == null){
-  perms = ['ROLE_FOCAL_STRUCT','ROLE_USER'];
+  perms = ['ROLE_ADMIN','ROLE_USER'];
 }
 export const MENU_ITEMS: NbMenuItem[] = [
   // {
@@ -108,7 +108,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Paramétrage',
     icon: 'lock-outline',
-    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
     children: [
 
       {

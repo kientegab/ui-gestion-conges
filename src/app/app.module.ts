@@ -122,8 +122,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NbDialogModule.forRoot(),
     NbThemeModule.forRoot({ name: 'corporate' })
   ],
-  // providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
-  providers: [ConfirmationService,MessageService],
+   providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
+  //providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

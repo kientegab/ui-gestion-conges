@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.authenticate.username = this.username;
     this.authenticate.password = this.password;
     this.authenticate.rememberMe = this.rememberMe;
-    this.router.navigate(['/workspace'])
+    //this.router.navigate(['/workspace'])
      this.authService.login(this.authenticate).subscribe(
 
       (response) => {
