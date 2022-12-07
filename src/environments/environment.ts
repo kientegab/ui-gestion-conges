@@ -2,6 +2,9 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const commonAppURIA: string = 'http://localhost:8080/conges/api/activate-agent';
+const commonAppURIB: string = 'http://localhost:8080/conges/api/validate-compte';
+
 
 const commonAppURI: string = 'http://localhost:8080/conges/api/';
 
@@ -23,8 +26,14 @@ export const environment = {
   authenticationRessource: commonAppURI + 'authenticate',
 
 
-  compteRessource: commonAppURI  ,
-  agentResource: commonAppURI +'agents',
+ // compteRessource: commonAppURIA  ,
+
+  compteRessource: commonAppURI + 'activate-agent' ,
+  compteSaveRessource: commonAppURIB ,
+
+
+  agentResource: commonAppURI +'utilisateurs',
+
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres',
@@ -35,10 +44,10 @@ export const environment = {
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
-  modalPaiementRessource: commonAppURI + 'modalpaiement', 
+  modalPaiementRessource: commonAppURI + 'modalpaiement',
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
-  
+
 
 
   typeVisaRessource: commonAppURI + 'typeVisas',
@@ -46,7 +55,7 @@ export const environment = {
 
 
 
-}; 
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
