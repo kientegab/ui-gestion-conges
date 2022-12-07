@@ -5,7 +5,7 @@ export interface CompteSave {
   email?: string;
   matriculeResp?: string;
   password?: string;
-  structure2? : Structure;
+  structure? : Structure;
 }
 
 export interface GetAllCompteSaveResponse {
