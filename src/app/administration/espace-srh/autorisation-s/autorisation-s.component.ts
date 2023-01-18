@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, LazyLoadEvent, Message } from 'primeng/api';
+import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
@@ -11,6 +12,8 @@ import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
 import { environment } from 'src/environments/environment';
+import { Validation } from './../../../shared/models/validation.model';
+import { DecisionCongeService } from './../../../shared/services/decision-conge.service';
 
 @Component({
   selector: 'app-autorisation-s',
@@ -26,11 +29,12 @@ export class AutorisationSComponent implements OnInit {
   matricule!:string;
   demandes!:Demande[];
   demande:Demande= {};
+  validation:Validation={};
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
   typedemande:TypeDemande={};
-  utilisateur:Utilisateur={};
-  agent:Utilisateur={};
+  //tilisateur:Utilisateur={};
+  agent:Agent={};
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
   enableCreate = true;
@@ -49,15 +53,18 @@ export class AutorisationSComponent implements OnInit {
   fileUpload!: ElementRef;
   // fileslist:FileList=[] ;
   listFiles:string [] = [];
-
+  treatDialog!:boolean;
   message: any;
   dialogErrorMessage: any;
+  avisOptions:any[]=[{"libelle":"APPROUVEE", "valeur":"APPROVED"},
+  {"libelle":"REJETEE","valeur":"REJECTED"}]
   constructor(
     private autorisationService: AutorisationService ,
     private typeDemandeService: TypeDemandeService,
     private motifAbsenceService: MotifAbsenceService,
     private ministereService: MinistereService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private decisionCongeService: DecisionCongeService
   ) { }
 
   ngOnInit(): void {
@@ -65,10 +72,8 @@ export class AutorisationSComponent implements OnInit {
     this.loadTypedemande();
     this.loadMotifAbsence();
     //A remplacer par le numero matricule de l'agent connecté
-    this.matricule= '224365';
+    this.matricule= 'agent1';
     this.getUtilisateurByMatricule(this.matricule);
-
-    console.log('Agent',this.agent);
 
   }
 
@@ -81,18 +86,12 @@ export class AutorisationSComponent implements OnInit {
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
-        this.utilisateur = response.agent;
+        this.agent = response.agent;
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };
       }
     );
-  //   this.agent.matricule="224365";
-  //   this.agent.nom="OUEDRAOGO";
-  //   this.agent.prenom="Aboubacar";
-  //   this.agent.emploi="Technicien Supérieur";
-
-  //  console.log('utilisateur',this.utilisateur)
   }
 
    loadMotifAbsence(event?: LazyLoadEvent) {
@@ -138,53 +137,36 @@ export class AutorisationSComponent implements OnInit {
     });
   }
 
-  //Creation
-  save() {
-    if (this.demande.id) {
-      this.edit();
-    } else {
-      this.create();
+ 
+
+  onTraiter(selection:any) {
+    this.demande = Object.assign({}, selection);
+    this.clearDialogMessages();
+    this.treatDialog = true;
+  }
+
+  traiter(){
+
+    this.clearDialogMessages();
+    
+
+    const data={
+      numeroDemande:this.demande.numeroDemande,
+      matriculeValidateur:this.agent.matricule,
+      enumValidation:this.validation.enumValidation,
+      avis:this.validation.avis,
+      typeValidator:"SG"
     }
-  }
-
-  onCreate() {
-    this.demande = {};
-    this.clearDialogMessages();
-    this.form.resetForm();
-    this.showDialog = true;
-  }
-
-  create() {
-    this.clearDialogMessages();
-    this.isDialogOpInProgress = true;
-    // this.utilisateur={
-    //   matricule:'224365',
-    //   id:1,
-    //   nom:'OUEDRAOGO',
-    //   prenom:'Aboubacar',
-    // };
-    // this.demande.utilisateur= this.utilisateur;
-
-    // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
-    const formData: FormData = new FormData();
-    formData.append('demande', JSON.stringify(this.demande));
-    // for (let i = 0; i < this.listFiles.length; i++) {
-    //   formData.append("files[]", this.listFiles[i]);
-    // }
-    formData.append("files", this.listFiles[0]);
-    console.log('demande',this.demande);
-    console.log('formdata',formData);
-    this.autorisationService.create(formData).subscribe(response => {
-      if (this.demandes.length !== this.recordsPerPage) {
-        this.demandes.push(response);
-        this.demandes = this.demandes.slice();
-      }
-      this.totalRecords++;
+    this.decisionCongeService.traiter(data).subscribe(response => {
+      let index = this.demandes.findIndex(demande => demande.id === response.id);
+      this.demandes[index] = response;
       this.isDialogOpInProgress = false;
-      this.showDialog = false;
-      this.showMessage({ severity: 'success', summary: 'Demande enregistrée avec succès' });
+      this.treatDialog = false;
+      this.showMessage({ severity: 'success', summary: 'Demande validée avec succès' });
     }, error => this.handleError(error));
   }
+
+  
 
   onSelectFile(event:any): void {
     console.log(event.files[0]);

@@ -69,6 +69,14 @@ export  class AuthenticationService {
     }
     return user;
   }
+  public  getUsermatricule(): string {
+    let matricule= JSON.parse(localStorage.getItem(TOKEN_KEY)!)
+    
+    // if(matricule != null){
+    //   matricule = matricule.additionalInfo.matricule;
+    // }
+    return matricule;
+  }
 
   public tokenDecode() : any {
     const jwtHelper = new JwtHelperService();

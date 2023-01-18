@@ -15,6 +15,7 @@ export interface Utilisateur {
 }
 export interface Demande {
   id?:number;
+  agent?:Agent
   numeroDemande?:string;
   lieuJouissanceBF?:string;
   lieuJouissanceEtrang?:string;
@@ -23,13 +24,12 @@ export interface Demande {
   dureeAbsence?:number;
   periodeDebut?:Date;
   periodeFin?:Date;
-  // position?:string;
-  // avis?:string;
-  // etat?:string;
-  utilisateur?:Agent
+  positionDemande?:string;
+  statusDemande?:string;
+  trancheDemande?:string;
   typeDemande?:TypeDemande;
   motifAbsence?:MotifAbsence;
-  // motifRejet?:string;
+  motifRejet?:string;
 
 }
 

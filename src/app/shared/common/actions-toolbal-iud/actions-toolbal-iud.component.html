@@ -14,6 +14,7 @@
     <button pButton pRipple type="button" icon="pi pi-eye" label="" pTooltip="Détail" class="p-button-raised p-button-info mr-2 " [hidden]="!enableBtnInfo" (click)="fireInfo()"></button>
     <button pButton pRipple type="button" icon="pi pi-pencil" label="" pTooltip="Modifier" class="p-button-raised p-button-success mr-2" [hidden]="!enableBtnEdit" (click)="fireEdit()"></button>
     <button pButton pRipple type="button" icon="pi pi-trash" label="" class="p-button-raised p-button-danger mr-2" pTooltip="Supprimer" [hidden]="!enableBtnDelete" (click)="fireDelete()"></button>
+    <button pButton pRipple type="button" icon="pi pi-download" label="" class="p-button-raised p-button-success mr-2" pTooltip="Telecharger" [hidden]="!enableBtnDownload" (click)="fireDownload()"></button>
     <button pButton pRipple type="button" icon="pi pi-bookmark" label="Privileges" class="p-button-raised p-button-secondary mr-2" pTooltip="Privileges" [hidden]="!enableBtnPrivilege" (click)="firePrivilege()"></button>
     <button pButton pRipple type="button" icon="pi pi-lock" label="" class="p-button-raised p-button-secondary mr-2" pTooltip="Cloturer" [hidden]="!enableBtnClose" (click)="fireClose()"></button>
     <button pButton pRipple type="button" icon="pi pi-send" label="" class="p-button-raised p-button-secondary mr-2" pTooltip="Renvoie du mail" [hidden]="!enableBtnEmail" (click)="fireEmail()"></button>

@@ -24,7 +24,19 @@ export class ImportedService {
   importEmplois(request: any): Observable<any> {
       return this.http.post(corpImportUrl, request);
       }
+  
+      getAgentStructure(id:any){
+        return this.http.get(`${agentUrl}/'struct'/${id}`, { observe: 'response' })
+        .pipe(map(response => {
+          let value: Agent={};
+          value= response.body as Agent;
     
+          let data :Agent[]=[];
+           data.push(value);
+            return data;
+          }));
+      }
+
   getAll(event?: LazyLoadEvent): Observable<GetAllCorpsResponse> {
     //return this.http.get("assets/data/corps.json", { observe: 'response' })
     return this.http.get(corpUrl, { observe: 'response' })

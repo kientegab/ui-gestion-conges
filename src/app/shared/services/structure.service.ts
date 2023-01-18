@@ -5,9 +5,11 @@ import { LazyLoadEvent } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllStructureResponse, Structure } from '../models/structure.model';
+import { AnySoaRecord } from 'dns';
 
 
 const structureUrl = environment.structureRessource;
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +28,9 @@ export class StructureService {
       }));
   }
 
+ 
 
-
-  getStructureById(id: number): Observable<any> {
+  getStructureById(id: any): Observable<any> {
     return this.http.get(`${structureUrl}/${id}`, { observe: 'response' })
     .pipe(map(response => {
       let value: Structure={};

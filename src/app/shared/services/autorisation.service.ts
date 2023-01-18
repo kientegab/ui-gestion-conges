@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GetAllDemandeResponse, Demande, Utilisateur, GetUtilisateurResponse } from '../models/demande.model';
 import { Agent, GetAgentResponse } from '../models/agent.model';
+import { Validation } from './../models/validation.model';
 
 const Url = environment.demandeResource;
 const agentUrl = environment.agentResource;
@@ -28,7 +29,7 @@ export class AutorisationService {
       }));
   }
   getAllSHI(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
-    return this.http.get("assets/data/demandeSHI.json", { observe: 'response' })
+    return this.http.get(Url, { observe: 'response' })
    //return this.http.get(Url, { observe: 'response' })
    .pipe(map(response => {
        let demandesResponse: GetAllDemandeResponse = {
@@ -37,9 +38,9 @@ export class AutorisationService {
        return demandesResponse;
      }));
  }
- getAllSRH(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
-  return this.http.get("assets/data/demandeSRH.json", { observe: 'response' })
- //return this.http.get(Url, { observe: 'response' })
+ getAllDRH(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
+  //return this.http.get("assets/data/demandeSRH.json", { observe: 'response' })
+   return this.http.get(Url, { observe: 'response' })
  .pipe(map(response => {
      let demandesResponse: GetAllDemandeResponse = {
        demandes: response.body as Demande[]
@@ -48,7 +49,18 @@ export class AutorisationService {
    }));
 }
 
-  getUtilisateurByMatricule(matricule: string): Observable<GetAgentResponse> {
+ getAllSRH(event?: LazyLoadEvent): Observable<GetAllDemandeResponse> {
+  //return this.http.get("assets/data/demandeSRH.json", { observe: 'response' })
+   return this.http.get(Url, { observe: 'response' })
+ .pipe(map(response => {
+     let demandesResponse: GetAllDemandeResponse = {
+       demandes: response.body as Demande[]
+     };
+     return demandesResponse;
+   }));
+}
+
+  getUtilisateurByMatricule(matricule: any): Observable<GetAgentResponse> {
     return this.http.get(`${agentUrl}/login/${matricule}`, { observe: 'response' })
     .pipe(map(response => {
         let agentResponse: GetAgentResponse = {
@@ -57,6 +69,10 @@ export class AutorisationService {
         return agentResponse;
       }));
   }
+
+ traiter(request: any): Observable<Demande>{
+  return this.http.post(Url+'/validation_sh/true', request);
+ }
 
 
   create(request: any): Observable<Demande> {

@@ -23,6 +23,7 @@ export interface Agent {
   grade?:string;
   affectation?:string;
   corps?:Corps; //correspond a Emploi de l'agent
+  matriculeResp?:string;
 }
 
 export interface GetAllAgentResponse {

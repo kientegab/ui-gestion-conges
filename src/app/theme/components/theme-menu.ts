@@ -62,12 +62,42 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Congés',
     icon: 'list-outline',
-    link: '/workspace/autorisation',
+    link: '/espaceshi/conge',
     home: true,
   },
    ]
   },
-
+  {
+    title: 'Espace DRH',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Jouis. congé annuel',
+        icon: 'list-outline',
+        link: '/espacedrh/dashboards',
+        home: true,
+      },
+  {
+    title: 'Congés en cours',
+    icon: 'list-outline',
+    link: '/espacedrh/conge',
+    home: true,
+  },
+  {
+    title: 'Congés traités',
+    icon: 'list-outline',
+    link: '/espacedrh/autorisation',
+    home: true,
+  },
+  {
+    title: 'Congés actes',
+    icon: 'list-outline',
+    link: '/espacedrh/acte-conge',
+    home: true,
+  },
+   ]
+  },
   {
     title: 'Espace SRH',
     icon: 'lock-outline',
@@ -92,6 +122,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Autorisations actes',
+    icon: 'list-outline',
+    link: '/espacesrh/acte-autorisation',
+    home: true,
+  },
+  {
     title: 'Congés en cours',
     icon: 'list-outline',
     link: '/espacesrh/autorisation',
@@ -106,6 +142,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
    ]
   },
   {
+    title: 'Espace DGFP',
+    icon: 'lock-outline',
+    // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
+    children: [
+      {
+        title: 'Demandes en cours',
+        icon: 'list-outline',
+        link: '/espacesrh/autorisations',
+        home: true,
+      },
+      {
+        title: 'Demandes traités',
+        icon: 'list-outline',
+        link: '/espacesrh/autorisation',
+        home: true,
+      },
+   ]
+  },
+  {
     title: 'Paramétrage',
     icon: 'lock-outline',
     hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS']),
@@ -114,6 +169,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'TypeDemande',
         link: '/workspace/typeDemande',
+        icon: 'list-outline',
+        // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
+      },
+      {
+        title: 'TypeActe',
+        link: '/workspace/typeActe',
         icon: 'list-outline',
         // hidden:!AuthenticationService.checkPermissionTest(perms!,['ROLE_ADMIN','ROLE_RESP_STRUCT','ROLE_RESP_DGESS','ROLE_DIR_DGESS'])
       },

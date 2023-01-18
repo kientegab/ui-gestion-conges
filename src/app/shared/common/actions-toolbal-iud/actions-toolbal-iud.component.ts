@@ -9,6 +9,7 @@ export class ActionsToolbalIudComponent implements OnInit {
   @Input() enableBtnInfo!: boolean;
   @Input() enableBtnEdit!: boolean;
   @Input() enableBtnDelete!: boolean;
+  @Input() enableBtnDownload!: boolean;
   @Input() enableBtnPrivilege?: boolean=false ;
   @Input() enableBtnClose: boolean=false;
   @Input() enableBtnEmail: boolean=false;
@@ -27,6 +28,8 @@ export class ActionsToolbalIudComponent implements OnInit {
   @Output() evaluer: EventEmitter<any> = new EventEmitter();
   @Output() changer: EventEmitter<any> = new EventEmitter();
   @Output() editProfil: EventEmitter<any> = new EventEmitter();
+  @Output() download: EventEmitter<any> = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -67,4 +70,8 @@ export class ActionsToolbalIudComponent implements OnInit {
   fireEditProfil(){
     this.editProfil.emit();
     }
+  
+  fireDownload(){
+    this.download.emit()
+  }
 }

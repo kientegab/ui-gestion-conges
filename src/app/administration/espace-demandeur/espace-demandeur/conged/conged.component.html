@@ -13,7 +13,7 @@
       </div>
       <p-divider></p-divider>
   
-      <p-table #dt [value]="demandes" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+      <p-table #dt [value]="conges" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
         (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['numeroDemande','typeDemande.libelle','motifAbsence.libelle']"
         currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
         [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
@@ -22,7 +22,7 @@
           <div class="row">
             <!-- titre -->
             <div class="col" style="padding: 8px; margin-left: 8px">
-              <span>Liste des demandes</span>
+              <span>Liste des demandes de décision de congés</span>
             </div>
   
             <!-- volet recherche -->
@@ -46,7 +46,7 @@
               <p-sortIcon field="typeDemande"></p-sortIcon>
             </th>
   
-            <th pSortableColumn="motifAbsence">ref. Decision
+            <th pSortableColumn="motifAbsence">ref.D.Decision
               <p-sortIcon field="motifAbsence"></p-sortIcon>
             </th>
   
@@ -75,12 +75,11 @@
             <td>{{demande.refLastDecision}} </td>
             <td>{{demande.periodeDebut | date:'dd/MM/yyyy'}} </td>
             <td>{{demande.periodeFin | date:'dd/MM/yyyy'}} </td>
-            <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.etat}} </td>
+            <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.statusDemande}} </td>
             <td class="actionStyle">
   
               <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"
-                (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(demande)"
-                [enableBtnDelete]="enableBtnDelete">
+                (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit">
               </app-actions-toolbal-iud>
   
             </td>
@@ -147,7 +146,7 @@
   
           <div class="p-field p-col-12 md:col-6">
             <label for="typedemande">Type demande:</label>
-            <p-dropdown [options]="typeDemandes" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
+            <p-dropdown [options]="lestypeDemandes" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
               inputId="typeDemande" name="typeDemande" placeholder="Selectionner un type de demande..." [filter]="true"
               appendTo="body" [showClear]="true">
             </p-dropdown>
@@ -267,7 +266,7 @@
             </li>
             <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">
-                  Matricule : </span> {{demande.utilisateur?.matricule }}</span>
+                  Matricule : </span> {{demande.agent?.matricule }}</span>
             </li>
             <!-- <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">

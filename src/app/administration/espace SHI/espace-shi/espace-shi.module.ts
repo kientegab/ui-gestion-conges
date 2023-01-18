@@ -26,13 +26,15 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { AutorisationComponent } from '../espace-shi/autorisation/autorisation.component';
+import { CongeComponent } from './conge/conge.component';
 
 
 @NgModule({
   declarations: [
     EspaceShiMenuComponent,
     AutorisationComponent,
-    DashboardComponent
+    DashboardComponent,
+    CongeComponent
   ],
   imports: [
 

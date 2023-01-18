@@ -19,6 +19,7 @@ import { CorpsComponent } from './corps/corps.component';
 import { CompteComponent } from './compte/compte.component';
 import { AmpliationComponent } from './ampliation/ampliation.component';
 import { TypeVisaComponent } from './type-visa/type-visa.component';
+import { TypeActeComponent } from './type-acte/type-acte.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
     {path: 'structure', component: StructureComponent },
     { path: 'ministere', component: MinistereComponent },
     { path: 'typeVisa', component: TypeVisaComponent },
-
+    { path: 'typeActe', component: TypeActeComponent },
 
     { path: 'visas', component: VisaComponent },
     { path: 'avis', component: AvisComponent },
@@ -60,6 +61,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
+
 
 exports: [RouterModule]
 })
