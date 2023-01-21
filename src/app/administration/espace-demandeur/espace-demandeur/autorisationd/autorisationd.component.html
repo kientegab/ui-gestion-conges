@@ -13,7 +13,7 @@
     </div>
     <p-divider></p-divider>
 
-    <p-table #dt [value]="demandes" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+    <p-table #dt [value]="autorisations" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
       (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['numeroDemande','typeDemande.libelle','motifAbsence.libelle']"
       currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
       [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
@@ -22,7 +22,7 @@
         <div class="row">
           <!-- titre -->
           <div class="col" style="padding: 8px; margin-left: 8px">
-            <span>Liste des demandes</span>
+            <span>Liste des demandes d'autorisations d'absence</span>
           </div>
 
           <!-- volet recherche -->
@@ -75,12 +75,11 @@
           <td>{{demande.motifAbsence?.libelle}} </td>
           <td>{{demande.periodeDebut | date:'dd/MM/yyyy'}} </td>
           <td>{{demande.periodeFin | date:'dd/MM/yyyy'}} </td>
-          <td>{{demande.etat}} </td>
+          <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.statusDemande}} </td>
           <td class="actionStyle">
 
             <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"
-              (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(demande)"
-              [enableBtnDelete]="enableBtnDelete">
+              (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit">
             </app-actions-toolbal-iud>
 
           </td>
@@ -109,30 +108,31 @@
 
         <div class="p-field p-col-12 md:col-6">
           <label for="matricule">Matricule: </label>
-          <input type="text" id="matricule"  [value]="agent.matricule"
+          <input readonly="true" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="agent.matricule"  pInputText/>
+        </div>
+        <div class="p-field p-col-12 md:col-6">
+          <label for="matriculeResp">Nom du Supérieur:</label>
+          <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="shi.nom"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
         <div class="p-field p-col-12 md:col-6">
           <label for="ministere">Ministère:</label>
-          <input type="text" id="ministere" name="ministere" 
+          <input type="text" id="ministereAgent" name="ministereAgent"  [(ngModel)]="ministereAgent" value="ministereAgent"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
+
 
         <div class="p-field p-col-12 md:col-6">
           <label for="service">Service:</label>
-          <input type="text" id="service" name="service"
+          <input type="text" id="structureAgent" name="structureAgent"  [(ngModel)]="structureAgent"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
-        <div class="p-field p-col-12 md:col-6">
-          <label for="superieurHD">Nom du Supérieur:</label>
-          <input type="text" id="superieurHD" name="superieurHD"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
+        
 
         <div class="p-field p-col-12 md:col-6">
           <label for="typedemande">Type demande:</label>
-          <p-dropdown [options]="typeDemandes" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
+          <p-dropdown [options]="lestypeDemandes" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
             inputId="typeDemande" name="typeDemande" placeholder="Selectionner un type de demande..." [filter]="true"
             appendTo="body" [showClear]="true">
           </p-dropdown>
@@ -146,45 +146,52 @@
           </p-dropdown>
         </div>
 
-        <!-- <div class="p-field p-col-12 md:col-6">
+        <!-- <div class="p-field p-col-12 md:col-6" hidden="true">
           <label for="lieuJouissanceBF">Lieu jouissance BF:</label>
           <input type="text" id="lieuJouissanceBF" name="lieuJouissanceBF" #lieuJouissanceBF="ngModel"
             [(ngModel)]="demande.lieuJouissanceBF"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
-        <div class="p-field p-col-12 md:col-6">
+        <div class="p-field p-col-12 md:col-6" hidden="true">
           <label for="lieuJouissanceEtrang">LieuJouissance Etranger:</label>
           <input type="text" id="lieuJouissanceEtrang" name="lieuJouissanceEtrang" #responsable="ngModel"
             [(ngModel)]="demande.lieuJouissanceEtrang"
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+       
+        <div class="p-field p-col-12 md:col-6" hidden="true">
+          <label for="situationSND">Situation SND:</label>
+          <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </div>
+        <div class="p-field p-col-12 md:col-6" hidden="true">
+          <label for="trancheDemande">tranche(Pour jouissance annuelle):</label>
+          <input type="text" id="trancheDemande" name="trancheDemande" #trancheDemande="ngModel" [(ngModel)]="demande.trancheDemande"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div> -->
 
-        <div class="p-field p-col-12 md:col-6">
+        <div class="p-field p-col-12 md:col-12">
           <label for="refLastDecision">Ref dernier acte d'autorisation:</label>
           <input type="text" id="refLastDecision" name="refLastDecision" #refLastDecision="ngModel" [(ngModel)]="demande.refLastDecision" required
             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
         </div>
 
-        <div class="p-field p-col-12 md:col-6">
-          <label for="situationSND">trache(Pour jouissance annuelle):</label>
-          <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND"
-            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-        </div>
+        
+     
+      <div class="p-field p-col-12 md:col-6">
+        <label for="periodeDebut">Période Debut:</label>
+        <p-calendar name="periodeDebut" #periodeDebut="ngModel" [(ngModel)]="demande.periodeDebut"
+              dateFormat="dd-mm-yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
+        </p-calendar>
+      </div>
 
-        <div class="p-field p-col-12 md:col-6">
-          <label for="periodeDebut">Période Debut:</label>
-          <p-calendar name="periodeDebut" #periodeDebut="ngModel" [(ngModel)]="demande.periodeDebut"
-                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
-          </p-calendar>
-        </div>
-
-        <div class="p-field p-col-12 md:col-6">
-          <label for="periodeFin">Période Fin:</label>
-          <p-calendar name="periodeFin" #periodeFin="ngModel" [(ngModel)]="demande.periodeFin"
-                dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
-          </p-calendar>
-        </div>
+      <div class="p-field p-col-12 md:col-6">
+        <label for="periodeFin">Période Fin:</label>
+        <p-calendar name="periodeFin" #periodeFin="ngModel" [(ngModel)]="demande.periodeFin"
+              dateFormat="dd-mm-yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
+        </p-calendar>
+      </div> 
 
         <!-- <div class="p-field p-col-12 md:col-12">
           <p-fileUpload id="description"  name="files"
@@ -263,7 +270,7 @@
           </li>
           <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">
-                Matricule : </span> {{demande.utilisateur?.matricule }}</span>
+                Matricule : </span> {{demande.agent?.matricule }}</span>
           </li>
           <!-- <li class="list-group-item list-group-item-action">
             <span class="va-m"><span class="font-weight-bold">

@@ -3,8 +3,8 @@
       <!-- ToolBar -->
   
       <div class="p-d-flex mt-2 mb-3">
-        <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
-        </app-crud-toolbar>
+        <!-- <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
+        </app-crud-toolbar> -->
         <div class="p-ml-auto">
           <p-message *ngIf="message" [severity]="message.severity" [text]="message.summary"></p-message>
           <p-progressSpinner *ngIf="isOpInProgress" strokeWidth="4" [style]="{width: '50px', height: '50px'}">
@@ -13,7 +13,7 @@
       </div>
       <p-divider></p-divider>
   
-      <p-table #dt [value]="demandes" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+      <p-table #dt [value]="autorisations" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
         (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['numeroDemande','typeDemande.libelle','motifAbsence.libelle']"
         currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
         [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
@@ -58,15 +58,17 @@
               <p-sortIcon field="periodeFin"></p-sortIcon>
             </th>
   
+            <th pSortableColumn="etat">Position
+              <p-sortIcon field="etat"></p-sortIcon>
+            </th>
+
             <th pSortableColumn="etat">Etat
               <p-sortIcon field="etat"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="etat">Avis
-                <p-sortIcon field="etat"></p-sortIcon>
-              </th>
+            
   
-            <th >
+            <th class="actionStyle" >
               Actions
             </th>
           </tr>
@@ -74,18 +76,20 @@
   
         <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-demande>
           <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="demande">
-            <td>{{demande.utilisateur?.nom}} </td>
-            <td>{{demande.utilisateur?.prenom}} </td>
+            <td>{{demande.agent?.nom}} </td>
+            <td>{{demande.agent?.prenom}} </td>
             <td>{{demande.motifAbsence?.libelle}} </td>
-            <td>{{demande.periodeDebut}} </td>
-            <td>{{demande.periodeFin}} </td>
-            <td >{{demande.etat}} </td>
-            <td>{{demande.avis}} </td>
+            <td>{{demande.periodeDebut |  date:'dd/MM/yyyy'}} </td>
+            <td>{{demande.periodeFin |  date:'dd/MM/yyyy'}} </td>
+            <td pTooltip="En attente d'être validé ">
+             {{demande.positionDemande}}
+            </td>
+            <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.statusDemande}} </td>
+            
             <td class="actionStyle">
   
               <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"
-                (edit)="onEdit(demande)" [enableBtnEdit]="enableBtnEdit" (delete)="onDelete(demande)"
-                [enableBtnDelete]="enableBtnDelete">
+                 (treat)="onTraiter(demande)" [enableBtnTreat]="enableBtnTreat">
               </app-actions-toolbal-iud>
   
             </td>
@@ -93,145 +97,7 @@
         </ng-template>
       </p-table>
     </p-card>
-  
-    <!-- formulaire d'ajout et de modification -->
-  
-    <p-dialog [(visible)]="showDialog" [modal]="true" [maximizable]="true" appendTo="body" [style]="{width: '70vw'}"
-      [contentStyle]="{height: '700px'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
-      <ng-template pTemplate="header">
-        <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1"></i>
-        <span class="mr-auto">
-          {{demande.id ? 'Modifier' : 'Ajouter'}} une demande
-        </span>
-      </ng-template>
-      <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
-      <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
-      <p-divider></p-divider>
-      <!-- Form -->
-      <form (ngSubmit)="save()" #dtf="ngForm">
-  
-        <!--  -->
-        <div class="p-fluid grid">
-  
-          <!-- <div>matricule: {{agent.matricule}}</div>
-          <div>nom: {{agent.nom}}</div>
-          <div>Utilisteur nom: {{utilisateur.nom}}</div>
-  
-          <br> -->
-          <div class="p-field p-col-12 md:col-6">
-            <label for="matricule">Matricule: </label>
-            <input type="text" id="matricule"  name="matricule" #matricule="ngModel" [(ngModel)]="utilisateur.matricule"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="utilisateur.nom"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="prenom">Prenom:</label>
-            <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="utilisateur.prenom"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <!-- <div class="p-field p-col-12 md:col-6">
-            <label for="emploi">Emploi:</label>
-            <input type="text" id="emploi" name="emploi" #emploi="ngModel" [(ngModel)]="utilisateur.emploi"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div> -->
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="typedemande">Type demande:</label>
-            <p-dropdown [options]="typeDemandes" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
-              inputId="typeDemande" name="typeDemande" placeholder="Selectionner un type de demande..." [filter]="true"
-              appendTo="body" [showClear]="true">
-            </p-dropdown>
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="motifAbsence">Motif absence:</label>
-            <p-dropdown [options]="motifAbsences" [(ngModel)]="demande.motifAbsence" optionLabel="libelle"
-              inputId="motifAbsence" name="motifAbsence" placeholder="Selectionner un motif d'absence..." [filter]="true"
-              appendTo="body" [showClear]="true">
-            </p-dropdown>
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="lieuJouissanceBF">Lieu jouissance BF:</label>
-            <input type="text" id="lieuJouissanceBF" name="lieuJouissanceBF" #lieuJouissanceBF="ngModel"
-              [(ngModel)]="demande.lieuJouissanceBF"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="lieuJouissanceEtrang">LieuJouissance Etranger:</label>
-            <input type="text" id="lieuJouissanceEtrang" name="lieuJouissanceEtrang" #responsable="ngModel"
-              [(ngModel)]="demande.lieuJouissanceEtrang"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="refLastDecision">ref dernière decision:</label>
-            <input type="text" id="refLastDecision" name="refLastDecision" #refLastDecision="ngModel" [(ngModel)]="demande.refLastDecision" required
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="situationSND">situation SND:</label>
-            <input type="text" id="situationSND" name="situationSND" #situationSND="ngModel" [(ngModel)]="demande.situationSND"
-              class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="periodeDebut">Période Debut:</label>
-            <p-calendar name="periodeDebut" #periodeDebut="ngModel" [(ngModel)]="demande.periodeDebut"
-                  dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
-            </p-calendar>
-          </div>
-  
-          <div class="p-field p-col-12 md:col-6">
-            <label for="periodeFin">Période Fin:</label>
-            <p-calendar name="periodeFin" #periodeFin="ngModel" [(ngModel)]="demande.periodeFin"
-                  dateFormat="dd/mm/yy" inputId="dateformat" [showIcon]="true" inputId="icon" [required]="true">
-            </p-calendar>
-          </div>
-  
-          <div class="p-field p-col-12 md:col-12">
-            <p-fileUpload id="files"  name="files"
-            mode="advanced" [showCancelButton]="false" [auto]="true" [customUpload]="true" accept="application/pdf"
-           [showUploadButton]="false" chooseLabel="Selectionnez" (uploadHandler)="onSelectFile($event)"
-           [required]="false"
-  
-           >
-           <ng-template pTemplate="content" let-files>
-             <div *ngIf="!files.length" class="text-danger text-center p-p-5 app-yellow">
-               <i class="pi pi-upload" style="font-size: 2rem"></i>
-               <div>
-                 <span>Selectionnez ou glissez et deplacez un fichier ici (format accepté pdf)</span>
-               </div>
-             </div>
-           </ng-template>
-         </p-fileUpload>
-          </div>
-  
-  
-  
-  
-        </div>
-          <p-divider></p-divider>
-          <div class="p-ml-auto text-right">
-            <button description="reset" label="Annuler" (click)="showDialog=false"
-              class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
-            <button description="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
-              icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
-              class="p-button-raised p-button-text {{isEditing() ? 'p-button-primary' : 'p-button-success'}}"
-              pButton></button>
-          </div>
-  
-      </form>
-    </p-dialog>
+
   
     <!-- formulaire d'affichage du détail -->
   
@@ -261,27 +127,30 @@
             <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">Période Fin:</span> {{demande.periodeFin}}</span>
             </li>
-            <!-- <li class="list-group-item list-group-item-action">
-              <span class="va-m"><span class="font-weight-bold">Avis:</span> {{demande.avis}}</span>
-            </li> -->
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Statut:</span> {{demande.statusDemande}}</span>
+            </li>
   
             <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">
-                  Matricule : </span> {{demande.utilisateur?.matricule }}</span>
+                  Matricule : </span> {{demande.agent?.matricule }}</span>
             </li>
             <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">
-                  Nom : </span> {{demande.utilisateur?.nom }}</span>
+                  Nom : </span> {{demande.agent?.nom }}</span>
             </li>
             <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">
-                  Prenom : </span> {{demande.utilisateur?.prenom }}</span>
+                  Prenom : </span> {{demande.agent?.prenom }}</span>
             </li>
-            <!-- <li class="list-group-item list-group-item-action">
+            <li class="list-group-item list-group-item-action">
               <span class="va-m"><span class="font-weight-bold">
-                  Emploi : </span> {{demande.utilisateur?.emploi }}</span>
-            </li> -->
-  
+                  Emploi : </span> {{demande.agent?.corps?.libelleCorps }}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">
+                  Responsable : </span> {{demande.agent?.matriculeResp }}</span>
+            </li>
           </ul>
         </div>
   
@@ -306,18 +175,18 @@
        <div  class="p-fluid grid">
         <div class="p-field p-col-12 md:col-12">
           <label for="typedemande">Avis</label>
-          <p-dropdown [options]="avisOptions" [(ngModel)]="demande.typeDemande" optionLabel="libelle"
-            inputId="typeDemande" name="typeDemande" placeholder="Selectionner un avis..." [filter]="true"
+          <p-dropdown [options]="avisOptions" [(ngModel)]="validation.enumValidation" optionLabel="libelle" optionValue="valeur"
+            inputId="enumValidation" name="enumValidation" placeholder="Selectionner un avis..." [filter]="true"
             appendTo="body" [showClear]="true">
           </p-dropdown>
         </div>
         <div class="p-field p-col-12 md:col-12">
-          <label for="typedemande">Commentaire</label>
-          <textarea type="text" id="description"  rows="4" name="description"  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+          <label for="avis">Commentaire</label>
+          <textarea type="text" id="avis"  rows="4" name="avis" [(ngModel)]="validation.avis" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
         </div>
        </div>
        <p-divider></p-divider>
-       <p-button>Valider</p-button>
+       <p-button (click)="traiter()">Valider</p-button>
     </p-dialog>
     <!-- Confirmation -->
     <!-- <app-confirmation></app-confirmation> -->

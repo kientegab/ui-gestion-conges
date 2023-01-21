@@ -6,10 +6,13 @@ import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
+import { Structure } from 'src/app/shared/models/structure.model';
 import { TypeDemande } from 'src/app/shared/models/typeDemande.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AutorisationService } from 'src/app/shared/services/autorisation.service';
 import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
+import { StructureService } from 'src/app/shared/services/structure.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
 import { environment } from 'src/environments/environment';
 
@@ -23,15 +26,20 @@ export class CongedComponent implements OnInit {
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
+  //Matri:string="admin2";
   recordsPerPage = environment.recordsPerPage;
   matricule!:string;
   demandes!:Demande[];
   demande:Demande= {};
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
+  lestypeDemandes:TypeDemande[]=[];
   typedemande:TypeDemande={};
-  utilisateur:Agent={};
-  agent:Utilisateur={};
+  conges: Demande[]=[];
+  agent:Agent={};
+  shi: Agent={};
+  structure:Structure={};
+  structureAgent:any;
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
   enableCreate = true;
@@ -46,9 +54,7 @@ export class CongedComponent implements OnInit {
   file: Blob | string = '';
   files: Blob | string ='';
   uploadedFiles: any[] = [];
-  // uploadedFiles!:FileList;
   fileUpload!: ElementRef;
-  // fileslist:FileList=[] ;
   listFiles:string [] = [];
 
   message: any;
@@ -58,18 +64,21 @@ export class CongedComponent implements OnInit {
     private typeDemandeService: TypeDemandeService,
     private motifAbsenceService: MotifAbsenceService,
     private ministereService: MinistereService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private authenticationService:AuthenticationService,
+    private structureService: StructureService
   ) { }
 
   ngOnInit(): void {
-    this.load();
+     //A remplacer par le numero matricule de l'agent connecté
+    this.matricule= 'admin';
+    this.getUtilisateurByMatricule(this.matricule);
+    //this.getUtilisateurStructure()
+   // this.load();
     this.loadTypedemande();
     this.loadMotifAbsence();
-    //A remplacer par le numero matricule de l'agent connecté
-    this.matricule= '224365';
-    // this.getUtilisateurByMatricule(this.matricule);
 
-    // console.log('Agent',this.agent);
+
 
   }
 
@@ -77,23 +86,41 @@ export class CongedComponent implements OnInit {
     return !!this.demande.id;
   }
 
+  // getUtilisateurStructure(){
+  //  this.structureService.getStructureById(this.authenticationService.getStructureId()).subscribe(
+  //   (response)=>{
+  //     this.structure=response.structure;
+  //     this.structureAgent=this.structure.libelle;
+  //   }
+  //  )
+  // }
+
   getUtilisateurByMatricule(matricule:string) {
     this.isLoading = true;
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
-        this.utilisateur = response.agent;
+        this.agent = response.agent;
+         
+        console.log("Retour get agent",this.agent);
+        this.autorisationService.getUtilisateurByMatricule(this.agent.matriculeResp).subscribe(
+          (response) => {
+            this.isLoading = false;
+            this.shi = response.agent;
+             
+            console.log("Retour get agent",this.agent);
+            
+            
+          },
+          (error) => {
+            this.message = { severity: 'error', summary: error.error };
+          }
+        );
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };
       }
     );
-  //   this.agent.matricule="224365";
-  //   this.agent.nom="OUEDRAOGO";
-  //   this.agent.prenom="Aboubacar";
-  //   this.agent.emploi="Technicien Supérieur";
-
-  //  console.log('utilisateur',this.utilisateur)
   }
 
    loadMotifAbsence(event?: LazyLoadEvent) {
@@ -114,15 +141,18 @@ export class CongedComponent implements OnInit {
     this.isLoading = true;
     this.typeDemandeService.getAll().subscribe(
       (response) => {
-        this.isLoading = false;
-        this.typeDemandes = response.typeDemandes;
-        // console.log("type demande", this.typeDemandes);
-      },
-      (error) => {
+        this.typeDemandes=response.typeDemandes;
+        this.typeDemandes.forEach(t => {
+          let code:any=t.code;
+          if(code.includes("CONG")){
+            this.lestypeDemandes.push(t);
+          }
+        })
+      }, error => {
         this.message = { severity: 'error', summary: error.error };
-      }
-    );
-  }
+        console.error(JSON.stringify(error));
+      });
+    }
 
 
 
@@ -132,7 +162,12 @@ export class CongedComponent implements OnInit {
     this.autorisationService.getAll().subscribe(response => {
       this.isLoading = false;
       this.demandes = response.demandes;
-
+      this.demandes.forEach(t => {
+        let typeDemande:any=t.typeDemande?.code
+        if(typeDemande.includes("CONG")){
+          this.conges.push(t);
+        }
+      })
     }, error => {
       this.message = { severity: 'error', summary: error.error };
       console.error(JSON.stringify(error));
@@ -153,35 +188,62 @@ export class CongedComponent implements OnInit {
     this.clearDialogMessages();
     this.form.resetForm();
     this.showDialog = true;
+    this.getUtilisateurByMatricule(this.matricule);
+    
+
   }
+ 
 
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    // this.utilisateur={
-    //   matricule:'224365',
-    //   id:2,
-    //   nom:'ADMIN',
-    //   prenom:'ADMIN',
-    // };
-    // this.demande.utilisateur= this.utilisateur;
-    this.demande.numeroDemande= "SPMABG31048";
+    const user ={
+      id:this.agent.id,
+      matricule:this.agent.matricule,
+     
+    };
 
-    // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
+
+  //  const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
+  //  this.demande.agent=this.agent;
+  //  this.demande.statusDemande="INITIATION";
+  //  this.demande.positionDemande="DEMANDEUR";
+  //  this.demande.dureeAbsence=0;
+  //  this.demande.motifRejet="";
+  //  this.demande.numeroDemande="";
+  //  this.demande.lieuJouissanceBF="";
+  //  this.demande.lieuJouissanceEtrang="";
+  //  this.demande.situationSND="";
+  //  this.demande.trancheDemande="";
+
+  const data={
+    agent: user,
+    motifRejet:"pp",
+    lieuJouissanceBF:"pp",
+    lieuJouissanceEtrang:"pp",
+    periodeDebut:this.demande.periodeDebut,
+    periodeFin:this.demande.periodeFin,
+    situationSND:"pp",
+    refLastDecision:"rrr",
+    dureeAbsence:0,
+    statusDemande:"INITIATION",
+    positionDemande:"DEMANDEUR",
+    typeDemande:this.demande.typeDemande,
+    motifAbsence:this.demande.motifAbsence
+  }
+
     const formData: FormData = new FormData();
-    formData.append('demande', JSON.stringify(this.demande));
-    // for (let i = 0; i < this.listFiles.length; i++) {
-    //   formData.append("files[]", this.listFiles[i]);
-    // }
+    formData.append('demande', JSON.stringify(data));
     formData.append("files", this.listFiles[0]);
-    console.log('demande',this.demande);
+    console.log('demande',data);
     console.log('formdata',formData);
     this.autorisationService.create(formData).subscribe(response => {
-      if (this.demandes.length !== this.recordsPerPage) {
-        this.demandes.push(response);
-        this.demandes = this.demandes.slice();
-      }
-      this.totalRecords++;
+      // if (this.demandes.length !== this.recordsPerPage) {
+      //   this.demandes.push(response);
+      //   this.demandes = this.demandes.slice();
+      // }
+      // this.totalRecords++;
+      this.load();
       this.isDialogOpInProgress = false;
       this.showDialog = false;
       this.showMessage({ severity: 'success', summary: 'Demande enregistrée avec succès' });

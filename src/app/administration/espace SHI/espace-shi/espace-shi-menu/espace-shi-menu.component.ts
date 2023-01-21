@@ -48,58 +48,7 @@ export class EspaceShiMenuComponent implements OnInit {
 
 
   this.items = [
-    {
-      label: 'Accueil',
-      icon: 'pi pi-home',
-      routerLink: ['/']
-      //  icon:'pi pi-fw pi-power-off'
-    },
-    {
-      label: 'Formuler une demande',
-      icon: 'pi pi-folder-open',
-      routerLink: ['/entreprise']
-      //  icon:'pi pi-fw pi-power-off'
-    },
-    {
-      label: 'Mes Attestations aux marchés plubics',
-      icon: 'pi pi-folder-open',
-      routerLink: ['/entreprise/mes-demandes']
-      //  icon:'pi pi-fw pi-power-off'
-    },
-    {
-      label: 'Mes attestations de declarations',
-      icon: 'pi pi-folder-open',
-      routerLink: ['/entreprise/mes-demandes-declarations']
-      //  icon:'pi pi-fw pi-power-off'
-    },
+  
   ];
-
-  //   this.items = [
-  //     {
-  //         label:'Accueil',
-  //         icon: 'pi pi-home',
-  //         routerLink: ['/']
-  //       //  icon:'pi pi-fw pi-power-off'
-  //     },
-  //     {
-  //       label:'Postuler',
-  //       icon: 'pi pi-folder-open',
-  //       routerLink: ['/entreprise/postuler']
-  //     //  icon:'pi pi-fw pi-power-off'
-  //   },
-  //     {
-  //       label:'Mes demandes',
-  //       icon: 'pi pi-folder-open',
-  //       routerLink: ['/entreprise/mes-demandes']
-  //     //  icon:'pi pi-fw pi-power-off'
-  //   },
-  // //   {
-  // //     label:'Mon profil',
-  // //     icon: 'pi pi-folder-open',
-  // //     routerLink: ['/entreprise/mon-profil']
-  // //   //  icon:'pi pi-fw pi-power-off'
-  // // },
-   
-  // ];
   }
 }

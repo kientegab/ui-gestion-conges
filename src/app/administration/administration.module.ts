@@ -6,7 +6,7 @@ import { ConfirmationService } from 'primeng/api/confirmationservice';
 import { MessageService } from 'primeng/api';
 import { ThemeLandingComponent } from '../theme/components/theme-landing/theme-landing.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { NbButtonModule, NbCardModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbInputModule, NbSelectModule, NbStepperModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -34,9 +34,11 @@ import { CorpsComponent } from './corps/corps.component';
 import { AgentComponent } from './agent/agent.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { TypeVisaComponent } from './type-visa/type-visa.component';
+import { CalendarModule } from 'primeng/calendar';
+import {StepsModule} from 'primeng/steps';
+import {MenuItem} from 'primeng/api';
 
 import { InputTextModule } from 'primeng/inputtext';
-import {CalendarModule} from 'primeng/calendar';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { MessageModule } from 'primeng/message';
@@ -57,6 +59,12 @@ import { EspaceSRHRoutingModule } from './espace-srh/espace-srh-routing.module';
 import { DashboardSComponent } from './espace-srh/dashboard-s/dashboard-s.component';
 import { CongedComponent } from './espace-demandeur/espace-demandeur/conged/conged.component';
 import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/autorisation.component';
+import { EspaceRedacteurDrhRoutingModule } from './espace-redacteur-drh/espace-redacteur-drh-routing.module';
+import { DemandeCongeEncoursComponent } from './espace-redacteur-drh/demande-conge-encours/demande-conge-encours.component';
+import { CongeComponent } from './espace SHI/espace-shi/conge/conge.component';
+import { ActeAutorisationsComponent } from './espace-srh/acte-autorisations/acte-autorisations.component';
+import { ActeCongesComponent } from './espace-redacteur-drh/acte-conges/acte-conges.component';
+import { TypeActeComponent } from './type-acte/type-acte.component';
 
 
 @NgModule({
@@ -80,7 +88,11 @@ import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/auto
        AutorisationSComponent,
        AutorisationComponent,
        DashboardSComponent,
-       CongedComponent,//on ajoute
+       CongedComponent,
+       CongeComponent,
+       DemandeCongeEncoursComponent,
+       ActeAutorisationsComponent,
+       ActeCongesComponent,//on ajoute
        CompteComponent,
        VisaTypeDemandeComponent,
 
@@ -94,13 +106,15 @@ import { AutorisationComponent } from './espace SHI/espace-shi/autorisation/auto
        CompteComponent,
        VisaTypeDemandeComponent,
        AmpliationComponent,
-       TypeVisaComponent
+       TypeVisaComponent,
+       TypeActeComponent
   ],
   imports: [
 AdministrationRoutingModule,
   EspaceSHIRoutingModule,
   EspaceDemandeurRoutingModule,
   EspaceSRHRoutingModule,
+  EspaceRedacteurDrhRoutingModule,
     AppCommonModule,
     CommonModule,
     ReactiveFormsModule,
@@ -125,7 +139,12 @@ AdministrationRoutingModule,
     InputTextModule,
     FileUploadModule,
     ContextMenuModule,
-    CalendarModule
+    CalendarModule,
+    StepsModule,
+    NbStepperModule,
+    NbSelectModule,
+    NbInputModule,
+    CardModule
 
 
   ],

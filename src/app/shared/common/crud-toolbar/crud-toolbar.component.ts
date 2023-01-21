@@ -10,12 +10,12 @@ export class CrudToolbarComponent implements OnInit {
   @Input() enableCreate!: boolean;
   @Input() enableEdit!: boolean;
   @Input() enableDelete!: boolean;
-
+  @Input() enableTreat!: boolean
 
   @Output() create: EventEmitter<any> = new EventEmitter();
   @Output() edit: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();
-
+  @Output() treat: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -33,5 +33,8 @@ export class CrudToolbarComponent implements OnInit {
     this.delete.emit();
   }
 
+  fireTreat() {
+    this.treat.emit();
+  }
  
 }

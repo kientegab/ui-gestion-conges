@@ -6,12 +6,17 @@ import { Agent } from 'src/app/shared/models/agent.model';
 import { Demande, Utilisateur } from 'src/app/shared/models/demande.model';
 import { Ministere } from 'src/app/shared/models/ministere.model';
 import { MotifAbsence } from 'src/app/shared/models/motifAbsence.model';
+import { Structure } from 'src/app/shared/models/structure.model';
 import { TypeDemande } from 'src/app/shared/models/typeDemande.model';
 import { AutorisationService } from 'src/app/shared/services/autorisation.service';
+import { ImportedService } from 'src/app/shared/services/imported.service';
 import { MinistereService } from 'src/app/shared/services/ministere.service';
 import { MotifAbsenceService } from 'src/app/shared/services/motif-absence.service';
 import { TypeDemandeService } from 'src/app/shared/services/type-demande.service';
 import { environment } from 'src/environments/environment';
+import { StructureService } from './../../../../shared/services/structure.service';
+import { AuthenticationService } from './../../../../shared/services/authentication.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-autorisationd',
@@ -23,19 +28,25 @@ export class AutorisationdComponent implements OnInit {
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
-  Matri:string="admin2";
   recordsPerPage = environment.recordsPerPage;
-  matricule!:string;
+  matricule!:any;
   demandes!:Demande[];
   demande:Demande= {};
   ministeres!: Ministere[];
   typeDemandes!:TypeDemande[];
   typedemande:TypeDemande={};
-  utilisateur:Agent={};
+  lestypeDemandes:TypeDemande[]=[];
+  //utilisateur:Agent={};
   agent:Agent={};
-  // utilisateur:Utilisateur={};
+  shi: Agent={};
+  structures!:Structure[];
+  structure:Structure={};
+  structureAgent:any;
+  ministereAgent:any;
+  structureAgentId:any;
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
+  autorisations:Demande[]=[];
   enableCreate = true;
   enableBtnInfo = true;
   enableBtnEdit = true;
@@ -54,17 +65,21 @@ export class AutorisationdComponent implements OnInit {
   message: any;
   dialogErrorMessage: any;
   constructor(
-    private autorisationService: AutorisationService ,
+    private autorisationService: AutorisationService,
     private typeDemandeService: TypeDemandeService,
     private motifAbsenceService: MotifAbsenceService,
     private ministereService: MinistereService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private authenticationService:AuthenticationService,
+    private structureService: StructureService
   ) { }
 
   ngOnInit(): void {
      //A remplacer par le numero matricule de l'agent connecté
-    this.matricule= 'admin';
+     this.matricule= this.authenticationService.getUsername();
+     this.structureAgentId= this.authenticationService.getStructureId();
     this.getUtilisateurByMatricule(this.matricule);
+    this.getUtilisateurStructure(this.structureAgentId);
     this.load();
     this.loadTypedemande();
     this.loadMotifAbsence();
@@ -77,13 +92,38 @@ export class AutorisationdComponent implements OnInit {
     return !!this.demande.id;
   }
 
-  getUtilisateurByMatricule(matricule:string) {
+  getUtilisateurStructure(structureId: any){
+   this.structureService.getStructureById(structureId).subscribe(
+    (response)=>{
+      this.structure=response;
+      this.structureAgent=this.structure.libelle;
+      this.ministereAgent=this.structure.ministere?.libelle;
+      console.log("struc lib", this.structureAgent)
+    }
+   )
+  }
+
+  getUtilisateurByMatricule(matricule:any) {
     this.isLoading = true;
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
         this.isLoading = false;
         this.agent = response.agent;
+         
         console.log("Retour get agent",this.agent);
+        this.autorisationService.getUtilisateurByMatricule(this.agent.matriculeResp).subscribe(
+          (response) => {
+            this.isLoading = false;
+            this.shi = response.agent;
+             
+            console.log("Retour get shi",this.shi);
+            
+            
+          },
+          (error) => {
+            this.message = { severity: 'error', summary: error.error };
+          }
+        );
       },
       (error) => {
         this.message = { severity: 'error', summary: error.error };
@@ -109,31 +149,39 @@ export class AutorisationdComponent implements OnInit {
     this.isLoading = true;
     this.typeDemandeService.getAll().subscribe(
       (response) => {
-        this.isLoading = false;
-        this.typeDemandes = response.typeDemandes;
-        // console.log("type demande", this.typeDemandes);
-      },
-      (error) => {
+        this.typeDemandes=response.typeDemandes;
+        this.typeDemandes.forEach(t => {
+          let code:any=t.code;
+          if(code.includes("JOUIS") || code.includes("AUTRE")){
+            this.lestypeDemandes.push(t);
+          }
+        })
+      }, error => {
         this.message = { severity: 'error', summary: error.error };
-      }
-    );
-  }
+        console.error(JSON.stringify(error));
+      });
+    }
 
 
 
  // Affichage
-  load(event?: LazyLoadEvent) {
-    this.isLoading = true;
-    this.autorisationService.getAll().subscribe(response => {
-      this.isLoading = false;
-      this.demandes = response.demandes;
+ load(event?: LazyLoadEvent) {
+  this.isLoading = true;
+  this.autorisationService.getAllSHI().subscribe(response => {
+    this.isLoading = false;
+    this.demandes = response.demandes;
+    this.demandes.forEach(t => {
+      let typeDemande:any=t.typeDemande?.code
+      if(typeDemande.includes("JOUIS") || typeDemande.includes("AUTRE")){
+        this.autorisations.push(t);
+      }
+    })
 
-    }, error => {
-      this.message = { severity: 'error', summary: error.error };
-      console.error(JSON.stringify(error));
-    });
-  }
-
+  }, error => {
+    this.message = { severity: 'error', summary: error.error };
+    console.error(JSON.stringify(error));
+  });
+}
   //Creation
   save() {
     if (this.demande.id) {
@@ -148,8 +196,8 @@ export class AutorisationdComponent implements OnInit {
     this.clearDialogMessages();
     this.form.resetForm();
     this.showDialog = true;
-    // this.getUtilisateurByMatricule(this.matricule);
-    console.log("on create agent",this.agent);
+    this.getUtilisateurByMatricule(this.matricule);
+    
 
   }
  
@@ -157,31 +205,53 @@ export class AutorisationdComponent implements OnInit {
   create() {
     this.clearDialogMessages();
     this.isDialogOpInProgress = true;
-    // this.utilisateur={
-    //   id:2,
-    //   matricule:'admin',
-    //   nom:'Administrator',
-    //   prenom:'Administrator',
-    // };
-    this.demande.numeroDemande="100";
-    // this.demande.utilisateur= this.utilisateur;
-    // this.demande.dureeAbsence= 3;
+    const user ={
+      id:this.agent.id,
+      matricule:this.agent.matricule,
+     
+    };
 
-    // const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
+
+  //  const fichesAsJson: Blob =new Blob([JSON.stringify(this.demande)], { type: 'application/json' })
+  //  this.demande.agent=this.agent;
+  //  this.demande.statusDemande="INITIATION";
+  //  this.demande.positionDemande="DEMANDEUR";
+  //  this.demande.dureeAbsence=0;
+  //  this.demande.motifRejet="";
+  //  this.demande.numeroDemande="";
+  //  this.demande.lieuJouissanceBF="";
+  //  this.demande.lieuJouissanceEtrang="";
+  //  this.demande.situationSND="";
+  //  this.demande.trancheDemande="";
+
+  const data={
+    agent: user,
+    motifRejet:"pp",
+    lieuJouissanceBF:"pp",
+    lieuJouissanceEtrang:"pp",
+    periodeDebut:this.demande.periodeDebut,
+    periodeFin:this.demande.periodeFin,
+    situationSND:"pp",
+    refLastDecision:"rrr",
+    dureeAbsence:0,
+    statusDemande:"INITIATION",
+    positionDemande:"DEMANDEUR",
+    typeDemande:this.demande.typeDemande,
+    motifAbsence:this.demande.motifAbsence
+  }
+
     const formData: FormData = new FormData();
-    formData.append('demande', JSON.stringify(this.demande));
-    // for (let i = 0; i < this.listFiles.length; i++) {
-    //   formData.append("files[]", this.listFiles[i]);
-    // }
+    formData.append('demande', JSON.stringify(data));
     formData.append("files", this.listFiles[0]);
-    console.log('demande',this.demande);
+    console.log('demande',data);
     console.log('formdata',formData);
     this.autorisationService.create(formData).subscribe(response => {
-      if (this.demandes.length !== this.recordsPerPage) {
-        this.demandes.push(response);
-        this.demandes = this.demandes.slice();
-      }
-      this.totalRecords++;
+      // if (this.demandes.length !== this.recordsPerPage) {
+      //   this.demandes.push(response);
+      //   this.demandes = this.demandes.slice();
+      // }
+      // this.totalRecords++;
+      this.load();
       this.isDialogOpInProgress = false;
       this.showDialog = false;
       this.showMessage({ severity: 'success', summary: 'Demande enregistrée avec succès' });

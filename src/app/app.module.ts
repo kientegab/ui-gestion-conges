@@ -48,6 +48,7 @@ import { RechercherActeComponent } from './public/rechercher-acte/rechercher-act
 import { DividerModule } from 'primeng/divider';
 import { PanelModule } from 'primeng/panel';
 import { EspaceSRHRoutingModule } from './administration/espace-srh/espace-srh-routing.module';
+import { EspaceRedacteurDrhRoutingModule } from './administration/espace-redacteur-drh/espace-redacteur-drh-routing.module';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -97,6 +98,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     EspaceSHIRoutingModule,
     EspaceDemandeurRoutingModule,
     EspaceSRHRoutingModule,
+    EspaceRedacteurDrhRoutingModule,
     AppRoutingModule,
     RouterModule,
     ToastModule,
@@ -122,8 +124,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NbDialogModule.forRoot(),
     NbThemeModule.forRoot({ name: 'corporate' })
   ],
-  // providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
-  providers: [ConfirmationService,MessageService],
+   providers: [ConfirmationService,MessageService,AuthInterceptorProviders],
+  //providers: [ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,9 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const commonAppURIA: string = 'http://localhost:8080/conges/api/activate-agent';
+const commonAppURIB: string = 'http://localhost:8080/conges/api/validate-compte';
+
 
 const commonAppURI: string = 'http://localhost:8080/conges/api/';
 
@@ -9,7 +12,11 @@ const commonAppURI: string = 'http://localhost:8080/conges/api/';
 export const environment = {
   production: false,
   recordsPerPage: 100,
-  importRessource:commonAppURI+'import-data/agents',
+  acteRessource: commonAppURI+'actes',
+  agentImportRessource:commonAppURI+'import-data/agents',
+  agentRessource:commonAppURI+'agents',
+  corpRessource:commonAppURI+'corps',
+  corpImportRessource:commonAppURI+'import-data/corps',
   exempleResource: commonAppURI + 'exemples',
   visatypedemandeesource: commonAppURI + 'visa',
 
@@ -20,8 +27,14 @@ export const environment = {
   authenticationRessource: commonAppURI + 'authenticate',
 
 
-  compteRessource: commonAppURI  ,
+ // compteRessource: commonAppURIA  ,
+
+  compteRessource: commonAppURI + 'activate-agent' ,
+  compteSaveRessource: commonAppURIB ,
+
+
   agentResource: commonAppURI +'agents',
+
   activateResource:commonAppURI+'activate',
   structureRessource:commonAppURI + 'structures',
   ministereRessource:commonAppURI + 'ministeres',
@@ -29,13 +42,14 @@ export const environment = {
   utilisateurRessource: commonAppURI + 'utilisateur',
   typeDemandeRessource:commonAppURI + 'typeDemandes',
   typeStructureRessource: commonAppURI + 'type-structure',
+  typeActeRessource:commonAppURI+'typeActes',
   avisRessource: commonAppURI + 'avis',
   visaRessource: commonAppURI + 'visas',
   motifAbsenceRessource: commonAppURI + 'motifAbsence',
-  modalPaiementRessource: commonAppURI + 'modalpaiement', 
+  modalPaiementRessource: commonAppURI + 'modalpaiement',
   articleRessource: commonAppURI + 'article',
   ampliationRessource: commonAppURI + 'ampliation',
-  
+
 
 
   typeVisaRessource: commonAppURI + 'typeVisas',
@@ -43,7 +57,7 @@ export const environment = {
 
 
 
-}; 
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LazyLoadEvent, Message } from 'primeng/api';
@@ -27,6 +28,7 @@ export class CorpsComponent implements OnInit {
   articleDetail: boolean=false;
   message: any;
   dialogErrorMessage: any;
+  file: Blob | string = '';
   constructor(
     private importationService: ImportedService,
   ) { }
@@ -50,11 +52,39 @@ export class CorpsComponent implements OnInit {
   }
 
   onCreate() {
-    this.emploi = {};
-    this.clearDialogMessages();
+    
+    this.showDialog = true;
   }
 
+  onSelectFile(event:any): void {
+
+    let file:File = event.files[0];
+    this.file = file;
+   
+  }
+
+  importer(){
+    this.isDialogOpInProgress = true;
+    const formData: FormData = new FormData();
+    //const fichesAsJson: Blob = new Blob([JSON.stringify(this.file)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    formData.append('file', this.file);
+    this.importationService.importEmplois(formData).subscribe(response => {
+      console.log("eee", formData)
+      this.load();
+      this.totalRecords++;
+      this.isDialogOpInProgress = false;
+      this.showDialog = false;
+      this.showMessage({ severity: 'success', summary: 'emplois enregistrés avec succès' });
+    }, error => this.handleError(error));
+  }
   // Messages
+     // Errors
+
+    handleError(error: HttpErrorResponse) {
+      console.error(`Processing Error: ${JSON.stringify(error)}`);
+      this.isDialogOpInProgress = false;
+      this.dialogErrorMessage = error.error.title;
+    }
 
   clearDialogMessages() {
     this.dialogErrorMessage = null;

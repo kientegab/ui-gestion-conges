@@ -1,0 +1,192 @@
+<div style="margin-top:-30px ;">
+    <p-card>
+      <!-- ToolBar -->
+  
+      <div class="p-d-flex mt-2 mb-3">
+        <!-- <app-crud-toolbar [enableCreate]="enableCreate" (create)="onCreate()">
+        </app-crud-toolbar> -->
+        <div class="p-ml-auto">
+          <p-message *ngIf="message" [severity]="message.severity" [text]="message.summary"></p-message>
+          <p-progressSpinner *ngIf="isOpInProgress" strokeWidth="4" [style]="{width: '50px', height: '50px'}">
+          </p-progressSpinner>
+        </div>
+      </div>
+      <p-divider></p-divider>
+  
+      <p-table #dt [value]="conges" [paginator]="true" [rows]="recordsPerPage" [loading]="isLoading"
+        (onLazyLoad)="load($event)" [totalRecords]="totalRecords" [globalFilterFields]="['numeroDemande','typeDemande.libelle','motifAbsence.libelle']"
+        currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} élements" [showCurrentPageReport]=true
+        [rowsPerPageOptions]="[10, 20]" styleClass="p-datatable-sm">
+  
+        <ng-template pTemplate="caption">
+          <div class="row">
+            <!-- titre -->
+            <div class="col" style="padding: 8px; margin-left: 8px">
+              <span>Liste des demandes</span>
+            </div>
+  
+            <!-- volet recherche -->
+            <div class="col text-right">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($any($event.target)!.value, 'contains')"
+                  placeholder="Recherche..." />
+              </span>
+            </div>
+          </div>
+        </ng-template>
+  
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="matricule">Nom
+              <p-sortIcon field="matricule"></p-sortIcon>
+            </th>
+  
+            <th pSortableColumn="typeDemande">Prénom
+              <p-sortIcon field="typeDemande"></p-sortIcon>
+            </th>
+  
+            <th pSortableColumn="typeDemande">type demande
+              <p-sortIcon field="typeDemande"></p-sortIcon>
+            </th>
+  
+            <th pSortableColumn="periodeDebut">Periode debut
+              <p-sortIcon field="periodeDebut"></p-sortIcon>
+            </th>
+  
+            <th pSortableColumn="periodeFin">Periode fin
+              <p-sortIcon field="periodeFin"></p-sortIcon>
+            </th>
+  
+            <th pSortableColumn="etat">Position
+              <p-sortIcon field="etat"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="etat">Etat
+              <p-sortIcon field="etat"></p-sortIcon>
+            </th>
+
+            
+  
+            <th class="actionStyle" >
+              Actions
+            </th>
+          </tr>
+        </ng-template>
+  
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-demande>
+          <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pContextMenuRow]="demande">
+            <td>{{demande.agent?.nom}} </td>
+            <td>{{demande.agent?.prenom}} </td>
+            <td>{{demande.typeDemande?.libelle}} </td>
+            <td>{{demande.periodeDebut |  date:'dd/MM/yyyy'}} </td>
+            <td>{{demande.periodeFin |  date:'dd/MM/yyyy'}} </td>
+            <td pTooltip="En attente d'être validé ">
+             {{demande.positionDemande}}
+            </td>
+            <td [ngStyle]="{backgroundColor:'var(--pink-100)'}">{{demande.statusDemande}} </td>
+            
+            <td class="actionStyle">
+  
+              <app-actions-toolbal-iud (info)="onInfo(demande)" [enableBtnInfo]="enableBtnInfo"
+                 (treat)="onTraiter(demande)" [enableBtnTreat]="enableBtnTreat">
+              </app-actions-toolbal-iud>
+  
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+
+  
+    <!-- formulaire d'affichage du détail -->
+  
+  
+    <p-dialog [(visible)]="demandeDetail" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+      [style]="{width: '50vw'}">
+      <ng-template pTemplate="header">
+  
+        <span class="p-mr-auto"> DETAILS demande</span>
+      </ng-template>
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Numéro demande:</span> {{demande.numeroDemande}}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Type Demande:</span> {{demande.typeDemande?.libelle}}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Période Debut:</span> {{demande.periodeDebut}}</span>
+            </li>
+  
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Période Fin:</span> {{demande.periodeFin}}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">Statut:</span> {{demande.statusDemande}}</span>
+            </li>
+  
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">
+                  Matricule : </span> {{demande.agent?.matricule }}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">
+                  Nom : </span> {{demande.agent?.nom }}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">
+                  Prenom : </span> {{demande.agent?.prenom }}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <span class="va-m"><span class="font-weight-bold">
+                  Emploi : </span> {{demande.agent?.corps?.libelleCorps }}</span>
+            </li>
+            <li class="list-group-item list-group-item-action">
+                <span class="va-m"><span class="font-weight-bold">
+                    Responsable : </span> {{demande.agent?.matriculeResp }}</span>
+              </li>
+  
+          </ul>
+        </div>
+  
+      </div>
+      <p-divider></p-divider>
+      <div class="p-ml-auto text-right">
+        <button description="reset" label="Fermer" (click)="demandeDetail=false"
+          class="p-button-raised p-button-text p-button-success mr-2" pButton></button>
+      </div>
+    </p-dialog>
+  
+    <!-- traiter une demande -->
+
+    <p-dialog [(visible)]="treatDialog" [modal]="true" [maximizable]="true" appendTo="body" [style]="{width: '50vw'}"
+       [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+      <ng-template pTemplate="header">
+        <span><h6>traiter une demande</h6></span>
+      </ng-template>
+      <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate"></p-progressBar>
+      <p-message *ngIf="dialogErrorMessage" severity="error" [text]="dialogErrorMessage"></p-message>
+      <p-divider></p-divider>
+       <div  class="p-fluid grid">
+        <div class="p-field p-col-12 md:col-12">
+          <label for="typedemande">Avis</label>
+          <p-dropdown [options]="avisOptions" [(ngModel)]="validation.enumValidation" optionLabel="libelle" optionValue="valeur"
+            inputId="enumValidation" name="enumValidation" placeholder="Selectionner un avis..." [filter]="true"
+            appendTo="body" [showClear]="true">
+          </p-dropdown>
+        </div>
+        <div class="p-field p-col-12 md:col-12">
+          <label for="avis">Commentaire</label>
+          <textarea type="text" id="avis"  rows="4" name="avis" [(ngModel)]="validation.avis" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+        </div>
+       </div>
+       <p-divider></p-divider>
+       <p-button (click)="traiter()">Valider</p-button>
+    </p-dialog>
+    <!-- Confirmation -->
+    <!-- <app-confirmation></app-confirmation> -->
+  </div>
+  
