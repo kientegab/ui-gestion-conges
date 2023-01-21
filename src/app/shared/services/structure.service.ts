@@ -36,9 +36,10 @@ export class StructureService {
       let value: Structure={};
       value= response.body as Structure;
 
-      let data :Structure[]=[];
-       data.push(value);
-        return data;
+      // let data :Structure[]=[];
+      //  data.push(value);
+       //return data;
+       return value;
       }));
     }
   getStructureByMinistereId(id: number|null): Observable<GetAllStructureResponse> {

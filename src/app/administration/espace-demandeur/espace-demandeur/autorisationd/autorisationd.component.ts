@@ -28,9 +28,8 @@ export class AutorisationdComponent implements OnInit {
   @ViewChild('dtf') form!: NgForm;
   timeoutHandle: any;
   totalRecords!: number;
-  //Matri:string="admin2";
   recordsPerPage = environment.recordsPerPage;
-  matricule!:string;
+  matricule!:any;
   demandes!:Demande[];
   demande:Demande= {};
   ministeres!: Ministere[];
@@ -40,8 +39,11 @@ export class AutorisationdComponent implements OnInit {
   //utilisateur:Agent={};
   agent:Agent={};
   shi: Agent={};
+  structures!:Structure[];
   structure:Structure={};
   structureAgent:any;
+  ministereAgent:any;
+  structureAgentId:any;
   motifAbsences!: MotifAbsence[];
   motifAbsence: MotifAbsence={};
   autorisations:Demande[]=[];
@@ -74,10 +76,10 @@ export class AutorisationdComponent implements OnInit {
 
   ngOnInit(): void {
      //A remplacer par le numero matricule de l'agent connecté
-     this.matricule= 'admin';
-    console.log("ertyuio",this.matricule)
+     this.matricule= this.authenticationService.getUsername();
+     this.structureAgentId= this.authenticationService.getStructureId();
     this.getUtilisateurByMatricule(this.matricule);
-   // this.getUtilisateurStructure(this.authenticationService.getStructureId());
+    this.getUtilisateurStructure(this.structureAgentId);
     this.load();
     this.loadTypedemande();
     this.loadMotifAbsence();
@@ -93,13 +95,15 @@ export class AutorisationdComponent implements OnInit {
   getUtilisateurStructure(structureId: any){
    this.structureService.getStructureById(structureId).subscribe(
     (response)=>{
-      this.structure=response.structure;
+      this.structure=response;
       this.structureAgent=this.structure.libelle;
+      this.ministereAgent=this.structure.ministere?.libelle;
+      console.log("struc lib", this.structureAgent)
     }
    )
   }
 
-  getUtilisateurByMatricule(matricule:string) {
+  getUtilisateurByMatricule(matricule:any) {
     this.isLoading = true;
     this.autorisationService.getUtilisateurByMatricule(matricule).subscribe(
       (response) => {
@@ -112,7 +116,7 @@ export class AutorisationdComponent implements OnInit {
             this.isLoading = false;
             this.shi = response.agent;
              
-            console.log("Retour get agent",this.agent);
+            console.log("Retour get shi",this.shi);
             
             
           },
